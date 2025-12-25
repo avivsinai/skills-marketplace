@@ -16,7 +16,7 @@
         "repo": "avivsinai/agent-message-queue"
       },
       "description": "Agent Message Queue - atomic Maildir-style message delivery for inter-agent communication. Includes watch command for real-time message notifications.",
-      "version": "0.3.0",
+      "version": "0.4.0",
       "keywords": ["messaging", "agents", "maildir", "queue", "inter-agent", "coordination"],
       "category": "productivity"
     }
