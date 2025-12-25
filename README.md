@@ -3,7 +3,7 @@
 [![Validate](https://github.com/avivsinai/skills-marketplace/actions/workflows/validate.yml/badge.svg)](https://github.com/avivsinai/skills-marketplace/actions/workflows/validate.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-Central plugin marketplace for AI coding assistants. Supports both Claude Code and Codex CLI.
+Central plugin marketplace for AI coding assistants. This is a **registry** that points to plugins in their source repos - no duplication.
 
 ## Installation
 
@@ -20,43 +20,53 @@ Central plugin marketplace for AI coding assistants. Supports both Claude Code a
 ### Codex CLI
 
 ```bash
-# Install from this marketplace
-$skill-installer install https://github.com/avivsinai/skills-marketplace/tree/main/skills/amq-cli
-
-# Or install directly from source repo
+# Install directly from source repo
 $skill-installer install https://github.com/avivsinai/agent-message-queue/tree/main/.codex/skills/amq-cli
 ```
 
 ## Available Plugins
 
-| Plugin | Description | Source |
-|--------|-------------|--------|
-| `amq-cli` | Agent Message Queue - atomic Maildir-style message delivery | [agent-message-queue](https://github.com/avivsinai/agent-message-queue) |
+| Plugin | Version | Description | Source |
+|--------|---------|-------------|--------|
+| `amq-cli` | 0.3.0 | Agent Message Queue - atomic Maildir-style message delivery with watch command | [agent-message-queue](https://github.com/avivsinai/agent-message-queue) |
 
-## Adding a Plugin
+## Architecture
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for plugin submission guidelines.
-
-## Structure
+This marketplace is a **registry/index** - plugins live in their source repos:
 
 ```
 skills-marketplace/
 ├── .claude-plugin/
-│   └── marketplace.json    # Claude Code marketplace index
-├── skills/
-│   └── <skill-name>/
-│       └── SKILL.md        # Codex-compatible skill files
-├── .github/workflows/
-│   └── validate.yml        # CI validation
+│   └── marketplace.json    # Registry pointing to source repos
 └── README.md
+
+# Plugins live in their own repos:
+agent-message-queue/
+├── .claude-plugin/
+│   └── plugin.json         # Plugin manifest
+├── skills/
+│   └── amq-cli/SKILL.md    # Plugin skills (for Claude Code)
+├── .claude/skills/         # Project-scoped skills
+└── .codex/skills/          # Codex-compatible skills
 ```
+
+When you install a plugin via the marketplace, it fetches from the source repo.
+
+## Adding a Plugin
+
+To add your plugin to this marketplace:
+
+1. Ensure your repo has `.claude-plugin/plugin.json` (for Claude Code)
+2. Add skills to `skills/<name>/SKILL.md` (for plugin distribution)
+3. Submit a PR adding your plugin to `.claude-plugin/marketplace.json`
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for details.
 
 ## Standards
 
-All skills follow the [Agent Skills specification](https://agentskills.io/specification), ensuring compatibility with:
+All plugins follow the [Agent Skills specification](https://agentskills.io/specification), ensuring compatibility with:
 - Claude Code
 - Codex CLI
-- GitHub Copilot
 - Other Agent Skills-compatible tools
 
 ## License

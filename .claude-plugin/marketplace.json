@@ -5,7 +5,8 @@
     "url": "https://github.com/avivsinai"
   },
   "metadata": {
-    "description": "Skills and tools for AI coding assistants"
+    "description": "Skills and plugins for AI coding assistants",
+    "version": "1.0.0"
   },
   "plugins": [
     {
@@ -14,8 +15,10 @@
         "source": "github",
         "repo": "avivsinai/agent-message-queue"
       },
-      "description": "Agent Message Queue - atomic Maildir-style message delivery for inter-agent communication",
-      "version": "1.0.0"
+      "description": "Agent Message Queue - atomic Maildir-style message delivery for inter-agent communication. Includes watch command for real-time message notifications.",
+      "version": "0.3.0",
+      "keywords": ["messaging", "agents", "maildir", "queue", "inter-agent", "coordination"],
+      "category": "productivity"
     }
   ]
 }
