@@ -1,0 +1,64 @@
+name: Validate Marketplace
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.claude-plugin/marketplace.json'
+      - 'skills/**'
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate marketplace.json syntax
+        run: python3 -m json.tool .claude-plugin/marketplace.json > /dev/null
+
+      - name: Validate marketplace structure
+        run: |
+          python3 - <<'EOF'
+          import json
+          import sys
+
+          with open('.claude-plugin/marketplace.json') as f:
+              data = json.load(f)
+
+          # Check required fields
+          required = ['name', 'owner', 'plugins']
+          for field in required:
+              if field not in data:
+                  print(f"Missing required field: {field}")
+                  sys.exit(1)
+
+          # Check owner has name
+          if 'name' not in data.get('owner', {}):
+              print("owner.name is required")
+              sys.exit(1)
+
+          # Check plugins
+          for plugin in data.get('plugins', []):
+              if 'name' not in plugin:
+                  print(f"Plugin missing name: {plugin}")
+                  sys.exit(1)
+              if 'source' not in plugin:
+                  print(f"Plugin missing source: {plugin}")
+                  sys.exit(1)
+
+          print(f"Validated {len(data['plugins'])} plugins")
+          EOF
+
+      - name: Check skills have SKILL.md
+        run: |
+          for dir in skills/*/; do
+            if [ -d "$dir" ]; then
+              if [ ! -f "${dir}SKILL.md" ]; then
+                echo "Missing SKILL.md in $dir"
+                exit 1
+              fi
+            fi
+          done
+          echo "All skills have SKILL.md"
