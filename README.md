@@ -3,11 +3,11 @@
 [![Validate](https://github.com/avivsinai/skills-marketplace/actions/workflows/validate.yml/badge.svg)](https://github.com/avivsinai/skills-marketplace/actions/workflows/validate.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-Central plugin marketplace for AI coding assistants. This is a **registry** that points to plugins in their source repos - no duplication.
+Central plugin marketplace for **Claude Code**. This is a **registry** that points to plugins in their source repos - no duplication.
 
-## Installation
+Note: Codex CLI does not support marketplace indirection. See each plugin's source repo for Codex installation instructions.
 
-### Claude Code
+## Installation (Claude Code)
 
 ```bash
 # Add marketplace (one-time)
@@ -17,18 +17,11 @@ Central plugin marketplace for AI coding assistants. This is a **registry** that
 /plugin install amq-cli@avivsinai-marketplace
 ```
 
-### Codex CLI
-
-```bash
-# Install directly from source repo
-$skill-installer install https://github.com/avivsinai/agent-message-queue/tree/main/.codex/skills/amq-cli
-```
-
 ## Available Plugins
 
 | Plugin | Version | Description | Source |
 |--------|---------|-------------|--------|
-| `amq-cli` | 0.3.0 | Agent Message Queue - atomic Maildir-style message delivery with watch command | [agent-message-queue](https://github.com/avivsinai/agent-message-queue) |
+| `amq-cli` | 0.4.0 | Agent Message Queue - atomic Maildir-style message delivery with watch command | [agent-message-queue](https://github.com/avivsinai/agent-message-queue) |
 
 ## Architecture
 
