@@ -15,8 +15,6 @@ Central plugin marketplace for AI coding assistants.
 
 # Install plugins
 /plugin install amq-cli@avivsinai-marketplace
-/plugin install jenkins-cli@avivsinai-marketplace
-/plugin install langfuse-mcp@avivsinai-marketplace
 ```
 
 ## Available Plugins
@@ -24,8 +22,6 @@ Central plugin marketplace for AI coding assistants.
 | Plugin | Description | Source |
 |--------|-------------|--------|
 | `amq-cli` | Agent Message Queue - atomic Maildir-style message delivery | [agent-message-queue](https://github.com/avivsinai/agent-message-queue) |
-| `jenkins-cli` | Jenkins CLI integration and automation | [jenkins-cli](https://github.com/avivsinai/jenkins-cli) |
-| `langfuse-mcp` | Langfuse MCP server for LLM observability | [langfuse-mcp](https://github.com/avivsinai/langfuse-mcp) |
 
 ## Adding New Plugins
 

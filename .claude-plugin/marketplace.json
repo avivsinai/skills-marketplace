@@ -16,24 +16,6 @@
       },
       "description": "Agent Message Queue - atomic Maildir-style message delivery for inter-agent communication",
       "version": "1.0.0"
-    },
-    {
-      "name": "jenkins-cli",
-      "source": {
-        "source": "github",
-        "repo": "avivsinai/jenkins-cli"
-      },
-      "description": "Jenkins CLI integration and automation tools",
-      "version": "1.0.0"
-    },
-    {
-      "name": "langfuse-mcp",
-      "source": {
-        "source": "github",
-        "repo": "avivsinai/langfuse-mcp"
-      },
-      "description": "Langfuse MCP server for LLM observability",
-      "version": "1.0.0"
     }
   ]
 }
