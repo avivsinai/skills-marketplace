@@ -13,11 +13,11 @@
       "name": "amq-cli",
       "source": {
         "source": "github",
-        "repo": "avivsinai/agent-message-queue"
+        "repo": "avivsinai/agent-message-queue",
+        "ref": "main"
       },
-      "description": "Agent Message Queue - atomic Maildir-style message delivery for inter-agent communication. Includes watch command for real-time message notifications.",
-      "version": "0.4.0",
-      "keywords": ["messaging", "agents", "maildir", "queue", "inter-agent", "coordination"]
+      "description": "Agent Message Queue - atomic Maildir-style message delivery for inter-agent communication with co-op mode for Claude Code and Codex CLI collaboration.",
+      "keywords": ["messaging", "agents", "maildir", "queue", "inter-agent", "coordination", "coop"]
     }
   ]
 }

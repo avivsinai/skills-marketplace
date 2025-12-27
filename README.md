@@ -19,9 +19,11 @@ Note: Codex CLI does not support marketplace indirection. See each plugin's sour
 
 ## Available Plugins
 
-| Plugin | Version | Description | Source |
-|--------|---------|-------------|--------|
-| `amq-cli` | 0.4.0 | Agent Message Queue - atomic Maildir-style message delivery with watch command | [agent-message-queue](https://github.com/avivsinai/agent-message-queue) |
+| Plugin | Description | Source |
+|--------|-------------|--------|
+| `amq-cli` | Agent Message Queue - atomic Maildir-style message delivery with co-op mode | [agent-message-queue](https://github.com/avivsinai/agent-message-queue) |
+
+All plugins use `ref: "main"` - you always get the latest version from the source repo.
 
 ## Architecture
 
