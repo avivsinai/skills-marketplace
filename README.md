@@ -22,6 +22,7 @@ Note: Codex CLI does not support marketplace indirection. See each plugin's sour
 | Plugin | Description | Source |
 |--------|-------------|--------|
 | `amq-cli` | Agent Message Queue - atomic Maildir-style message delivery with co-op mode | [agent-message-queue](https://github.com/avivsinai/agent-message-queue) |
+| `israel-services` | Access Israeli citizen services (health HMOs, banks, credit cards) via CLI | [israel-services](https://github.com/avivsinai/israel-services) |
 
 All plugins use `ref: "main"` - you always get the latest version from the source repo.
 

@@ -18,6 +18,16 @@
       },
       "description": "Agent Message Queue - atomic Maildir-style message delivery for inter-agent communication with co-op mode for Claude Code and Codex CLI collaboration.",
       "keywords": ["messaging", "agents", "maildir", "queue", "inter-agent", "coordination", "coop"]
+    },
+    {
+      "name": "israel-services",
+      "source": {
+        "source": "github",
+        "repo": "avivsinai/israel-services",
+        "ref": "main"
+      },
+      "description": "Access Israeli citizen services (health HMOs, banks, credit cards) directly via CLI. Supports Clalit, Maccabi, Leumit, Bank Hapoalim, Leumi, and more.",
+      "keywords": ["israel", "health", "banking", "clalit", "maccabi", "leumit", "poalim", "scraping", "automation"]
     }
   ]
 }
