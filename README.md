@@ -15,6 +15,7 @@ Note: Codex CLI does not support marketplace indirection. See each plugin's sour
 
 # Install plugins
 /plugin install amq-cli@avivsinai-marketplace
+/plugin install langfuse@avivsinai-marketplace
 ```
 
 ## Available Plugins
@@ -22,6 +23,7 @@ Note: Codex CLI does not support marketplace indirection. See each plugin's sour
 | Plugin | Description | Source |
 |--------|-------------|--------|
 | `amq-cli` | Agent Message Queue - atomic Maildir-style message delivery with co-op mode | [agent-message-queue](https://github.com/avivsinai/agent-message-queue) |
+| `langfuse` | Langfuse observability - query traces, debug exceptions, analyze sessions, manage prompts | [langfuse-mcp](https://github.com/avivsinai/langfuse-mcp) |
 
 All plugins use `ref: "main"` - you always get the latest version from the source repo.
 
