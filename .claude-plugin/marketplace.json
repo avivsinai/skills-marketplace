@@ -18,6 +18,16 @@
       },
       "description": "Agent Message Queue - atomic Maildir-style message delivery for inter-agent communication with co-op mode for Claude Code and Codex CLI collaboration.",
       "keywords": ["messaging", "agents", "maildir", "queue", "inter-agent", "coordination", "coop"]
+    },
+    {
+      "name": "langfuse",
+      "source": {
+        "source": "github",
+        "repo": "avivsinai/langfuse-mcp",
+        "ref": "main"
+      },
+      "description": "Langfuse observability - query traces, debug exceptions, analyze sessions, manage prompts via MCP tools. First LLM observability skill for Claude Code and Codex.",
+      "keywords": ["langfuse", "observability", "traces", "llm", "prompts", "debugging", "telemetry", "mcp"]
     }
   ]
 }
