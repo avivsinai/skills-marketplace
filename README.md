@@ -5,7 +5,11 @@
 
 Central plugin marketplace for **Claude Code**. This is a **registry** that points to plugins in their source repos - no duplication.
 
-Note: Codex CLI does not support marketplace indirection. See each plugin's source repo for Codex installation instructions.
+> **Cross-platform?** These skills are also published to [skild.sh](https://skills.sh) for use with Claude, Codex, Copilot, Cursor, Windsurf, and more:
+> ```bash
+> npx skild install amq-cli
+> npx skild install langfuse
+> ```
 
 ## Installation (Claude Code)
 
