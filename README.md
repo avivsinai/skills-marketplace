@@ -5,13 +5,24 @@
 
 Central plugin marketplace for **Claude Code**. This is a **registry** that points to plugins in their source repos - no duplication.
 
-> **Cross-platform?** These skills are also published to [skild.sh](https://skills.sh) for use with Claude, Codex, Copilot, Cursor, Windsurf, and more:
+> **Cross-platform?** These skills work with Claude Code, Codex CLI, Copilot, Cursor, Windsurf, and more.
+>
+> **Via [skild.sh](https://skild.sh)** (registry-based):
 > ```bash
-> npx skild install amq-cli
-> npx skild install langfuse
-> npx skild install sabx
-> npx skild install bkt
-> npx skild install jk
+> npx skild install @avivsinai/amq-cli
+> npx skild install @avivsinai/langfuse
+> npx skild install @avivsinai/sabx
+> npx skild install @avivsinai/bkt
+> npx skild install @avivsinai/jk
+> ```
+>
+> **Via [skills.sh](https://skills.sh)** (GitHub-based):
+> ```bash
+> npx skills add avivsinai/agent-message-queue
+> npx skills add avivsinai/langfuse-mcp
+> npx skills add avivsinai/sabx
+> npx skills add avivsinai/bitbucket-cli
+> npx skills add avivsinai/jenkins-cli
 > ```
 
 ## Installation (Claude Code)
