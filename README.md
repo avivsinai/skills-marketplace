@@ -10,6 +10,7 @@ Central plugin marketplace for **Claude Code**. This is a **registry** that poin
 > npx skild install amq-cli
 > npx skild install langfuse
 > npx skild install sabx
+> npx skild install bkt
 > ```
 
 ## Installation (Claude Code)
@@ -22,6 +23,7 @@ Central plugin marketplace for **Claude Code**. This is a **registry** that poin
 /plugin install amq-cli@avivsinai-marketplace
 /plugin install langfuse@avivsinai-marketplace
 /plugin install sabx@avivsinai-marketplace
+/plugin install bkt@avivsinai-marketplace
 ```
 
 ## Available Plugins
@@ -31,8 +33,9 @@ Central plugin marketplace for **Claude Code**. This is a **registry** that poin
 | `amq-cli` | Agent Message Queue - atomic Maildir-style message delivery with co-op mode | [agent-message-queue](https://github.com/avivsinai/agent-message-queue) |
 | `langfuse` | Langfuse observability - query traces, debug exceptions, analyze sessions, manage prompts | [langfuse-mcp](https://github.com/avivsinai/langfuse-mcp) |
 | `sabx` | SABnzbd CLI - control downloads, queues, RSS feeds, and automation | [sabx](https://github.com/avivsinai/sabx) |
+| `bkt` | Bitbucket CLI - manage repos, PRs, branches, issues, webhooks, pipelines (DC & Cloud) | [bitbucket-cli](https://github.com/avivsinai/bitbucket-cli) |
 
-All plugins use `ref: "main"` - you always get the latest version from the source repo.
+All plugins use the default branch (`main` or `master`) - you always get the latest version from the source repo.
 
 ## Architecture
 
