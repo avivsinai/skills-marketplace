@@ -48,6 +48,16 @@
       },
       "description": "Bitbucket CLI - manage repositories, pull requests, branches, issues, webhooks, and pipelines for both Data Center and Cloud. Mirrors gh ergonomics with JSON/YAML output.",
       "keywords": ["bitbucket", "git", "pr", "pull-request", "ci", "pipeline", "devops", "cli", "datacenter", "cloud"]
+    },
+    {
+      "name": "jk",
+      "source": {
+        "source": "github",
+        "repo": "avivsinai/jenkins-cli",
+        "ref": "main"
+      },
+      "description": "Jenkins CLI - GitHub CLI-style interface for Jenkins controllers. Manage jobs, pipelines, runs, logs, artifacts, credentials, nodes, queues, and plugins.",
+      "keywords": ["jenkins", "ci", "cd", "pipeline", "builds", "devops", "cli", "automation"]
     }
   ]
 }

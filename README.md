@@ -11,6 +11,7 @@ Central plugin marketplace for **Claude Code**. This is a **registry** that poin
 > npx skild install langfuse
 > npx skild install sabx
 > npx skild install bkt
+> npx skild install jk
 > ```
 
 ## Installation (Claude Code)
@@ -24,6 +25,7 @@ Central plugin marketplace for **Claude Code**. This is a **registry** that poin
 /plugin install langfuse@avivsinai-marketplace
 /plugin install sabx@avivsinai-marketplace
 /plugin install bkt@avivsinai-marketplace
+/plugin install jk@avivsinai-marketplace
 ```
 
 ## Available Plugins
@@ -34,6 +36,7 @@ Central plugin marketplace for **Claude Code**. This is a **registry** that poin
 | `langfuse` | Langfuse observability - query traces, debug exceptions, analyze sessions, manage prompts | [langfuse-mcp](https://github.com/avivsinai/langfuse-mcp) |
 | `sabx` | SABnzbd CLI - control downloads, queues, RSS feeds, and automation | [sabx](https://github.com/avivsinai/sabx) |
 | `bkt` | Bitbucket CLI - manage repos, PRs, branches, issues, webhooks, pipelines (DC & Cloud) | [bitbucket-cli](https://github.com/avivsinai/bitbucket-cli) |
+| `jk` | Jenkins CLI - manage jobs, pipelines, runs, logs, artifacts, credentials, nodes | [jenkins-cli](https://github.com/avivsinai/jenkins-cli) |
 
 All plugins use the default branch (`main` or `master`) - you always get the latest version from the source repo.
 
