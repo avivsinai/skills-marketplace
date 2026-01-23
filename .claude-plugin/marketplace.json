@@ -26,8 +26,8 @@
         "repo": "avivsinai/langfuse-mcp",
         "ref": "main"
       },
-      "description": "Langfuse observability - query traces, debug exceptions, analyze sessions, manage prompts via MCP tools. First LLM observability skill for Claude Code and Codex.",
-      "keywords": ["langfuse", "observability", "traces", "llm", "prompts", "debugging", "telemetry", "mcp"]
+      "description": "Langfuse observability - query traces, debug exceptions, analyze sessions, manage prompts and datasets via MCP tools. First LLM observability skill for Claude Code and Codex.",
+      "keywords": ["langfuse", "observability", "traces", "llm", "prompts", "datasets", "debugging", "telemetry", "mcp"]
     }
   ]
 }
