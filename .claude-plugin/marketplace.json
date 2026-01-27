@@ -12,8 +12,8 @@
     {
       "name": "amq-cli",
       "source": {
-        "source": "github",
-        "repo": "avivsinai/agent-message-queue",
+        "source": "git",
+        "url": "https://github.com/avivsinai/agent-message-queue.git",
         "ref": "main"
       },
       "description": "Agent Message Queue - atomic Maildir-style message delivery for inter-agent communication with co-op mode for Claude Code and Codex CLI collaboration.",
@@ -22,8 +22,8 @@
     {
       "name": "langfuse",
       "source": {
-        "source": "github",
-        "repo": "avivsinai/langfuse-mcp",
+        "source": "git",
+        "url": "https://github.com/avivsinai/langfuse-mcp.git",
         "ref": "main"
       },
       "description": "Langfuse observability - query traces, debug exceptions, analyze sessions, manage prompts and datasets via MCP tools. First LLM observability skill for Claude Code and Codex.",
@@ -32,8 +32,8 @@
     {
       "name": "sabx",
       "source": {
-        "source": "github",
-        "repo": "avivsinai/sabx",
+        "source": "git",
+        "url": "https://github.com/avivsinai/sabx.git",
         "ref": "main"
       },
       "description": "SABnzbd CLI - control downloads, queues, RSS feeds, speed limits, and automation via terminal. Full API parity with SABnzbd REST API.",
@@ -42,8 +42,8 @@
     {
       "name": "bkt",
       "source": {
-        "source": "github",
-        "repo": "avivsinai/bitbucket-cli",
+        "source": "git",
+        "url": "https://github.com/avivsinai/bitbucket-cli.git",
         "ref": "master"
       },
       "description": "Bitbucket CLI - manage repositories, pull requests, branches, issues, webhooks, and pipelines for both Data Center and Cloud. Mirrors gh ergonomics with JSON/YAML output.",
@@ -52,8 +52,8 @@
     {
       "name": "jk",
       "source": {
-        "source": "github",
-        "repo": "avivsinai/jenkins-cli",
+        "source": "git",
+        "url": "https://github.com/avivsinai/jenkins-cli.git",
         "ref": "main"
       },
       "description": "Jenkins CLI - GitHub CLI-style interface for Jenkins controllers. Manage jobs, pipelines, runs, logs, artifacts, credentials, nodes, queues, and plugins.",
