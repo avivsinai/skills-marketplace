@@ -1,8 +1,7 @@
 {
   "name": "avivsinai-marketplace",
   "owner": {
-    "name": "Aviv Sinai",
-    "url": "https://github.com/avivsinai"
+    "name": "Aviv Sinai"
   },
   "metadata": {
     "description": "Skills and plugins for AI coding assistants",
