@@ -12,9 +12,8 @@
     {
       "name": "amq-cli",
       "source": {
-        "source": "git",
-        "url": "https://github.com/avivsinai/agent-message-queue.git",
-        "ref": "main"
+        "source": "url",
+        "url": "https://github.com/avivsinai/agent-message-queue.git"
       },
       "description": "Agent Message Queue - atomic Maildir-style message delivery for inter-agent communication with co-op mode for Claude Code and Codex CLI collaboration.",
       "keywords": ["messaging", "agents", "maildir", "queue", "inter-agent", "coordination", "coop"]
@@ -22,9 +21,8 @@
     {
       "name": "langfuse",
       "source": {
-        "source": "git",
-        "url": "https://github.com/avivsinai/langfuse-mcp.git",
-        "ref": "main"
+        "source": "url",
+        "url": "https://github.com/avivsinai/langfuse-mcp.git"
       },
       "description": "Langfuse observability - query traces, debug exceptions, analyze sessions, manage prompts and datasets via MCP tools. First LLM observability skill for Claude Code and Codex.",
       "keywords": ["langfuse", "observability", "traces", "llm", "prompts", "datasets", "debugging", "telemetry", "mcp"]
@@ -32,9 +30,8 @@
     {
       "name": "sabx",
       "source": {
-        "source": "git",
-        "url": "https://github.com/avivsinai/sabx.git",
-        "ref": "main"
+        "source": "url",
+        "url": "https://github.com/avivsinai/sabx.git"
       },
       "description": "SABnzbd CLI - control downloads, queues, RSS feeds, speed limits, and automation via terminal. Full API parity with SABnzbd REST API.",
       "keywords": ["sabnzbd", "usenet", "downloads", "nzb", "queue", "automation", "cli", "rss"]
@@ -42,9 +39,8 @@
     {
       "name": "bkt",
       "source": {
-        "source": "git",
-        "url": "https://github.com/avivsinai/bitbucket-cli.git",
-        "ref": "master"
+        "source": "url",
+        "url": "https://github.com/avivsinai/bitbucket-cli.git"
       },
       "description": "Bitbucket CLI - manage repositories, pull requests, branches, issues, webhooks, and pipelines for both Data Center and Cloud. Mirrors gh ergonomics with JSON/YAML output.",
       "keywords": ["bitbucket", "git", "pr", "pull-request", "ci", "pipeline", "devops", "cli", "datacenter", "cloud"]
@@ -52,9 +48,8 @@
     {
       "name": "jk",
       "source": {
-        "source": "git",
-        "url": "https://github.com/avivsinai/jenkins-cli.git",
-        "ref": "main"
+        "source": "url",
+        "url": "https://github.com/avivsinai/jenkins-cli.git"
       },
       "description": "Jenkins CLI - GitHub CLI-style interface for Jenkins controllers. Manage jobs, pipelines, runs, logs, artifacts, credentials, nodes, queues, and plugins.",
       "keywords": ["jenkins", "ci", "cd", "pipeline", "builds", "devops", "cli", "automation"]
