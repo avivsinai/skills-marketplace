@@ -1,0 +1,40 @@
+name: Plugin Request
+description: Request a new plugin to be added to the marketplace
+title: "[Plugin Request]: "
+labels: ["plugin-request"]
+body:
+  - type: input
+    id: plugin-name
+    attributes:
+      label: Plugin Name
+      description: Name of the plugin you'd like added
+      placeholder: e.g. my-awesome-skill
+    validations:
+      required: true
+
+  - type: input
+    id: source-repo
+    attributes:
+      label: Source Repo URL
+      description: GitHub repository URL for the plugin
+      placeholder: https://github.com/owner/repo
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Brief description of what the plugin does
+      placeholder: This plugin provides...
+    validations:
+      required: true
+
+  - type: textarea
+    id: why
+    attributes:
+      label: Why This Plugin?
+      description: Why should this plugin be in the marketplace?
+      placeholder: This would be useful because...
+    validations:
+      required: false
