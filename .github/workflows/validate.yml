@@ -5,7 +5,10 @@ on:
     branches: [main]
     paths:
       - '.claude-plugin/marketplace.json'
-      - 'skills/**'
+      - '.agents/plugins/marketplace.json'
+      - 'registry/**'
+      - 'plugins/**'
+      - 'scripts/**'
   pull_request:
     branches: [main]
 
@@ -15,10 +18,55 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Validate marketplace.json syntax
+      - name: Validate registry syntax
+        run: python3 -m json.tool registry/plugins.json > /dev/null
+
+      - name: Validate CC marketplace syntax
         run: python3 -m json.tool .claude-plugin/marketplace.json > /dev/null
 
-      - name: Validate marketplace structure
+      - name: Validate Codex marketplace syntax
+        run: python3 -m json.tool .agents/plugins/marketplace.json > /dev/null
+
+      - name: Validate registry structure
+        run: |
+          python3 - <<'EOF'
+          import json
+          import sys
+
+          with open('registry/plugins.json') as f:
+              data = json.load(f)
+
+          # Check required top-level fields
+          for field in ['name', 'owner', 'metadata', 'interface', 'plugins']:
+              if field not in data:
+                  print(f"Registry missing required field: {field}")
+                  sys.exit(1)
+
+          if 'name' not in data.get('owner', {}):
+              print("owner.name is required")
+              sys.exit(1)
+
+          if 'displayName' not in data.get('interface', {}):
+              print("interface.displayName is required")
+              sys.exit(1)
+
+          # Check each plugin entry
+          for plugin in data.get('plugins', []):
+              name = plugin.get('name', '<unnamed>')
+              for field in ['name', 'description', 'repository', 'version', 'ref', 'keywords', 'category', 'policy']:
+                  if field not in plugin:
+                      print(f"Plugin '{name}' missing required field: {field}")
+                      sys.exit(1)
+              policy = plugin.get('policy', {})
+              for field in ['installation', 'authentication']:
+                  if field not in policy:
+                      print(f"Plugin '{name}' policy missing: {field}")
+                      sys.exit(1)
+
+          print(f"Registry validated: {len(data['plugins'])} plugins")
+          EOF
+
+      - name: Validate CC marketplace structure
         run: |
           python3 - <<'EOF'
           import json
@@ -27,38 +75,81 @@ jobs:
           with open('.claude-plugin/marketplace.json') as f:
               data = json.load(f)
 
-          # Check required fields
-          required = ['name', 'owner', 'plugins']
-          for field in required:
+          for field in ['name', 'owner', 'plugins']:
               if field not in data:
-                  print(f"Missing required field: {field}")
+                  print(f"CC manifest missing: {field}")
                   sys.exit(1)
 
-          # Check owner has name
-          if 'name' not in data.get('owner', {}):
-              print("owner.name is required")
-              sys.exit(1)
-
-          # Check plugins
           for plugin in data.get('plugins', []):
-              if 'name' not in plugin:
-                  print(f"Plugin missing name: {plugin}")
-                  sys.exit(1)
-              if 'source' not in plugin:
-                  print(f"Plugin missing source: {plugin}")
+              if 'name' not in plugin or 'source' not in plugin:
+                  print(f"CC plugin missing name/source: {plugin}")
                   sys.exit(1)
 
-          print(f"Validated {len(data['plugins'])} plugins")
+          print(f"CC manifest validated: {len(data['plugins'])} plugins")
           EOF
 
-      - name: Check skills have SKILL.md
+      - name: Validate Codex marketplace structure
         run: |
-          for dir in skills/*/; do
-            if [ -d "$dir" ]; then
-              if [ ! -f "${dir}SKILL.md" ]; then
-                echo "Missing SKILL.md in $dir"
-                exit 1
+          python3 - <<'EOF'
+          import json
+          import sys
+
+          with open('.agents/plugins/marketplace.json') as f:
+              data = json.load(f)
+
+          if 'interface' not in data:
+              print("Codex manifest missing interface block")
+              sys.exit(1)
+
+          for plugin in data.get('plugins', []):
+              name = plugin.get('name', '<unnamed>')
+              source = plugin.get('source', {})
+              if source.get('source') != 'local':
+                  print(f"Codex plugin '{name}' must use source: local")
+                  sys.exit(1)
+              if 'path' not in source:
+                  print(f"Codex plugin '{name}' missing source.path")
+                  sys.exit(1)
+              if 'policy' not in plugin:
+                  print(f"Codex plugin '{name}' missing policy")
+                  sys.exit(1)
+              if 'category' not in plugin:
+                  print(f"Codex plugin '{name}' missing category")
+                  sys.exit(1)
+
+          print(f"Codex manifest validated: {len(data['plugins'])} plugins")
+          EOF
+
+      - name: Check Codex bundles have required files
+        run: |
+          for dir in plugins/*/; do
+            name=$(basename "$dir")
+            if [ ! -f "${dir}.codex-plugin/plugin.json" ]; then
+              echo "Missing .codex-plugin/plugin.json in ${dir}"
+              exit 1
+            fi
+            found_skill=false
+            for skill_dir in ${dir}skills/*/; do
+              if [ -f "${skill_dir}SKILL.md" ]; then
+                found_skill=true
               fi
+            done
+            if [ "$found_skill" = false ]; then
+              echo "No skills with SKILL.md found in ${dir}"
+              exit 1
             fi
           done
-          echo "All skills have SKILL.md"
+          echo "All Codex bundles have required files"
+
+      - name: Drift check — regenerate and verify
+        run: |
+          python3 scripts/generate-manifests.py
+          if ! git diff --exit-code .claude-plugin/marketplace.json; then
+            echo "CC manifest drifted from registry! Run: python3 scripts/generate-manifests.py"
+            exit 1
+          fi
+          if ! git diff --exit-code .agents/plugins/marketplace.json; then
+            echo "Codex manifest drifted from registry! Run: python3 scripts/generate-manifests.py"
+            exit 1
+          fi
+          echo "No drift detected"
