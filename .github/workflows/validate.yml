@@ -144,12 +144,8 @@ jobs:
       - name: Drift check — regenerate and verify
         run: |
           python3 scripts/generate-manifests.py
-          if ! git diff --exit-code .claude-plugin/marketplace.json; then
-            echo "CC manifest drifted from registry! Run: python3 scripts/generate-manifests.py"
-            exit 1
-          fi
-          if ! git diff --exit-code .agents/plugins/marketplace.json; then
-            echo "Codex manifest drifted from registry! Run: python3 scripts/generate-manifests.py"
+          if ! git diff --exit-code -- .claude-plugin/marketplace.json .agents/plugins/marketplace.json plugins/; then
+            echo "Generated output drifted from registry! Run: python3 scripts/generate-manifests.py"
             exit 1
           fi
           echo "No drift detected"
