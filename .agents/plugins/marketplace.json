@@ -1,0 +1,80 @@
+{
+  "name": "avivsinai-marketplace",
+  "interface": {
+    "displayName": "Aviv Sinai's Plugin Marketplace"
+  },
+  "plugins": [
+    {
+      "name": "amq-cli",
+      "source": {
+        "source": "local",
+        "path": "./plugins/amq-cli"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_FIRST_USE"
+      },
+      "category": "Developer Tools"
+    },
+    {
+      "name": "langfuse",
+      "source": {
+        "source": "local",
+        "path": "./plugins/langfuse"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_FIRST_USE"
+      },
+      "category": "Observability"
+    },
+    {
+      "name": "sabx",
+      "source": {
+        "source": "local",
+        "path": "./plugins/sabx"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_FIRST_USE"
+      },
+      "category": "Automation"
+    },
+    {
+      "name": "bkt",
+      "source": {
+        "source": "local",
+        "path": "./plugins/bkt"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_FIRST_USE"
+      },
+      "category": "Developer Tools"
+    },
+    {
+      "name": "jk",
+      "source": {
+        "source": "local",
+        "path": "./plugins/jk"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_FIRST_USE"
+      },
+      "category": "Developer Tools"
+    },
+    {
+      "name": "yoetz",
+      "source": {
+        "source": "local",
+        "path": "./plugins/yoetz"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_FIRST_USE"
+      },
+      "category": "AI Tools"
+    }
+  ]
+}
