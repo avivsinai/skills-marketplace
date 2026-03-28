@@ -14,8 +14,8 @@
         "source": "url",
         "url": "https://github.com/avivsinai/agent-message-queue.git"
       },
-      "description": "Agent Message Queue - atomic Maildir-style message delivery for inter-agent communication with co-op mode for Claude Code and Codex CLI collaboration.",
-      "keywords": ["messaging", "agents", "maildir", "queue", "inter-agent", "coordination", "coop"]
+      "description": "Agent Message Queue - file-based inter-agent messaging with co-op mode, cross-project federation, and orchestrator integrations (Symphony, Kanban).",
+      "keywords": ["messaging", "agents", "maildir", "queue", "inter-agent", "coordination", "coop", "federation", "integration", "symphony", "kanban"]
     },
     {
       "name": "langfuse",

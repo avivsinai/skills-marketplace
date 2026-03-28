@@ -78,8 +78,12 @@ def clone_and_bundle(plugin, dest_dir):
             print(f"  WARNING: failed to clone {repo_url}: {result.stderr.strip()}")
             return False
 
-        # Checkout pinned ref
+        # Checkout pinned ref (fetch tags/refs first for shallow clones)
         if ref:
+            subprocess.run(
+                ["git", "-C", str(clone_dir), "fetch", "--tags", "--depth=1", "origin"],
+                capture_output=True, text=True,
+            )
             result = subprocess.run(
                 ["git", "-C", str(clone_dir), "checkout", ref],
                 capture_output=True, text=True,
