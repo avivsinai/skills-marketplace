@@ -13,11 +13,23 @@
   "plugins": [
     {
       "name": "amq-cli",
-      "description": "Agent Message Queue - atomic Maildir-style message delivery for inter-agent communication with co-op mode for Claude Code and Codex CLI collaboration.",
+      "description": "Agent Message Queue - file-based inter-agent messaging with co-op mode, cross-project federation, and orchestrator integrations (Symphony, Kanban).",
       "repository": "https://github.com/avivsinai/agent-message-queue",
-      "version": "0.24.1",
-      "ref": "26fe69eb4b1c59f30f59fcb240c05019edbaae77",
-      "keywords": ["messaging", "agents", "maildir", "queue", "inter-agent", "coordination", "coop"],
+      "version": "0.25.0",
+      "ref": "9cf4ac29",
+      "keywords": [
+        "messaging",
+        "agents",
+        "maildir",
+        "queue",
+        "inter-agent",
+        "coordination",
+        "coop",
+        "federation",
+        "integration",
+        "symphony",
+        "kanban"
+      ],
       "category": "Developer Tools",
       "policy": {
         "installation": "AVAILABLE",
@@ -30,7 +42,17 @@
       "repository": "https://github.com/avivsinai/langfuse-mcp",
       "version": "1.0.3",
       "ref": "968023c1c0c28a3b55cf7c784b61464b4929fd78",
-      "keywords": ["langfuse", "observability", "traces", "llm", "prompts", "datasets", "debugging", "telemetry", "mcp"],
+      "keywords": [
+        "langfuse",
+        "observability",
+        "traces",
+        "llm",
+        "prompts",
+        "datasets",
+        "debugging",
+        "telemetry",
+        "mcp"
+      ],
       "category": "Observability",
       "policy": {
         "installation": "AVAILABLE",
@@ -43,7 +65,16 @@
       "repository": "https://github.com/avivsinai/sabx",
       "version": "1.0.0",
       "ref": "863a7cc3f0ff79d563393741c544cedf3695260f",
-      "keywords": ["sabnzbd", "usenet", "downloads", "nzb", "queue", "automation", "cli", "rss"],
+      "keywords": [
+        "sabnzbd",
+        "usenet",
+        "downloads",
+        "nzb",
+        "queue",
+        "automation",
+        "cli",
+        "rss"
+      ],
       "category": "Automation",
       "policy": {
         "installation": "AVAILABLE",
@@ -56,7 +87,18 @@
       "repository": "https://github.com/avivsinai/bitbucket-cli",
       "version": "1.0.20",
       "ref": "3ce874e96b2fb3d6b1ddb63d1a6eb3addf91bcf3",
-      "keywords": ["bitbucket", "git", "pr", "pull-request", "ci", "pipeline", "devops", "cli", "datacenter", "cloud"],
+      "keywords": [
+        "bitbucket",
+        "git",
+        "pr",
+        "pull-request",
+        "ci",
+        "pipeline",
+        "devops",
+        "cli",
+        "datacenter",
+        "cloud"
+      ],
       "category": "Developer Tools",
       "policy": {
         "installation": "AVAILABLE",
@@ -69,7 +111,16 @@
       "repository": "https://github.com/avivsinai/jenkins-cli",
       "version": "1.0.0",
       "ref": "6bd3e3ec6b47f0a094c37fb2fc280597feeb3e40",
-      "keywords": ["jenkins", "ci", "cd", "pipeline", "builds", "devops", "cli", "automation"],
+      "keywords": [
+        "jenkins",
+        "ci",
+        "cd",
+        "pipeline",
+        "builds",
+        "devops",
+        "cli",
+        "automation"
+      ],
       "category": "Developer Tools",
       "policy": {
         "installation": "AVAILABLE",
@@ -82,7 +133,16 @@
       "repository": "https://github.com/avivsinai/yoetz",
       "version": "0.2.32",
       "ref": "ad7abed38fc7fb859f8ac8557215288972dad46c",
-      "keywords": ["llm", "council", "multimodal", "code-review", "bundler", "ai", "cli", "agents"],
+      "keywords": [
+        "llm",
+        "council",
+        "multimodal",
+        "code-review",
+        "bundler",
+        "ai",
+        "cli",
+        "agents"
+      ],
       "category": "AI Tools",
       "policy": {
         "installation": "AVAILABLE",
