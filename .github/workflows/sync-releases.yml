@@ -51,8 +51,8 @@ jobs:
         with:
           branch: automation/sync-marketplace-releases
           delete-branch: true
-          commit-message: chore: sync marketplace releases
-          title: chore: sync marketplace releases
+          commit-message: "chore: sync marketplace releases"
+          title: "chore: sync marketplace releases"
           body: |
             Automated marketplace sync.
 
