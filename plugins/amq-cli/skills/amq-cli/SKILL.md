@@ -1,15 +1,17 @@
 ---
 name: amq-cli
-version: 1.7.0
+version: 1.8.0
 description: >-
   Coordinate agents via the AMQ CLI for file-based inter-agent messaging.
-  Use when you need to send messages to another agent (Claude/Codex),
-  receive messages from partner agents, set up co-op mode between Claude
-  Code and Codex CLI, or manage agent-to-agent communication in any
-  multi-agent workflow. Triggers include "message codex", "talk to claude",
-  "collaborate with partner agent", "AMQ", "inter-agent messaging",
-  "agent coordination". For spec/design tasks use the /spec command
-  instead.
+  AMQ is a local interoperability bus for agent sessions and adapters: it
+  handles conversation, routing, and thread continuity, while task boards,
+  swarms, and autonomous pipelines keep owning orchestration. Use when you
+  need to send messages to another agent (Claude/Codex), receive messages
+  from partner agents, set up co-op mode between Claude Code and Codex CLI,
+  or manage agent-to-agent communication in any multi-agent workflow.
+  Triggers include "message codex", "talk to claude", "collaborate with
+  partner agent", "AMQ", "inter-agent messaging", "agent coordination".
+  For spec/design tasks use the /spec command instead.
 metadata:
   short-description: Inter-agent messaging via AMQ CLI
   compatibility: claude-code, codex-cli
@@ -18,6 +20,8 @@ metadata:
 # AMQ CLI Skill
 
 File-based message queue for agent-to-agent coordination.
+
+AMQ manages the conversation, not the task plan. Use it for messaging, routing, replies, and adapter-emitted lifecycle events; keep work decomposition and execution in the orchestrator above it.
 
 ## Prerequisites
 
@@ -37,23 +41,25 @@ When running inside `coop exec`, the environment is already configured:
 
 When running **outside** `coop exec` (e.g. new conversation, manual terminal):
 
-- **Use `amq env` to resolve the root** — it reads `.amqrc` and returns the base root:
+- **Use `amq env` to resolve the root** — it reads the full chain (project `.amqrc`, `AMQ_GLOBAL_ROOT`, `~/.amqrc`) and returns the resolved root:
   ```bash
-  eval "$(amq env --me claude)"          # sets AM_ME + AM_ROOT from .amqrc
+  eval "$(amq env --me claude)"          # sets AM_ME + AM_ROOT from resolved config
   ```
-- Or resolve and pin explicitly per command (never hardcode the root — read it from `.amqrc`):
+- Or resolve and pin explicitly per command (never hardcode the root — read it from `amq env`):
   ```bash
   AM_ME=claude AM_ROOT=$(amq env --json | jq -r .root) amq send --to codex --body "hello"
   ```
 - **Do NOT append a session name** (e.g. `/collab`) unless you intentionally want an isolated session. Outside `coop exec`, the base root from `.amqrc` is where agents live.
 - **Pitfall**: `coop exec` defaults to `--session collab` (i.e. `.agent-mail/collab`). If you manually use `.agent-mail/collab` outside `coop exec`, messages go to a different mailbox tree than `.agent-mail`. Only use a session path if the target agent is also in that session.
+- **Global fallback**: external orchestrators often start outside the repo root. In that case, set `AMQ_GLOBAL_ROOT` or `~/.amqrc` so `amq env`, `amq doctor`, and integration commands resolve the same queue.
 
 ### Root Resolution Truth-Table
 
 | Context | Command | AM_ROOT resolves to |
 |---------|---------|---------------------|
-| Outside `coop exec` | `amq env --me claude` | base root from `.amqrc` (e.g. `.agent-mail`) |
-| Outside `coop exec`, isolated session | `amq env --session auth --me claude` | `.agent-mail/auth` |
+| Outside `coop exec` | `amq env --me claude` | resolved base root from project `.amqrc`, `AMQ_GLOBAL_ROOT`, or `~/.amqrc` |
+| Outside `coop exec`, no project `.amqrc` | `amq env --me claude` | `AMQ_GLOBAL_ROOT` or `~/.amqrc` |
+| Outside `coop exec`, isolated session | `amq env --session auth --me claude` | `<resolved-base-root>/auth` |
 | Inside `coop exec` (no flags) | automatic | `.agent-mail/collab` (default session) |
 | Inside `coop exec --session X` | automatic | `.agent-mail/X` |
 
@@ -80,6 +86,25 @@ amq coop exec codex -- --dangerously-bypass-approvals-and-sandbox  # Terminal 2
 ```
 
 Without `--session` or `--root`, `coop exec` defaults to `--session collab`.
+
+## Integration & Ops Quick Reference
+
+```bash
+# Global fallback for orchestrator-spawned agents
+export AMQ_GLOBAL_ROOT="$HOME/.agent-mail"
+
+# Symphony hooks
+amq integration symphony init --me codex
+amq integration symphony emit --event after_run --me codex
+
+# Cline Kanban bridge
+amq integration kanban bridge --me codex
+amq integration kanban bridge --me codex --workspace-id my-workspace
+
+# Runtime diagnostics
+amq doctor --ops
+amq doctor --ops --json
+```
 
 ## Session Layout
 
@@ -144,6 +169,14 @@ amq reply --id <msg_id> --body "got it"  # routes back via reply_project
 - **Topical** (cross-project): use same thread ID across projects, e.g., `decision/release-v0.24`
 
 For full details, see [references/cross-project.md](references/cross-project.md).
+
+### Cross-project identity (IMPORTANT)
+
+When you receive a message where `from` matches your own handle (e.g., `from: "claude"` and you are claude), check `from_project` and `reply_project`. If either is present and names a different project, this is **NOT an echo** — it is a legitimate cross-project message from a different agent instance with the same handle. Process it normally.
+
+### AM_ROOT scoping after cross-project sends
+
+After sending a cross-project message (via `--project`), your `AM_ROOT` still points to YOUR project. To send to your own partner (same project), use plain `amq send --to codex` — do NOT use `--project`. The `--project` flag is ONLY for sending to agents in OTHER projects.
 
 ## Decision Threads
 
@@ -213,5 +246,6 @@ For detailed protocols, read the reference file FIRST, then follow its instructi
 
 - [references/coop-mode.md](references/coop-mode.md) — Co-op protocol: roles, phased flow, collaboration modes
 - [references/swarm-mode.md](references/swarm-mode.md) — Swarm mode: agent teams, bridge, task workflow
+- [references/integrations.md](references/integrations.md) — Symphony + Kanban integration commands, global root fallback, ops checks
 - [references/message-format.md](references/message-format.md) — Message format: frontmatter schema, field reference
 - [references/cross-project.md](references/cross-project.md) — Cross-project routing: peer config, addressing, decision threads
