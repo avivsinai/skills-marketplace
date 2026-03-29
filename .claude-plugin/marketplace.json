@@ -11,55 +11,73 @@
     {
       "name": "amq-cli",
       "source": {
-        "source": "url",
-        "url": "https://github.com/avivsinai/agent-message-queue.git"
+        "source": "github",
+        "repo": "avivsinai/agent-message-queue",
+        "ref": "v0.25.1"
       },
       "description": "Agent Message Queue - file-based inter-agent messaging with co-op mode, cross-project federation, and orchestrator integrations (Symphony, Kanban).",
+      "version": "0.25.1",
+      "repository": "https://github.com/avivsinai/agent-message-queue",
       "keywords": ["messaging", "agents", "maildir", "queue", "inter-agent", "coordination", "coop", "federation", "integration", "symphony", "kanban"]
     },
     {
       "name": "langfuse",
       "source": {
-        "source": "url",
-        "url": "https://github.com/avivsinai/langfuse-mcp.git"
+        "source": "github",
+        "repo": "avivsinai/langfuse-mcp",
+        "sha": "968023c1c0c28a3b55cf7c784b61464b4929fd78"
       },
       "description": "Langfuse observability - query traces, debug exceptions, analyze sessions, manage prompts and datasets via MCP tools. First LLM observability skill for Claude Code and Codex.",
+      "version": "1.0.3",
+      "repository": "https://github.com/avivsinai/langfuse-mcp",
       "keywords": ["langfuse", "observability", "traces", "llm", "prompts", "datasets", "debugging", "telemetry", "mcp"]
     },
     {
       "name": "sabx",
       "source": {
-        "source": "url",
-        "url": "https://github.com/avivsinai/sabx.git"
+        "source": "github",
+        "repo": "avivsinai/sabx",
+        "sha": "863a7cc3f0ff79d563393741c544cedf3695260f"
       },
       "description": "SABnzbd CLI - control downloads, queues, RSS feeds, speed limits, and automation via terminal. Full API parity with SABnzbd REST API.",
+      "version": "1.0.0",
+      "repository": "https://github.com/avivsinai/sabx",
       "keywords": ["sabnzbd", "usenet", "downloads", "nzb", "queue", "automation", "cli", "rss"]
     },
     {
       "name": "bkt",
       "source": {
-        "source": "url",
-        "url": "https://github.com/avivsinai/bitbucket-cli.git"
+        "source": "github",
+        "repo": "avivsinai/bitbucket-cli",
+        "sha": "3ce874e96b2fb3d6b1ddb63d1a6eb3addf91bcf3"
       },
       "description": "Bitbucket CLI - manage repositories, pull requests, branches, issues, webhooks, and pipelines for both Data Center and Cloud. Mirrors gh ergonomics with JSON/YAML output.",
+      "version": "1.0.20",
+      "repository": "https://github.com/avivsinai/bitbucket-cli",
       "keywords": ["bitbucket", "git", "pr", "pull-request", "ci", "pipeline", "devops", "cli", "datacenter", "cloud"]
     },
     {
       "name": "jk",
       "source": {
-        "source": "url",
-        "url": "https://github.com/avivsinai/jenkins-cli.git"
+        "source": "github",
+        "repo": "avivsinai/jenkins-cli",
+        "sha": "6bd3e3ec6b47f0a094c37fb2fc280597feeb3e40"
       },
       "description": "Jenkins CLI - GitHub CLI-style interface for Jenkins controllers. Manage jobs, pipelines, runs, logs, artifacts, credentials, nodes, queues, and plugins.",
+      "version": "1.0.0",
+      "repository": "https://github.com/avivsinai/jenkins-cli",
       "keywords": ["jenkins", "ci", "cd", "pipeline", "builds", "devops", "cli", "automation"]
     },
     {
       "name": "yoetz",
       "source": {
-        "source": "url",
-        "url": "https://github.com/avivsinai/yoetz.git"
+        "source": "github",
+        "repo": "avivsinai/yoetz",
+        "sha": "ad7abed38fc7fb859f8ac8557215288972dad46c"
       },
       "description": "LLM council, bundler, and multimodal gateway - multi-model consensus, code review, image/video generation, and browser fallback for coding agents.",
+      "version": "0.2.32",
+      "repository": "https://github.com/avivsinai/yoetz",
       "keywords": ["llm", "council", "multimodal", "code-review", "bundler", "ai", "cli", "agents"]
     }
   ]

@@ -6,13 +6,13 @@ Phase 0b: Codex manifest + local plugin bundles from source repos.
 """
 
 import json
-import os
 import re
 import shutil
 import subprocess
 import sys
 import tempfile
 from pathlib import Path
+from urllib.parse import urlparse
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 REGISTRY = REPO_ROOT / "registry" / "plugins.json"
@@ -35,6 +35,53 @@ def load_registry():
         return json.load(f)
 
 
+def is_git_sha(value):
+    return bool(re.fullmatch(r"[0-9a-f]{40}", value or ""))
+
+
+def github_repo_slug(repo_url):
+    parsed = urlparse(repo_url)
+    if parsed.scheme not in {"http", "https"}:
+        return None
+    if parsed.netloc != "github.com":
+        return None
+
+    parts = [part for part in parsed.path.split("/") if part]
+    if len(parts) < 2:
+        return None
+    owner, repo = parts[:2]
+    if repo.endswith(".git"):
+        repo = repo[:-4]
+    if not owner or not repo:
+        return None
+    return f"{owner}/{repo}"
+
+
+def build_claude_source(plugin):
+    repo_url = plugin["repository"]
+    ref = plugin.get("ref")
+    slug = github_repo_slug(repo_url)
+
+    if slug:
+        source = {
+            "source": "github",
+            "repo": slug,
+        }
+    else:
+        source = {
+            "source": "url",
+            "url": repo_url,
+        }
+
+    if ref:
+        if is_git_sha(ref):
+            source["sha"] = ref
+        else:
+            source["ref"] = ref
+
+    return source
+
+
 def generate_cc_manifest(registry):
     """Emit .claude-plugin/marketplace.json in CC format."""
     manifest = {
@@ -46,11 +93,10 @@ def generate_cc_manifest(registry):
     for plugin in registry["plugins"]:
         entry = {
             "name": plugin["name"],
-            "source": {
-                "source": "url",
-                "url": f"{plugin['repository']}.git",
-            },
+            "source": build_claude_source(plugin),
             "description": plugin["description"],
+            "version": plugin["version"],
+            "repository": plugin["repository"],
             "keywords": plugin["keywords"],
         }
         manifest["plugins"].append(entry)

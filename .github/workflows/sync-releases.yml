@@ -1,0 +1,59 @@
+name: Sync Marketplace Releases
+
+on:
+  schedule:
+    - cron: '17 */4 * * *'
+  workflow_dispatch:
+  repository_dispatch:
+    types:
+      - plugin-release
+      - sync-marketplace
+
+concurrency:
+  group: sync-marketplace-releases
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Sync release-mode plugins
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 scripts/sync-releases.py
+
+      - name: Regenerate marketplace manifests
+        run: python3 scripts/generate-manifests.py
+
+      - name: Detect changes
+        id: changes
+        run: |
+          if git diff --quiet -- registry/plugins.json .claude-plugin/marketplace.json .agents/plugins/marketplace.json plugins/; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Create pull request
+        if: steps.changes.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          branch: automation/sync-marketplace-releases
+          delete-branch: true
+          commit-message: chore: sync marketplace releases
+          title: chore: sync marketplace releases
+          body: |
+            Automated marketplace sync.
+
+            This PR updates `registry/plugins.json`, regenerates the Claude Code and Codex marketplace manifests, and refreshes bundled Codex plugin payloads for release-mode plugins.
+          labels: automation

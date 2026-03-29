@@ -53,7 +53,7 @@ jobs:
           # Check each plugin entry
           for plugin in data.get('plugins', []):
               name = plugin.get('name', '<unnamed>')
-              for field in ['name', 'description', 'repository', 'version', 'ref', 'keywords', 'category', 'policy']:
+              for field in ['name', 'description', 'repository', 'version', 'ref', 'keywords', 'category', 'policy', 'sync']:
                   if field not in plugin:
                       print(f"Plugin '{name}' missing required field: {field}")
                       sys.exit(1)
@@ -62,6 +62,13 @@ jobs:
                   if field not in policy:
                       print(f"Plugin '{name}' policy missing: {field}")
                       sys.exit(1)
+              sync = plugin.get('sync', {})
+              if sync.get('mode') not in {'release', 'manual'}:
+                  print(f"Plugin '{name}' sync.mode must be 'release' or 'manual'")
+                  sys.exit(1)
+              if sync.get('mode') == 'release' and not isinstance(sync.get('prereleases'), bool):
+                  print(f"Plugin '{name}' release sync requires boolean prereleases")
+                  sys.exit(1)
 
           print(f"Registry validated: {len(data['plugins'])} plugins")
           EOF
@@ -81,9 +88,19 @@ jobs:
                   sys.exit(1)
 
           for plugin in data.get('plugins', []):
-              if 'name' not in plugin or 'source' not in plugin:
-                  print(f"CC plugin missing name/source: {plugin}")
+              if 'name' not in plugin or 'source' not in plugin or 'version' not in plugin:
+                  print(f"CC plugin missing name/source/version: {plugin}")
                   sys.exit(1)
+              source = plugin.get('source')
+              if isinstance(source, dict):
+                  source_type = source.get('source')
+                  if source_type == 'github':
+                      if 'repo' not in source:
+                          print(f"CC plugin '{plugin['name']}' github source missing repo")
+                          sys.exit(1)
+                      if 'ref' not in source and 'sha' not in source:
+                          print(f"CC plugin '{plugin['name']}' github source must pin ref or sha")
+                          sys.exit(1)
 
           print(f"CC manifest validated: {len(data['plugins'])} plugins")
           EOF
