@@ -50,3 +50,40 @@ Notes:
 - Don’t edit message files directly; use the CLI.
 - The CLI auto-fills `id`, `created`, and a default `thread` when not provided.
 - `reply_to` and `reply_project` are transport metadata stamped by the CLI.
+
+## Integration Metadata
+
+Messages emitted by `amq integration ...` commands store orchestrator-specific metadata under `context.orchestrator`.
+
+Example:
+
+```json
+{
+  "labels": ["orchestrator", "orchestrator:kanban", "task-state:awaiting_review", "handoff"],
+  "context": {
+    "orchestrator": {
+      "version": 1,
+      "name": "kanban",
+      "transport": "bridge",
+      "event": "task_ready_for_review",
+      "workspace": {
+        "id": "workspace-123",
+        "path": "/abs/path/to/worktree"
+      },
+      "task": {
+        "id": "task-42",
+        "prompt": "Review PR #47",
+        "column": "review",
+        "state": "awaiting_review"
+      }
+    }
+  }
+}
+```
+
+Label conventions:
+
+- Always: `orchestrator`, `orchestrator:<name>`
+- When state is known: `task-state:<state>`
+- Review-ready handoffs: `handoff`
+- Failed / interrupted work: `blocking`
