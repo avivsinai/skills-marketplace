@@ -1,17 +1,19 @@
 ---
 name: amq-cli
-version: 1.8.0
+version: 0.28.0
 description: >-
-  Coordinate agents via the AMQ CLI for file-based inter-agent messaging.
-  AMQ is a local interoperability bus for agent sessions and adapters: it
-  handles conversation, routing, and thread continuity, while task boards,
-  swarms, and autonomous pipelines keep owning orchestration. Use when you
-  need to send messages to another agent (Claude/Codex), receive messages
-  from partner agents, set up co-op mode between Claude Code and Codex CLI,
-  or manage agent-to-agent communication in any multi-agent workflow.
-  Triggers include "message codex", "talk to claude", "collaborate with
-  partner agent", "AMQ", "inter-agent messaging", "agent coordination".
-  For spec/design tasks use the /spec command instead.
+  Coordinate agents via the AMQ CLI for file-based inter-agent messaging. Use
+  this skill whenever you need to send messages to another agent (codex, claude,
+  or any named handle), check your inbox, drain queued messages, set up co-op
+  mode between agents, join a swarm team, route messages across projects, or
+  diagnose delivery issues. Also use it when you receive a message and need to
+  know how to reply, ack, or handle priority. Covers any multi-agent
+  coordination task where agents need to talk to each other — review requests,
+  questions, status updates, decision threads, wake notifications, and
+  orchestrator integration (Symphony, Kanban). For collaborative spec/design
+  workflows specifically, prefer the /amq-spec skill which provides structured
+  phase-by-phase guidance. Not intended for distributed systems design
+  (RabbitMQ, Kafka), CI/CD pipelines, or single-agent tasks with no partner.
 metadata:
   short-description: Inter-agent messaging via AMQ CLI
   compatibility: claude-code, codex-cli
@@ -30,28 +32,30 @@ Requires `amq` binary in PATH. Install:
 curl -fsSL https://raw.githubusercontent.com/avivsinai/agent-message-queue/main/scripts/install.sh | bash
 ```
 
-## Environment Rules (IMPORTANT)
+## Environment Rules
 
-When running inside `coop exec`, the environment is already configured:
+AMQ uses two env vars for routing: `AM_ROOT` (which mailbox tree) and `AM_ME` (which agent). Getting these wrong means messages go to the wrong place or silently disappear, so it matters to let the CLI handle them rather than guessing.
 
-- **Always use `amq` from PATH** — never `./amq`, `../amq`, or absolute paths
-- **Never override `AM_ROOT` or `AM_ME`** — they are set by `coop exec`
-- **Never pass `--root` or `--me` flags** — env vars handle routing
-- **Just run commands as-is**: `amq send --to codex --body "hello"`
+**Inside `coop exec`** — everything is pre-configured. Just run bare commands:
+```bash
+amq send --to codex --body "hello"     # correct
+amq send --me claude --to codex ...    # wrong — --me overrides the env
+./amq send ...                         # wrong — use amq from PATH
+```
+The reason: `coop exec` sets `AM_ROOT` and `AM_ME` precisely for the session. Passing `--root` or `--me` overrides that and can route to the wrong mailbox.
 
-When running **outside** `coop exec` (e.g. new conversation, manual terminal):
+**Outside `coop exec`** — resolve the root from config, don't hardcode it:
+```bash
+eval "$(amq env --me claude)"          # reads .amqrc chain, sets both vars
 
-- **Use `amq env` to resolve the root** — it reads the full chain (project `.amqrc`, `AMQ_GLOBAL_ROOT`, `~/.amqrc`) and returns the resolved root:
-  ```bash
-  eval "$(amq env --me claude)"          # sets AM_ME + AM_ROOT from resolved config
-  ```
-- Or resolve and pin explicitly per command (never hardcode the root — read it from `amq env`):
-  ```bash
-  AM_ME=claude AM_ROOT=$(amq env --json | jq -r .root) amq send --to codex --body "hello"
-  ```
-- **Do NOT append a session name** (e.g. `/collab`) unless you intentionally want an isolated session. Outside `coop exec`, the base root from `.amqrc` is where agents live.
-- **Pitfall**: `coop exec` defaults to `--session collab` (i.e. `.agent-mail/collab`). If you manually use `.agent-mail/collab` outside `coop exec`, messages go to a different mailbox tree than `.agent-mail`. Only use a session path if the target agent is also in that session.
-- **Global fallback**: external orchestrators often start outside the repo root. In that case, set `AMQ_GLOBAL_ROOT` or `~/.amqrc` so `amq env`, `amq doctor`, and integration commands resolve the same queue.
+# Or pin per-command without polluting the shell (useful in scripts):
+AM_ME=claude AM_ROOT=$(amq env --json | jq -r .root) amq send --to codex --body "hello"
+```
+Why not hardcode? The root path depends on the config chain (project `.amqrc` → `AMQ_GLOBAL_ROOT` → `~/.amqrc`). Hardcoding skips this and breaks when the project moves or config changes.
+
+**Global fallback**: Orchestrator-spawned agents often start outside the repo root where no project `.amqrc` exists. Set `AMQ_GLOBAL_ROOT` or `~/.amqrc` so `amq env` and `amq doctor` still resolve the correct queue.
+
+**Session pitfall**: `coop exec` defaults to `--session collab` (i.e., `.agent-mail/collab`). Outside `coop exec`, the base root is `.agent-mail` (no session suffix). These are different mailbox trees — don't mix them up.
 
 ### Root Resolution Truth-Table
 
@@ -63,16 +67,16 @@ When running **outside** `coop exec` (e.g. new conversation, manual terminal):
 | Inside `coop exec` (no flags) | automatic | `.agent-mail/collab` (default session) |
 | Inside `coop exec --session X` | automatic | `.agent-mail/X` |
 
-## Task Routing — READ THIS FIRST
+## Task Routing
 
-**Before doing anything**, match your task to the right workflow:
+Before diving in, match the task to the right workflow — this avoids wasted effort:
 
-| Your task | What to do | DO NOT |
-|-----------|-----------|--------|
-| **"spec", "design with", "collaborative spec"** | Use the `/spec` command instead. It provides structured phase-by-phase guidance. | Do NOT handle spec tasks from this skill. |
-| **Send a message, review request, question** | Use `amq send` (see Messaging below) | — |
-| **Swarm / agent teams** | Read [references/swarm-mode.md](references/swarm-mode.md), then use `amq swarm` | — |
-| **Received message with labels `workflow:spec`** | Follow the spec skill protocol: do independent research first, then engage on the `spec/<topic>` thread. | Do NOT skip straight to implementation. |
+| Your task | What to do |
+|-----------|-----------|
+| **"spec", "design with", "collaborative spec"** | Use `/amq-spec` instead — it has structured phase-by-phase guidance for parallel-research workflows. |
+| **Send a message, review request, question** | Use `amq send` (see Messaging below) |
+| **Swarm / agent teams** | Read [references/swarm-mode.md](references/swarm-mode.md), then use `amq swarm` |
+| **Received message with labels `workflow:spec`** | Follow the spec skill protocol: do independent research first, then engage on the `spec/<topic>` thread — don't skip straight to implementation. |
 
 ## Quick Start
 
@@ -86,6 +90,35 @@ amq coop exec codex -- --dangerously-bypass-approvals-and-sandbox  # Terminal 2
 ```
 
 Without `--session` or `--root`, `coop exec` defaults to `--session collab`.
+
+## Statusline (Claude Code)
+
+To show the current AMQ session in your Claude Code status bar, add this snippet to your statusline script (e.g., `~/.claude/statusline.sh`):
+
+```bash
+# AMQ session segment — try CLI first, fall back to env vars for older amq versions
+amq_session=""
+if _amq_out=$(amq env --session-name 2>/dev/null) && [ -n "$_amq_out" ]; then
+    amq_session="$_amq_out"
+elif [ -n "$AM_ROOT" ] && [ -n "$AM_BASE_ROOT" ] && [ "$AM_ROOT" != "$AM_BASE_ROOT" ]; then
+    amq_session=$(basename "$AM_ROOT")
+fi
+if [ -n "$amq_session" ]; then
+    output+=$(printf " | \033[33mamq:%s\033[0m" "$amq_session")
+fi
+```
+
+`amq env --session-name` (v0.27+) prints the session name and exits 0 (empty when not in a session). The env-var fallback covers older versions. `amq env --json` also includes `session_name`.
+
+To also set the terminal tab title (works in Ghostty, iTerm2, Terminal.app):
+
+```bash
+# Set tab title to "repo | amq:session" — re-asserts on each statusline refresh.
+# Manual titles (e.g. Ghostty's prompt_tab_title) take priority and won't be overwritten.
+tab_title="$repo_name"
+[ -n "$amq_session" ] && tab_title+=" | amq:${amq_session}"
+printf '\033]0;%s\007' "$tab_title" > /dev/tty 2>/dev/null
+```
 
 ## Integration & Ops Quick Reference
 
@@ -196,6 +229,36 @@ amq send --to codex --project infra-lib --kind decision \
   --context '{"proposal_id":"api-v2","question":"Adopt new API?","required_projects":["my-project","infra-lib"]}' \
   --body "Proposal: migrate to API v2. All tests green."
 ```
+
+## Session-Aware Routing
+
+Users refer to sessions using many words: "session", "stream", "squad", "team", "workspace", "channel", or just a bare name. When the user mentions sending to or talking to an agent in a named context (e.g., "ask codex on stream1", "send to the auth team", "talk to codex in squad-api"), you must discover sessions before routing.
+
+**Important**: Do not confuse sessions with projects. "Project" in AMQ means a different repo/codebase (cross-project routing via `--project`). Sessions are isolated mailbox trees within the same project (via `--session`). If the user says "the infra project", that likely means `--project infra`, not `--session infra`.
+
+```bash
+# Step 1: Discover active sessions and agents
+amq who --json
+# Returns: [{"name":"collab","agents":[...]},{"name":"stream1","agents":[...]},{"name":"auth","agents":[...]}]
+
+# Step 2: Match the user's name against session names in the output, then send
+amq send --to codex --session stream1 --body "Message for stream1"
+```
+
+**Recognition patterns** — any of these mean "route to a specific session":
+- Explicit: "on stream1", "via auth", "in the api session", "the infra squad"
+- Bare name: user just says "stream1" or "auth" — could be a session or an agent handle
+- Colloquial: "team", "squad", "stream", "workspace", "channel" followed by a name
+
+Note: The `agent@name` inline syntax (e.g., `codex@infra`) is for cross-project routing, not cross-session. For same-project session routing, always use `--session <name>` explicitly.
+
+**Rules**:
+1. When the user names something that could be a session, **always run `amq who --json` first** to check if it matches a known session name
+2. If the name matches a session, use `--session <name>` on the send command
+3. If it matches both a session and an agent handle, prefer the session interpretation when the user's phrasing implies a group/context ("on X", "in X", "the X team"), and the agent interpretation when it implies a person ("ask X", "tell X")
+4. If the target session differs from your current session (`$AM_ROOT` basename), use `--session <name>`
+5. Never guess — if the name doesn't appear in `amq who --json` output, tell the user (it may need `coop exec --session <name>` to initialize)
+6. For cross-project routing (different repo), use `--project` instead — see Cross-Project Routing section
 
 ## Messaging
 
