@@ -15,8 +15,8 @@
       "name": "amq-cli",
       "description": "Agent Message Queue - file-based inter-agent messaging with co-op mode, cross-project federation, and orchestrator integrations (Symphony, Kanban).",
       "repository": "https://github.com/avivsinai/agent-message-queue",
-      "version": "0.26.0",
-      "ref": "v0.26.0",
+      "version": "0.28.0",
+      "ref": "v0.28.0",
       "keywords": [
         "messaging",
         "agents",
