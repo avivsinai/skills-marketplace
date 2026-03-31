@@ -53,19 +53,47 @@ jobs:
           # Check each plugin entry
           for plugin in data.get('plugins', []):
               name = plugin.get('name', '<unnamed>')
-              for field in ['name', 'description', 'repository', 'version', 'ref', 'keywords', 'category', 'policy', 'sync']:
+              for field in ['name', 'description', 'repository', 'version', 'keywords', 'category', 'policy', 'sync']:
                   if field not in plugin:
                       print(f"Plugin '{name}' missing required field: {field}")
                       sys.exit(1)
+
+              source = plugin.get('source')
+              ref = plugin.get('ref')
+              if source is None and ref is None:
+                  print(f"Plugin '{name}' must define either source or ref")
+                  sys.exit(1)
+
+              if source is not None:
+                  if not isinstance(source, dict):
+                      print(f"Plugin '{name}' source must be an object")
+                      sys.exit(1)
+                  source_type = source.get('source')
+                  if source_type not in {'github', 'url'}:
+                      print(f"Plugin '{name}' source.source must be 'github' or 'url'")
+                      sys.exit(1)
+                  if source_type == 'github':
+                      for field in ['repo', 'ref']:
+                          if field not in source:
+                              print(f"Plugin '{name}' github source missing: {field}")
+                              sys.exit(1)
+                  if source_type == 'url' and 'url' not in source:
+                      print(f"Plugin '{name}' url source missing url")
+                      sys.exit(1)
+
               policy = plugin.get('policy', {})
               for field in ['installation', 'authentication']:
                   if field not in policy:
                       print(f"Plugin '{name}' policy missing: {field}")
                       sys.exit(1)
               sync = plugin.get('sync', {})
-              if sync.get('mode') not in {'release', 'manual'}:
-                  print(f"Plugin '{name}' sync.mode must be 'release' or 'manual'")
+              if sync.get('mode') not in {'main', 'release', 'manual'}:
+                  print(f"Plugin '{name}' sync.mode must be 'main', 'release', or 'manual'")
                   sys.exit(1)
+              if sync.get('mode') == 'main':
+                  if not isinstance(source, dict) or source.get('source') != 'github':
+                      print(f"Plugin '{name}' main sync requires a github source object")
+                      sys.exit(1)
               if sync.get('mode') == 'release' and not isinstance(sync.get('prereleases'), bool):
                   print(f"Plugin '{name}' release sync requires boolean prereleases")
                   sys.exit(1)
@@ -159,6 +187,8 @@ jobs:
           echo "All Codex bundles have required files"
 
       - name: Drift check — regenerate and verify
+        env:
+          GITHUB_TOKEN: ${{ secrets.MARKETPLACE_DISPATCH_TOKEN || secrets.GITHUB_TOKEN }}
         run: |
           python3 scripts/generate-manifests.py
           if ! git diff --exit-code -- .claude-plugin/marketplace.json .agents/plugins/marketplace.json plugins/; then
