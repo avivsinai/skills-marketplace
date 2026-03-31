@@ -4,6 +4,7 @@ on:
   push:
     branches: [main]
     paths:
+      - '.github/workflows/validate.yml'
       - '.claude-plugin/marketplace.json'
       - '.agents/plugins/marketplace.json'
       - 'registry/**'
@@ -11,6 +12,7 @@ on:
       - 'scripts/**'
   pull_request:
     branches: [main]
+  workflow_dispatch:
 
 jobs:
   validate:
