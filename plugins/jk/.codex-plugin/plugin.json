@@ -1,6 +1,6 @@
 {
   "name": "jk",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "description": "GitHub CLI-style interface for Jenkins controllers - manage jobs, pipelines, runs, logs, artifacts, credentials, and nodes",
   "author": {
     "name": "Aviv Sinai",
@@ -9,7 +9,16 @@
   "repository": "https://github.com/avivsinai/jenkins-cli",
   "license": "MIT",
   "skills": "./skills/",
-  "keywords": ["jenkins", "ci", "cd", "pipeline", "builds", "devops", "cli", "automation"],
+  "keywords": [
+    "jenkins",
+    "ci",
+    "cd",
+    "pipeline",
+    "builds",
+    "devops",
+    "cli",
+    "automation"
+  ],
   "interface": {
     "displayName": "Jenkins CLI",
     "shortDescription": "Manage Jenkins jobs, pipelines, runs, logs, artifacts, credentials, and nodes",

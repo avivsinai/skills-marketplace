@@ -21,8 +21,13 @@ Thanks for your interest in contributing to this skills marketplace!
      "name": "your-plugin",
      "description": "What it does and when to use it",
      "repository": "https://github.com/your-username/your-repo",
-     "version": "1.0.0",
-     "ref": "v1.0.0",
+     "source": {
+       "source": "github",
+       "repo": "your-username/your-repo",
+       "ref": "main",
+       "sha": "0123456789abcdef0123456789abcdef01234567"
+     },
+     "version": "0123456789ab",
      "keywords": ["agents", "automation"],
      "category": "Developer Tools",
      "policy": {
@@ -48,7 +53,7 @@ Thanks for your interest in contributing to this skills marketplace!
 
 ## Sync Modes
 
-- Use `"sync": {"mode": "release", "prereleases": false}` only if the child repo publishes GitHub release tags that match the plugin manifest version.
+- Use `"sync": {"mode": "main"}` when the marketplace should follow the latest default-branch commit from the child repo.
 - Use `"sync": {"mode": "manual"}` when the registry should stay pinned to a specific commit or when release tags are not aligned yet.
 
 ## Requirements

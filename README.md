@@ -14,6 +14,7 @@ Central plugin marketplace for **Claude Code** and **Codex**. This repo is a reg
 > npx skild install @avivsinai/sabx
 > npx skild install @avivsinai/bkt
 > npx skild install @avivsinai/jk
+> npx skild install @avivsinai/israel-services
 > ```
 >
 > **Via [skills.sh](https://skills.sh)** (GitHub-based):
@@ -23,6 +24,7 @@ Central plugin marketplace for **Claude Code** and **Codex**. This repo is a reg
 > npx skills add avivsinai/sabx
 > npx skills add avivsinai/bitbucket-cli
 > npx skills add avivsinai/jenkins-cli
+> npx skills add avivsinai/israel-services
 > ```
 
 ## Installation (Claude Code)
@@ -37,6 +39,7 @@ Central plugin marketplace for **Claude Code** and **Codex**. This repo is a reg
 /plugin install sabx@avivsinai-marketplace
 /plugin install bkt@avivsinai-marketplace
 /plugin install jk@avivsinai-marketplace
+/plugin install israel-services@avivsinai-marketplace
 ```
 
 ## Available Plugins
@@ -48,8 +51,9 @@ Central plugin marketplace for **Claude Code** and **Codex**. This repo is a reg
 | `sabx` | SABnzbd CLI - control downloads, queues, RSS feeds, and automation | [sabx](https://github.com/avivsinai/sabx) |
 | `bkt` | Bitbucket CLI - manage repos, PRs, branches, issues, webhooks, pipelines (DC & Cloud) | [bitbucket-cli](https://github.com/avivsinai/bitbucket-cli) |
 | `jk` | Jenkins CLI - manage jobs, pipelines, runs, logs, artifacts, credentials, nodes | [jenkins-cli](https://github.com/avivsinai/jenkins-cli) |
+| `israel-services` | Access Israeli citizen services, including health and banking workflows, directly from the CLI | [israel-services](https://github.com/avivsinai/israel-services) |
 
-Plugins are pinned by the registry to either a release tag or a commit SHA. Claude Code and Codex artifacts are generated from those pinned refs so installs are reproducible.
+Plugins are pinned by the registry to a default branch plus an exact commit SHA. Claude Code and Codex artifacts are generated from those pins so installs are reproducible while the marketplace stays aligned to each repo's latest default-branch commit.
 
 ## Architecture
 
@@ -67,7 +71,7 @@ skills-marketplace/
 │   └── <plugin>/...              # Generated Codex plugin bundles pinned to registry refs
 └── scripts/
     ├── generate-manifests.py     # Regenerates all derived artifacts
-    └── sync-releases.py          # Updates release-mode plugins from GitHub releases/tags
+    └── sync-releases.py          # Updates main-mode plugins from default-branch HEADs
 
 # Plugins live in their own repos:
 agent-message-queue/
@@ -83,12 +87,10 @@ For Claude Code, the generated marketplace catalog points directly at pinned Git
 
 ## Auto-Sync
 
-- Release-mode plugins in `registry/plugins.json` are checked by `.github/workflows/sync-releases.yml`.
-- The workflow runs every 4 hours, can be triggered manually, and also accepts `repository_dispatch`.
-- When a newer release tag is found, it updates `registry/plugins.json`, regenerates manifests, and opens or updates a PR instead of pushing directly to `main`.
+- Main-mode plugins in `registry/plugins.json` are checked by `.github/workflows/sync-releases.yml`.
+- Child repos dispatch `plugin-update` events on default-branch pushes, and the marketplace also does a weekly fallback sync plus manual runs.
+- When a repo HEAD changes, the workflow updates `registry/plugins.json`, regenerates manifests, and commits directly to `main`.
 - Plugins with `sync.mode: "manual"` stay pinned until someone updates the registry explicitly.
-
-Today only plugins whose published release tags line up with their plugin manifest versions should use `sync.mode: "release"`.
 
 ## Adding a Plugin
 

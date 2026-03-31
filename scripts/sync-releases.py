@@ -1,14 +1,12 @@
 #!/usr/bin/env python3
-"""Sync registry/plugins.json against GitHub releases for release-mode plugins."""
+"""Sync registry/plugins.json against GitHub default-branch HEADs for main-mode plugins."""
 
 from __future__ import annotations
 
 import argparse
 import json
 import os
-import re
 import sys
-import urllib.error
 import urllib.parse
 import urllib.request
 from pathlib import Path
@@ -16,7 +14,7 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parent.parent
 REGISTRY = REPO_ROOT / "registry" / "plugins.json"
 USER_AGENT = "skills-marketplace-sync/1.0"
-SEMVER_RE = re.compile(r"^v?(\d+)\.(\d+)\.(\d+)(?:[-+].*)?$")
+SHORT_SHA_LEN = 12
 
 
 def load_registry():
@@ -56,101 +54,90 @@ def github_repo_slug(repo_url):
     return owner, repo
 
 
-def normalize_version(tag_name):
-    return tag_name[1:] if tag_name.startswith("v") else tag_name
+def plugin_repo_slug(plugin):
+    source = plugin.get("source", {})
+    if isinstance(source, dict) and source.get("source") == "github" and source.get("repo"):
+        return source["repo"]
+
+    owner, repo = github_repo_slug(plugin["repository"])
+    return f"{owner}/{repo}"
 
 
-def parse_semver(value):
-    match = SEMVER_RE.match((value or "").strip())
-    if not match:
-        return None
-    return tuple(int(part) for part in match.groups())
+def split_repo_slug(repo_slug):
+    owner, repo = repo_slug.split("/", 1)
+    return owner, repo
 
 
-def latest_release_tag(owner, repo, include_prereleases):
-    if include_prereleases:
-        releases = github_request_json(f"/repos/{owner}/{repo}/releases?per_page=20")
-        for release in releases:
-            if release.get("draft"):
-                continue
-            tag_name = release.get("tag_name")
-            if tag_name:
-                return tag_name
-        return None
-
-    try:
-        release = github_request_json(f"/repos/{owner}/{repo}/releases/latest")
-    except urllib.error.HTTPError as err:
-        if err.code != 404:
-            raise
-        return None
-    return release.get("tag_name")
+def github_default_branch(owner, repo):
+    repo_data = github_request_json(f"/repos/{owner}/{repo}")
+    default_branch = repo_data.get("default_branch")
+    if not default_branch:
+        raise ValueError(f"missing default branch for {owner}/{repo}")
+    return default_branch
 
 
-def latest_tag(owner, repo, include_prereleases):
-    tags = github_request_json(f"/repos/{owner}/{repo}/tags?per_page=100")
-    candidates = []
-    for tag in tags:
-        name = tag.get("name")
-        version = parse_semver(name)
-        if version is None:
-            continue
-        if not include_prereleases and "-" in normalize_version(name):
-            continue
-        candidates.append((version, name))
-    if not candidates:
-        return None
-    candidates.sort()
-    return candidates[-1][1]
+def github_branch_head_sha(owner, repo, branch):
+    encoded_branch = urllib.parse.quote(branch, safe="")
+    commit = github_request_json(f"/repos/{owner}/{repo}/commits/{encoded_branch}")
+    sha = commit.get("sha")
+    if not sha:
+        raise ValueError(f"missing HEAD sha for {owner}/{repo}@{branch}")
+    return sha
 
 
-def latest_sync_target(owner, repo, include_prereleases):
-    tag_name = latest_release_tag(owner, repo, include_prereleases)
-    if tag_name:
-        return tag_name
-    return latest_tag(owner, repo, include_prereleases)
+def short_sha(sha):
+    return sha[:SHORT_SHA_LEN]
 
 
-def should_update(current_version, target_version):
-    current_semver = parse_semver(current_version)
-    target_semver = parse_semver(target_version)
-    if current_semver and target_semver:
-        return target_semver >= current_semver
-    return current_version != target_version
-
-
-def sync_registry(data, dry_run=False):
+def sync_registry(data, target_repo=None, dry_run=False):
     changed = False
+    matched_target = False
+
     for plugin in data.get("plugins", []):
+        repo_slug = plugin_repo_slug(plugin)
+        if target_repo and repo_slug != target_repo:
+            continue
+        if target_repo:
+            matched_target = True
+
         sync = plugin.get("sync", {})
         mode = sync.get("mode", "manual")
-        if mode != "release":
+        if mode != "main":
             print(f"skip {plugin['name']}: sync.mode={mode}")
             continue
 
-        include_prereleases = bool(sync.get("prereleases", False))
-        owner, repo = github_repo_slug(plugin["repository"])
-        tag_name = latest_sync_target(owner, repo, include_prereleases)
-        if not tag_name:
-            print(f"warn {plugin['name']}: no release/tag found")
-            continue
+        owner, repo = split_repo_slug(repo_slug)
+        default_branch = github_default_branch(owner, repo)
+        sha = github_branch_head_sha(owner, repo, default_branch)
+        version = short_sha(sha)
 
-        version = normalize_version(tag_name)
         current_version = plugin.get("version", "")
-        current_ref = plugin.get("ref", "")
-        if not should_update(current_version, version):
-            print(
-                f"warn {plugin['name']}: registry version {current_version} is newer than discovered {version}; leaving unchanged"
-            )
-            continue
-        if current_version == version and current_ref == tag_name:
-            print(f"ok {plugin['name']}: already at {tag_name}")
+        current_source = plugin.get("source", {}) if isinstance(plugin.get("source"), dict) else {}
+        current_ref = current_source.get("ref", "")
+        current_sha = current_source.get("sha", "")
+        desired_source = {
+            "source": "github",
+            "repo": repo_slug,
+            "ref": default_branch,
+            "sha": sha,
+        }
+
+        if current_version == version and current_source == desired_source and plugin.get("ref") is None:
+            print(f"ok {plugin['name']}: already at {default_branch}@{version}")
             continue
 
-        print(f"update {plugin['name']}: {current_version}@{current_ref} -> {version}@{tag_name}")
+        print(
+            f"update {plugin['name']}: "
+            f"{current_version}@{current_ref or '<none>'}:{current_sha[:SHORT_SHA_LEN] or '<none>'} "
+            f"-> {default_branch}@{version}"
+        )
         plugin["version"] = version
-        plugin["ref"] = tag_name
+        plugin["source"] = desired_source
+        plugin.pop("ref", None)
         changed = True
+
+    if target_repo and not matched_target:
+        raise ValueError(f"no registry entry matched repo {target_repo}")
 
     if changed and not dry_run:
         write_registry(data)
@@ -158,12 +145,16 @@ def sync_registry(data, dry_run=False):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Sync release-mode plugins in registry/plugins.json")
+    parser = argparse.ArgumentParser(description="Sync main-mode plugins in registry/plugins.json")
     parser.add_argument("--dry-run", action="store_true", help="Show planned updates without writing files")
+    parser.add_argument(
+        "--repo",
+        help="Only sync the plugin whose GitHub source repo matches this owner/name slug",
+    )
     args = parser.parse_args()
 
     registry = load_registry()
-    changed = sync_registry(registry, dry_run=args.dry_run)
+    changed = sync_registry(registry, target_repo=args.repo, dry_run=args.dry_run)
     if args.dry_run:
         print("dry-run complete")
     elif changed:

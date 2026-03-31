@@ -5,7 +5,9 @@ Phase 0a: CC manifest from registry.
 Phase 0b: Codex manifest + local plugin bundles from source repos.
 """
 
+import base64
 import json
+import os
 import re
 import shutil
 import subprocess
@@ -57,7 +59,15 @@ def github_repo_slug(repo_url):
     return f"{owner}/{repo}"
 
 
-def build_claude_source(plugin):
+def normalize_source(plugin):
+    source = plugin.get("source")
+    if isinstance(source, dict) and source.get("source"):
+        normalized = {"source": source["source"]}
+        for key in ("repo", "url", "ref", "sha"):
+            if source.get(key):
+                normalized[key] = source[key]
+        return normalized
+
     repo_url = plugin["repository"]
     ref = plugin.get("ref")
     slug = github_repo_slug(repo_url)
@@ -80,6 +90,26 @@ def build_claude_source(plugin):
             source["ref"] = ref
 
     return source
+
+
+def build_claude_source(plugin):
+    return normalize_source(plugin)
+
+
+def git_clone_command(repo_url, clone_dir, branch=None, shallow=False):
+    cmd = ["git"]
+    token = os.environ.get("GITHUB_TOKEN") or os.environ.get("GH_TOKEN")
+    if token and github_repo_slug(repo_url):
+        basic_auth = base64.b64encode(f"x-access-token:{token}".encode()).decode()
+        cmd.extend(["-c", f"http.extraHeader=AUTHORIZATION: basic {basic_auth}"])
+
+    cmd.extend(["clone", "--single-branch"])
+    if branch:
+        cmd.extend(["--branch", branch])
+    if shallow:
+        cmd.extend(["--depth=1"])
+    cmd.extend([repo_url, str(clone_dir)])
+    return cmd
 
 
 def generate_cc_manifest(registry):
@@ -107,7 +137,9 @@ def clone_and_bundle(plugin, dest_dir):
     """Clone a plugin's source repo at pinned ref and extract Codex bundle artifacts."""
     repo_url = plugin["repository"]
     name = plugin["name"]
-    ref = plugin.get("ref")
+    source = normalize_source(plugin)
+    checkout_ref = source.get("sha") or source.get("ref")
+    clone_branch = source.get("ref") if source.get("source") == "github" else None
     expected_version = plugin.get("version")
     bundle_dir = dest_dir / name
 
@@ -115,27 +147,26 @@ def clone_and_bundle(plugin, dest_dir):
         clone_dir = Path(tmpdir) / "repo"
 
         # Clone at pinned ref if available, otherwise default branch
-        clone_cmd = ["git", "clone", "--single-branch", repo_url, str(clone_dir)]
-        if not ref:
-            clone_cmd.insert(2, "--depth=1")
+        clone_cmd = git_clone_command(
+            repo_url,
+            clone_dir,
+            branch=clone_branch,
+            shallow=not checkout_ref,
+        )
 
         result = subprocess.run(clone_cmd, capture_output=True, text=True)
         if result.returncode != 0:
             print(f"  WARNING: failed to clone {repo_url}: {result.stderr.strip()}")
             return False
 
-        # Checkout pinned ref (fetch tags/refs first for shallow clones)
-        if ref:
-            subprocess.run(
-                ["git", "-C", str(clone_dir), "fetch", "--tags", "--depth=1", "origin"],
-                capture_output=True, text=True,
-            )
+        # Checkout the pinned SHA/ref when the registry supplies one.
+        if checkout_ref:
             result = subprocess.run(
-                ["git", "-C", str(clone_dir), "checkout", ref],
+                ["git", "-C", str(clone_dir), "checkout", checkout_ref],
                 capture_output=True, text=True,
             )
             if result.returncode != 0:
-                print(f"  WARNING: failed to checkout {ref}: {result.stderr.strip()}")
+                print(f"  WARNING: failed to checkout {checkout_ref}: {result.stderr.strip()}")
                 return False
 
         # Check for .codex-plugin/plugin.json
@@ -144,8 +175,8 @@ def clone_and_bundle(plugin, dest_dir):
             print(f"  SKIP: {name} has no .codex-plugin/plugin.json")
             return False
 
-        # Verify version matches registry
-        if expected_version:
+        # Only enforce semver parity when the registry pin is version-based rather than SHA-based.
+        if expected_version and not source.get("sha"):
             with open(codex_manifest_path) as f:
                 manifest_data = json.load(f)
             actual_version = manifest_data.get("version")
@@ -168,7 +199,7 @@ def clone_and_bundle(plugin, dest_dir):
                     shutil.copy2(src, dst)
                 copied.append(artifact)
 
-        print(f"  {name}: bundled [{', '.join(copied)}] @ {ref[:12] if ref else 'HEAD'}")
+        print(f"  {name}: bundled [{', '.join(copied)}] @ {checkout_ref[:12] if checkout_ref else 'HEAD'}")
         return True
 
 
