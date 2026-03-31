@@ -52,9 +52,9 @@
         "source": "github",
         "repo": "avivsinai/langfuse-mcp",
         "ref": "main",
-        "sha": "ad367d4ea817bdd85ed2220145bfe957dc917988"
+        "sha": "ff6817ed58961b9916493fbe86b6355888fcea00"
       },
-      "version": "ad367d4ea817",
+      "version": "ff6817ed5896",
       "keywords": [
         "langfuse",
         "observability",
@@ -83,9 +83,9 @@
         "source": "github",
         "repo": "avivsinai/sabx",
         "ref": "main",
-        "sha": "d5841e3671597e0e8f42dde74b919ca32d970103"
+        "sha": "61dd0b9ea91808505711ffaa8ff8899968f7c316"
       },
-      "version": "d5841e367159",
+      "version": "61dd0b9ea918",
       "keywords": [
         "sabnzbd",
         "usenet",
@@ -113,9 +113,9 @@
         "source": "github",
         "repo": "avivsinai/bitbucket-cli",
         "ref": "master",
-        "sha": "e8bc8a2c53970a3dba11f95e3295b95bdca32d96"
+        "sha": "8d3a7b9de8ff8217a15ea68dbb614ffb8dec0a54"
       },
-      "version": "e8bc8a2c5397",
+      "version": "8d3a7b9de8ff",
       "keywords": [
         "bitbucket",
         "git",
@@ -145,9 +145,9 @@
         "source": "github",
         "repo": "avivsinai/jenkins-cli",
         "ref": "main",
-        "sha": "37851685a24c34bc4ee992452fa6b0363e4b35d6"
+        "sha": "90c2786c812f08773e244729bd0467ecd5cd60a7"
       },
-      "version": "37851685a24c",
+      "version": "90c2786c812f",
       "keywords": [
         "jenkins",
         "ci",
@@ -175,9 +175,9 @@
         "source": "github",
         "repo": "avivsinai/yoetz",
         "ref": "main",
-        "sha": "423a80c308947054b2b204b516791ed12baf5665"
+        "sha": "f3c5a6e2af3040f2780821981ad916bb5ca3516d"
       },
-      "version": "423a80c30894",
+      "version": "f3c5a6e2af30",
       "keywords": [
         "llm",
         "council",
@@ -205,9 +205,9 @@
         "source": "github",
         "repo": "avivsinai/israel-services",
         "ref": "main",
-        "sha": "286d89f2553136948e6449438fdfe0a01816ed32"
+        "sha": "8d771e5a33238125d4685e2f297fa1286eeb6940"
       },
-      "version": "286d89f25531",
+      "version": "8d771e5a3323",
       "keywords": [
         "israel",
         "health",

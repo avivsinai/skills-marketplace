@@ -27,10 +27,10 @@
         "source": "github",
         "repo": "avivsinai/langfuse-mcp",
         "ref": "main",
-        "sha": "ad367d4ea817bdd85ed2220145bfe957dc917988"
+        "sha": "ff6817ed58961b9916493fbe86b6355888fcea00"
       },
       "description": "Langfuse observability - query traces, debug exceptions, analyze sessions, manage prompts and datasets via MCP tools. First LLM observability skill for Claude Code and Codex.",
-      "version": "ad367d4ea817",
+      "version": "ff6817ed5896",
       "repository": "https://github.com/avivsinai/langfuse-mcp",
       "keywords": ["langfuse", "observability", "traces", "llm", "prompts", "datasets", "debugging", "telemetry", "mcp"]
     },
@@ -40,10 +40,10 @@
         "source": "github",
         "repo": "avivsinai/sabx",
         "ref": "main",
-        "sha": "d5841e3671597e0e8f42dde74b919ca32d970103"
+        "sha": "61dd0b9ea91808505711ffaa8ff8899968f7c316"
       },
       "description": "SABnzbd CLI - control downloads, queues, RSS feeds, speed limits, and automation via terminal. Full API parity with SABnzbd REST API.",
-      "version": "d5841e367159",
+      "version": "61dd0b9ea918",
       "repository": "https://github.com/avivsinai/sabx",
       "keywords": ["sabnzbd", "usenet", "downloads", "nzb", "queue", "automation", "cli", "rss"]
     },
@@ -53,10 +53,10 @@
         "source": "github",
         "repo": "avivsinai/bitbucket-cli",
         "ref": "master",
-        "sha": "e8bc8a2c53970a3dba11f95e3295b95bdca32d96"
+        "sha": "8d3a7b9de8ff8217a15ea68dbb614ffb8dec0a54"
       },
       "description": "Bitbucket CLI - manage repositories, pull requests, branches, issues, webhooks, and pipelines for both Data Center and Cloud. Mirrors gh ergonomics with JSON/YAML output.",
-      "version": "e8bc8a2c5397",
+      "version": "8d3a7b9de8ff",
       "repository": "https://github.com/avivsinai/bitbucket-cli",
       "keywords": ["bitbucket", "git", "pr", "pull-request", "ci", "pipeline", "devops", "cli", "datacenter", "cloud"]
     },
@@ -66,10 +66,10 @@
         "source": "github",
         "repo": "avivsinai/jenkins-cli",
         "ref": "main",
-        "sha": "37851685a24c34bc4ee992452fa6b0363e4b35d6"
+        "sha": "90c2786c812f08773e244729bd0467ecd5cd60a7"
       },
       "description": "Jenkins CLI - GitHub CLI-style interface for Jenkins controllers. Manage jobs, pipelines, runs, logs, artifacts, credentials, nodes, queues, and plugins.",
-      "version": "37851685a24c",
+      "version": "90c2786c812f",
       "repository": "https://github.com/avivsinai/jenkins-cli",
       "keywords": ["jenkins", "ci", "cd", "pipeline", "builds", "devops", "cli", "automation"]
     },
@@ -79,10 +79,10 @@
         "source": "github",
         "repo": "avivsinai/yoetz",
         "ref": "main",
-        "sha": "423a80c308947054b2b204b516791ed12baf5665"
+        "sha": "f3c5a6e2af3040f2780821981ad916bb5ca3516d"
       },
       "description": "LLM council, bundler, and multimodal gateway - multi-model consensus, code review, image/video generation, and browser fallback for coding agents.",
-      "version": "423a80c30894",
+      "version": "f3c5a6e2af30",
       "repository": "https://github.com/avivsinai/yoetz",
       "keywords": ["llm", "council", "multimodal", "code-review", "bundler", "ai", "cli", "agents"]
     },
@@ -92,10 +92,10 @@
         "source": "github",
         "repo": "avivsinai/israel-services",
         "ref": "main",
-        "sha": "286d89f2553136948e6449438fdfe0a01816ed32"
+        "sha": "8d771e5a33238125d4685e2f297fa1286eeb6940"
       },
       "description": "Access Israeli citizen services, including health and banking workflows, directly from the CLI.",
-      "version": "286d89f25531",
+      "version": "8d771e5a3323",
       "repository": "https://github.com/avivsinai/israel-services",
       "keywords": ["israel", "health", "banking", "clalit", "poalim", "healthcare", "securities"]
     }
