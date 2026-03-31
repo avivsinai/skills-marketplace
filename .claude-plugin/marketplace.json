@@ -14,10 +14,10 @@
         "source": "github",
         "repo": "avivsinai/agent-message-queue",
         "ref": "main",
-        "sha": "0b97d4b9774388637ed59b4f9e0979e0d7421d49"
+        "sha": "20da2fa48722c8cd4cdb4fe41d9e1202871efe49"
       },
       "description": "Agent Message Queue - file-based inter-agent messaging with co-op mode, cross-project federation, and orchestrator integrations (Symphony, Kanban).",
-      "version": "0b97d4b97743",
+      "version": "20da2fa48722",
       "repository": "https://github.com/avivsinai/agent-message-queue",
       "keywords": ["messaging", "agents", "maildir", "queue", "inter-agent", "coordination", "coop", "federation", "integration", "symphony", "kanban"]
     },
