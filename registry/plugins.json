@@ -142,9 +142,9 @@
         "source": "github",
         "repo": "avivsinai/bitbucket-cli",
         "ref": "master",
-        "sha": "f7a9ac2d00ab9c32f9531197b2c489c0ec46fc44"
+        "sha": "b30dc438b103ff7c64e42de77e6f1b600d58ea40"
       },
-      "version": "f7a9ac2d00ab",
+      "version": "b30dc438b103",
       "keywords": [
         "bitbucket",
         "git",
