@@ -81,9 +81,9 @@
         "source": "github",
         "repo": "avivsinai/langfuse-mcp",
         "ref": "main",
-        "sha": "27d5dd6f3a40899d9d70a65cc225d39c14e06f8a"
+        "sha": "3eeb0124dbc0660745689c57bfc8d322208e26d7"
       },
-      "version": "27d5dd6f3a40",
+      "version": "3eeb0124dbc0",
       "keywords": [
         "langfuse",
         "observability",
