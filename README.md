@@ -15,6 +15,7 @@ Central plugin marketplace for **Claude Code** and **Codex**. This repo is a reg
 > npx skild install @avivsinai/bkt
 > npx skild install @avivsinai/jk
 > npx skild install @avivsinai/israel-services
+> npx skild install @avivsinai/shaon
 > ```
 >
 > **Via [skills.sh](https://skills.sh)** (GitHub-based):
@@ -25,6 +26,7 @@ Central plugin marketplace for **Claude Code** and **Codex**. This repo is a reg
 > npx skills add avivsinai/bitbucket-cli
 > npx skills add avivsinai/jenkins-cli
 > npx skills add avivsinai/israel-services
+> npx skills add avivsinai/shaon
 > ```
 
 ## Installation (Claude Code)
@@ -40,6 +42,7 @@ Central plugin marketplace for **Claude Code** and **Codex**. This repo is a reg
 /plugin install bkt@avivsinai-marketplace
 /plugin install jk@avivsinai-marketplace
 /plugin install israel-services@avivsinai-marketplace
+/plugin install shaon@avivsinai-marketplace
 ```
 
 ## Available Plugins
@@ -52,6 +55,7 @@ Central plugin marketplace for **Claude Code** and **Codex**. This repo is a reg
 | `bkt` | Bitbucket CLI - manage repos, PRs, branches, issues, webhooks, pipelines (DC & Cloud) | [bitbucket-cli](https://github.com/avivsinai/bitbucket-cli) |
 | `jk` | Jenkins CLI - manage jobs, pipelines, runs, logs, artifacts, credentials, nodes | [jenkins-cli](https://github.com/avivsinai/jenkins-cli) |
 | `israel-services` | Access Israeli citizen services, including health and banking workflows, directly from the CLI | [israel-services](https://github.com/avivsinai/israel-services) |
+| `shaon` | Personal Hilan attendance, payslips, salary, and related self-service automation | [shaon](https://github.com/avivsinai/shaon) |
 
 Plugins are pinned by the registry to a default branch plus an exact commit SHA. Claude Code and Codex artifacts are generated from those pins so installs are reproducible while the marketplace stays aligned to each repo's latest default-branch commit.
 
@@ -59,7 +63,7 @@ Plugins are pinned by the registry to a default branch plus an exact commit SHA.
 
 This marketplace is **registry-first**. `registry/plugins.json` is the only file you edit by hand; everything else is generated from it.
 
-```
+```text
 skills-marketplace/
 ├── registry/
 │   └── plugins.json              # Source of truth: plugin metadata, pins, sync policy

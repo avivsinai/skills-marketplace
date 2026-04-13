@@ -111,6 +111,19 @@
       "version": "b9ed63190317",
       "repository": "https://github.com/avivsinai/israel-services",
       "keywords": ["israel", "health", "banking", "clalit", "poalim", "healthcare", "securities"]
+    },
+    {
+      "name": "shaon",
+      "source": {
+        "source": "github",
+        "repo": "avivsinai/shaon",
+        "ref": "main",
+        "sha": "830b191bb02791f158f56c4857dc5c528cf50788"
+      },
+      "description": "Rust CLI, MCP server, and skill for personal attendance, payslips, salary, and related self-service tasks on your own Hilan account.",
+      "version": "830b191bb027",
+      "repository": "https://github.com/avivsinai/shaon",
+      "keywords": ["attendance", "payslip", "salary", "hilan", "hilanet", "hr", "israel"]
     }
   ]
 }
