@@ -254,6 +254,35 @@
       "sync": {
         "mode": "main"
       }
+    },
+    {
+      "name": "shaon",
+      "description": "Rust CLI, MCP server, and skill for personal attendance, payslips, salary, and related self-service tasks on your own Hilan account.",
+      "repository": "https://github.com/avivsinai/shaon",
+      "source": {
+        "source": "github",
+        "repo": "avivsinai/shaon",
+        "ref": "main",
+        "sha": "830b191bb02791f158f56c4857dc5c528cf50788"
+      },
+      "version": "830b191bb027",
+      "keywords": [
+        "attendance",
+        "payslip",
+        "salary",
+        "hilan",
+        "hilanet",
+        "hr",
+        "israel"
+      ],
+      "category": "Developer Tools",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_FIRST_USE"
+      },
+      "sync": {
+        "mode": "main"
+      }
     }
   ]
 }

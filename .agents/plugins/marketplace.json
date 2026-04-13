@@ -87,6 +87,18 @@
         "authentication": "ON_FIRST_USE"
       },
       "category": "AI Tools"
+    },
+    {
+      "name": "shaon",
+      "source": {
+        "source": "local",
+        "path": "./plugins/shaon"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_FIRST_USE"
+      },
+      "category": "Developer Tools"
     }
   ]
 }
