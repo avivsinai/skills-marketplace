@@ -1,4 +1,4 @@
-name: Codex Plugin Quality Gate
+name: AI Plugin Quality Gate
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     branches: [main]
 
 concurrency:
-  group: codex-plugin-scanner-${{ github.ref }}
+  group: ai-plugin-scanner-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -18,7 +18,7 @@ jobs:
       contents: read
     steps:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
-      - name: Codex plugin scanner
-        uses: hashgraph-online/hol-codex-plugin-scanner-action@b45d6b583afe05819b24edc8e6418c9ad2e1f1d0 # v1
+      - name: AI plugin scanner
+        uses: hashgraph-online/ai-plugin-scanner-action@d54b5d50c5c11c069aca137f71a75d5582d776b6 # v1
         with:
           plugin_dir: "."
