@@ -1,6 +1,6 @@
 ---
 name: amq-spec
-version: 0.28.8
+version: 0.32.1
 description: >-
   Parallel-research-then-converge design workflow between two agents. Use this
   skill when the user wants two agents to independently think through a design
@@ -41,7 +41,7 @@ If topic/problem are unclear, ask for clarification.
 ## Pre-flight
 
 1. Verify AMQ is available: `which amq`
-2. Verify co-op is initialized (`.amqrc`), otherwise run: `amq coop init`
+2. Verify the AMQ root is discoverable (`.amqrc`, AMQ env vars, or the default `.agent-mail` layout); otherwise run: `amq coop init`
 3. Use thread name: `spec/<topic>`
 
 ## First Action: Send problem to partner IMMEDIATELY

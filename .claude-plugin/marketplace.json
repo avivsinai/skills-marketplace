@@ -14,10 +14,10 @@
         "source": "github",
         "repo": "avivsinai/agent-message-queue",
         "ref": "main",
-        "sha": "8638b15cecba900e8d810dcf488c6daed44b6067"
+        "sha": "814baabf1ce77c444989147067db93ca1a3701b2"
       },
       "description": "Agent Message Queue - file-based inter-agent messaging with co-op mode, cross-project federation, and orchestrator integrations (Symphony, Kanban).",
-      "version": "8638b15cecba",
+      "version": "814baabf1ce7",
       "repository": "https://github.com/avivsinai/agent-message-queue",
       "keywords": ["messaging", "agents", "maildir", "queue", "inter-agent", "coordination", "coop", "federation", "integration", "symphony", "kanban"]
     },
@@ -27,10 +27,10 @@
         "source": "github",
         "repo": "avivsinai/agent-message-queue",
         "ref": "main",
-        "sha": "8638b15cecba900e8d810dcf488c6daed44b6067"
+        "sha": "814baabf1ce77c444989147067db93ca1a3701b2"
       },
       "description": "Parallel-research-then-converge design workflow between two agents. Structured phase-by-phase guidance for collaborative spec/design work via AMQ.",
-      "version": "8638b15cecba",
+      "version": "814baabf1ce7",
       "repository": "https://github.com/avivsinai/agent-message-queue",
       "keywords": ["spec", "design", "collaborative", "agents", "parallel-research", "amq", "coordination"]
     },
@@ -40,10 +40,10 @@
         "source": "github",
         "repo": "avivsinai/langfuse-mcp",
         "ref": "main",
-        "sha": "27d5dd6f3a40899d9d70a65cc225d39c14e06f8a"
+        "sha": "35f8e27d699924de43b8bc5cdbd6de866fed42ed"
       },
       "description": "Langfuse observability - query traces, debug exceptions, analyze sessions, manage prompts and datasets via MCP tools. First LLM observability skill for Claude Code and Codex.",
-      "version": "27d5dd6f3a40",
+      "version": "35f8e27d6999",
       "repository": "https://github.com/avivsinai/langfuse-mcp",
       "keywords": ["langfuse", "observability", "traces", "llm", "prompts", "datasets", "debugging", "telemetry", "mcp"]
     },
@@ -66,10 +66,10 @@
         "source": "github",
         "repo": "avivsinai/bitbucket-cli",
         "ref": "master",
-        "sha": "f7a9ac2d00ab9c32f9531197b2c489c0ec46fc44"
+        "sha": "258f76805ab65021227e2b6865d5a8a0879b6614"
       },
       "description": "Bitbucket CLI - manage repositories, pull requests, branches, issues, webhooks, and pipelines for both Data Center and Cloud. Mirrors gh ergonomics with JSON/YAML output.",
-      "version": "f7a9ac2d00ab",
+      "version": "258f76805ab6",
       "repository": "https://github.com/avivsinai/bitbucket-cli",
       "keywords": ["bitbucket", "git", "pr", "pull-request", "ci", "pipeline", "devops", "cli", "datacenter", "cloud"]
     },
@@ -79,10 +79,10 @@
         "source": "github",
         "repo": "avivsinai/jenkins-cli",
         "ref": "main",
-        "sha": "3223aa674b2b665d3ee0aafa37cb75e7fd915011"
+        "sha": "0c98603a66af6ead6e3e1b090f64a389f4e76f21"
       },
       "description": "Jenkins CLI - GitHub CLI-style interface for Jenkins controllers. Manage jobs, pipelines, runs, logs, artifacts, credentials, nodes, queues, and plugins.",
-      "version": "3223aa674b2b",
+      "version": "0c98603a66af",
       "repository": "https://github.com/avivsinai/jenkins-cli",
       "keywords": ["jenkins", "ci", "cd", "pipeline", "builds", "devops", "cli", "automation"]
     },
@@ -92,10 +92,10 @@
         "source": "github",
         "repo": "avivsinai/yoetz",
         "ref": "main",
-        "sha": "20faaabc9821ef6a5889f30011afe7e7dd5df107"
+        "sha": "4d634952032e8a63d5e28f1ef81458dd1a330188"
       },
       "description": "LLM council, bundler, and multimodal gateway - multi-model consensus, code review, image/video generation, and browser fallback for coding agents.",
-      "version": "20faaabc9821",
+      "version": "4d634952032e",
       "repository": "https://github.com/avivsinai/yoetz",
       "keywords": ["llm", "council", "multimodal", "code-review", "bundler", "ai", "cli", "agents"]
     },
@@ -111,6 +111,19 @@
       "version": "b9ed63190317",
       "repository": "https://github.com/avivsinai/israel-services",
       "keywords": ["israel", "health", "banking", "clalit", "poalim", "healthcare", "securities"]
+    },
+    {
+      "name": "shaon",
+      "source": {
+        "source": "github",
+        "repo": "avivsinai/shaon",
+        "ref": "main",
+        "sha": "830b191bb02791f158f56c4857dc5c528cf50788"
+      },
+      "description": "Rust CLI, MCP server, and skill for personal attendance, payslips, salary, and related self-service tasks on your own Hilan account.",
+      "version": "830b191bb027",
+      "repository": "https://github.com/avivsinai/shaon",
+      "keywords": ["attendance", "payslip", "salary", "hilan", "hilanet", "hr", "israel"]
     }
   ]
 }

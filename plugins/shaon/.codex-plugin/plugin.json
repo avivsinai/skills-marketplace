@@ -1,0 +1,25 @@
+{
+  "name": "shaon",
+  "version": "0.8.2",
+  "description": "Rust CLI and agent skill for personal attendance, payslip, salary, and related self-service tasks on the user's own Hilan account.",
+  "author": {
+    "name": "Aviv Sinai",
+    "url": "https://github.com/avivsinai"
+  },
+  "repository": "https://github.com/avivsinai/shaon",
+  "license": "MIT",
+  "skills": "./skills/",
+  "keywords": [
+    "shaon",
+    "attendance",
+    "presence",
+    "payslip",
+    "hr",
+    "automation"
+  ],
+  "interface": {
+    "displayName": "Shaon CLI",
+    "shortDescription": "Automate your own Hilan attendance, payslips, salary, and reports",
+    "category": "Developer Tools"
+  }
+}

@@ -24,6 +24,8 @@ Root precedence:
 flags > AM_ROOT > project .amqrc > AMQ_GLOBAL_ROOT > ~/.amqrc > auto-detect
 ```
 
+`auto-detect` covers the default `.agent-mail` layout in the current tree, including `.agent-mail/<session>` session roots without `.amqrc`. Custom root names still need `.amqrc`, explicit flags, or env vars.
+
 ## Symphony
 
 Lightweight optional hook adapter.
@@ -68,7 +70,7 @@ amq doctor --ops
 amq doctor --ops --json
 ```
 
-`doctor --ops` adds queue depth, DLQ state, presence freshness, pending acks, and integration hints on top of the base `doctor` checks.
+`doctor --ops` adds queue depth, oldest unread age, DLQ state, presence freshness, and integration hints on top of the base `doctor` checks.
 
 ## Message Shape
 

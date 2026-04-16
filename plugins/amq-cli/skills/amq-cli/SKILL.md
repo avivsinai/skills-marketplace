@@ -1,13 +1,13 @@
 ---
 name: amq-cli
-version: 0.28.8
+version: 0.32.1
 description: >-
   Coordinate agents via the AMQ CLI for file-based inter-agent messaging. Use
   this skill whenever you need to send messages to another agent (codex, claude,
   or any named handle), check your inbox, drain queued messages, set up co-op
   mode between agents, join a swarm team, route messages across projects, or
   diagnose delivery issues. Also use it when you receive a message and need to
-  know how to reply, ack, or handle priority. Covers any multi-agent
+  know how to reply, inspect receipts, or handle priority. Covers any multi-agent
   coordination task where agents need to talk to each other — review requests,
   questions, status updates, decision threads, wake notifications, and
   orchestrator integration (Symphony, Kanban). For collaborative spec/design
@@ -34,7 +34,7 @@ curl -fsSL https://raw.githubusercontent.com/avivsinai/agent-message-queue/main/
 
 ## Environment Rules
 
-AMQ uses two env vars for routing: `AM_ROOT` (which mailbox tree) and `AM_ME` (which agent). Getting these wrong means messages go to the wrong place or silently disappear, so it matters to let the CLI handle them rather than guessing.
+AMQ primarily uses two env vars for routing: `AM_ROOT` (which mailbox tree) and `AM_ME` (which agent). Getting these wrong means messages go to the wrong place or silently disappear, so it matters to let the CLI handle them rather than guessing.
 
 **Inside `coop exec`** — everything is pre-configured. Just run bare commands:
 ```bash
@@ -42,7 +42,7 @@ amq send --to codex --body "hello"     # correct
 amq send --me claude --to codex ...    # wrong — --me overrides the env
 ./amq send ...                         # wrong — use amq from PATH
 ```
-The reason: `coop exec` sets `AM_ROOT` and `AM_ME` precisely for the session. Passing `--root` or `--me` overrides that and can route to the wrong mailbox.
+The reason: `coop exec` sets `AM_ROOT` and `AM_ME` precisely for the session. Passing `--me` overrides the env, and passing `--root` intentionally overrides the current root (the CLI will note that on stderr if it differs from `AM_ROOT`). Prefer bare commands unless you mean to target a different root.
 
 **Outside `coop exec`** — resolve the root from config, don't hardcode it:
 ```bash
@@ -61,8 +61,8 @@ Why not hardcode? The root path depends on the config chain (project `.amqrc` �
 
 | Context | Command | AM_ROOT resolves to |
 |---------|---------|---------------------|
-| Outside `coop exec` | `amq env --me claude` | resolved base root from project `.amqrc`, `AMQ_GLOBAL_ROOT`, or `~/.amqrc` |
-| Outside `coop exec`, no project `.amqrc` | `amq env --me claude` | `AMQ_GLOBAL_ROOT` or `~/.amqrc` |
+| Outside `coop exec` | `amq env --me claude` | resolved base root from project `.amqrc`, detected `.agent-mail`, `AMQ_GLOBAL_ROOT`, or `~/.amqrc` |
+| Outside `coop exec`, no project `.amqrc` | `amq env --me claude` | detected `.agent-mail` in the current tree, otherwise `AMQ_GLOBAL_ROOT` or `~/.amqrc` |
 | Outside `coop exec`, isolated session | `amq env --session auth --me claude` | `<resolved-base-root>/auth` |
 | Inside `coop exec` (no flags) | automatic | `.agent-mail/collab` (default session) |
 | Inside `coop exec --session X` | automatic | `.agent-mail/X` |
@@ -139,12 +139,32 @@ amq doctor --ops
 amq doctor --ops --json
 ```
 
+## Delivery Receipts
+
+AMQ records delivery outcomes in consumer-local receipt files. The main stages are:
+
+- `drained` — a consumer successfully ingested the message
+- `dlq` — the message was moved to the dead letter queue during ingest
+
+Use these when you need confirmation rather than just fire-and-forget messaging:
+
+```bash
+# Block on delivery for a single-recipient send
+amq send --to codex --body "please review" --wait-for drained --wait-timeout 60s
+
+# Query receipt history later
+amq receipts list --me codex --msg-id <msg_id>
+amq receipts wait --me codex --msg-id <msg_id> --stage drained --timeout 60s
+```
+
+`amq read`, `amq drain`, and `amq monitor` all apply the same strict header validation. Messages in `inbox/new` that are corrupt or have malformed headers are moved to DLQ and produce a `dlq` receipt.
+
 ## Session Layout
 
-By default, `.amqrc` points to a literal root (e.g., `.agent-mail`). Use `--session` to create isolated subdirectories:
+By default, the root is `.agent-mail` (from `.amqrc` or auto-detect). Use `--session` to create isolated subdirectories:
 
 ```
-.agent-mail/              ← default root (configured in .amqrc)
+.agent-mail/              ← default root (configurable in `.amqrc`)
 .agent-mail/auth/         ← isolated session (via --session auth)
 .agent-mail/api/          ← isolated session (via --session api)
 ```
@@ -152,7 +172,8 @@ By default, `.amqrc` points to a literal root (e.g., `.agent-mail`). Use `--sess
 - `amq coop exec claude` → `AM_ROOT=.agent-mail/collab` (default session)
 - `amq coop exec --session auth claude` → `AM_ROOT=.agent-mail/auth`
 
-Only two env vars: `AM_ROOT` (where) + `AM_ME` (who). The CLI enforces correct routing — just run `amq` commands as-is.
+The main env vars are `AM_ROOT` (where) + `AM_ME` (who). `coop exec` may also set `AM_BASE_ROOT` for cross-session resolution. The CLI enforces correct routing — just run `amq` commands as-is.
+Default `.agent-mail/<session>` layouts are recognized even without `.amqrc`; custom root names still need config or explicit flags/env.
 
 ## Cross-Project Routing
 
@@ -277,6 +298,8 @@ amq send --to codex --priority urgent --kind question --body "Blocked on API"
 amq send --to codex --labels "bug,parser" --context '{"paths": ["src/"]}' --body "Found issue"
 ```
 
+**Send file paths, not file contents.** When attaching source code, configs, or large text for review, send the file path in the message body, not the contents inline. The receiver can open the file with their local tools. If the receiver cannot access that worktree, send a short diff instead of the full source.
+
 ### Filter
 ```bash
 amq list --new --priority urgent
@@ -312,3 +335,4 @@ For detailed protocols, read the reference file FIRST, then follow its instructi
 - [references/integrations.md](references/integrations.md) — Symphony + Kanban integration commands, global root fallback, ops checks
 - [references/message-format.md](references/message-format.md) — Message format: frontmatter schema, field reference
 - [references/cross-project.md](references/cross-project.md) — Cross-project routing: peer config, addressing, decision threads
+- [references/review-loop.md](references/review-loop.md) — Token-efficient review cycles: delegate multi-round reviews to background agents

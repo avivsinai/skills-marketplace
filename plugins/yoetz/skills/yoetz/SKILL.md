@@ -1,6 +1,6 @@
 ---
 name: yoetz
-version: 0.2.45
+version: 0.2.53
 description: >
   Fast CLI-first LLM council, bundler, and multimodal gateway. Use ONLY when user
   explicitly mentions "yoetz", "yoetz ask", "yoetz council", "yoetz review",
@@ -175,10 +175,10 @@ For web-only models like ChatGPT Pro that lack API access. Connects to your runn
 ### Prerequisites
 
 ```bash
-# Preferred browser transport:
+# Optional fallback browser transports:
 npm install -g dev-browser
 
-# Legacy fallback transport:
+# Secondary fallback transport:
 npm install -g agent-browser
 ```
 
@@ -186,7 +186,7 @@ npm install -g agent-browser
 
 yoetz connects to your already logged-in Chrome session via auto-connect (CDP). No cookie extraction or separate browser needed.
 
-**Transport priority:** `dev-browser` > `agent-browser` > manual browser upload/paste.
+**Transport priority:** `chrome-devtools-mcp` > `dev-browser` > `agent-browser` > manual browser upload.
 
 **Connection priority:** explicit `--cdp` > auto-connect > cookie state > profile fallback.
 
@@ -216,10 +216,12 @@ yoetz browser attach
 
 ### Chrome 146+ notes
 
-Chrome 146 introduced a security dialog for external CDP connections. yoetz handles this automatically:
-- Detects the dialog and tells you to click Allow (instead of hanging)
-- Reuses healthy daemon connections (no repeated dialogs)
-- Cleans up stale daemons when the connection breaks
+Chrome 146 introduced a security dialog for external CDP connections. Yoetz is extension-free by design, so the only way to get "approve once, then run silently" behavior is to keep the daemon/CDP session alive and avoid tearing it down between invocations.
+
+Current policy:
+- Prefer live attach over cookie sync: `chrome-devtools-mcp` first, `dev-browser` second, `agent-browser` third.
+- Trust an existing live-attach daemon by default; yoetz does not silently recycle it during normal attach/check/recipe flows.
+- If recovery is actually needed, use `yoetz browser reset` explicitly.
 
 If you see "Allow remote debugging?" in Chrome, click Allow and retry.
 
@@ -252,9 +254,23 @@ BUNDLE=$(yoetz bundle -p "Review this code" -f src/*.rs --format json | jq -r .a
 # Send to ChatGPT
 yoetz browser recipe --recipe chatgpt --bundle "$BUNDLE"
 
-# Override the built-in model selection if needed
+# By default yoetz now auto-selects the strongest model the logged-in account
+# can access, preferring GPT-5/Pro when available. Override it only if needed.
 yoetz browser recipe --recipe chatgpt --bundle "$BUNDLE" --var model=gpt-5-4-pro
+
+# Reuse the currently active ChatGPT tab/conversation for a follow-up turn
+# instead of opening a fresh one (default is "fresh" — a fresh conversation
+# per call; whether that is a new tab or same-tab navigation depends on the
+# transport/session state). Requires the attached tab to already be on chatgpt.com.
+yoetz browser recipe --recipe chatgpt --bundle "$BUNDLE" --var thread=reuse
 ```
+
+The wait loop reports `completion_reason` in its JSON output:
+- `copy_button` — the strong signal: a copy control rendered on the new
+  assistant message (response is fully streamed).
+- `stable_idle_fallback` — the page looked idle with unchanged length for
+  ≥ `max(90s, 3 × wait_interval_ms)`. Used when ChatGPT changes its copy-button
+  selectors; otherwise `copy_button` is the normal completion path.
 
 ### Combined workflow: API + Browser
 
@@ -289,7 +305,7 @@ Built-in recipes: `chatgpt`, `claude`, `gemini`.
 | `Allow remote debugging?` dialog | Click **Allow** in Chrome, then retry. If the dialog is frozen, launch Chrome with `--remote-debugging-port=9222 --user-data-dir=/tmp/chrome-debug` and use `yoetz browser attach --cdp http://127.0.0.1:9222` instead. |
 | `auto-connect probe timed out` | Chrome dialog is probably showing. Click Allow. If Chrome will not accept the dialog, switch to the explicit `--cdp` flow above. Install `dev-browser` first; `agent-browser` remains a fallback. |
 | `chatgpt login required` | Chrome was reached but the wrong profile/tab was used. Open ChatGPT in the target Chrome profile first, or connect that profile explicitly with `--cdp`, then retry. |
-| `daemon already running` | Run `yoetz browser attach` to check connection, or kill stale daemon: `agent-browser close` |
+| `daemon already running` | Run `yoetz browser attach` to check connection. If the daemon is stale, use `yoetz browser reset`, not `agent-browser close` directly. |
 | `agent-browser failed` | Ensure `npx agent-browser --version` works, or `npm install -g agent-browser` |
 | `dev-browser failed` | Ensure `dev-browser --help` works, verify Chrome remote debugging is enabled, and retry with `--cdp` if you need a specific Chrome profile. |
 | Recipe not found | Use `--recipe chatgpt` (name) or full path. Check `brew --prefix`/share/yoetz/recipes/ |
@@ -319,11 +335,12 @@ This keeps the default path aligned with the same browser transport users alread
 ### How it works
 
 The browser module connects to your running Chrome via CDP (Chrome DevTools Protocol):
-- **dev-browser** (primary): Playwright-based transport that attaches to your logged-in Chrome session
-- **agent-browser** (fallback): legacy transport with cookie/profile fallback support
-- **Cookie sync** (legacy fallback): extracts cookies from Chrome's encrypted store, injects into agent-browser
-- Uses stealth User-Agent headers and disables automation detection flags
-- Daemon model: one persistent connection per session, reused across recipe steps
+- **chrome-devtools-mcp** (primary): built into yoetz, backed by `headless_chrome`, attaches directly to your logged-in Chrome session
+- **dev-browser** (fallback): Playwright-based transport for the same live-attach flow
+- **agent-browser** (fallback 2): browser automation fallback with cookie/profile fallback support
+- **Cookie sync** (final fallback): extracts cookies from Chrome's encrypted store, injects into agent-browser only after live attach paths are exhausted
+- Extension-free by design: no browser extension is required or desired
+- Daemon model: one persistent connection per session, reused across invocations until you explicitly run `yoetz browser reset`
 
 ## Provider Configuration
 
