@@ -112,9 +112,9 @@
         "source": "github",
         "repo": "avivsinai/sabx",
         "ref": "main",
-        "sha": "5dd788eea67485b34e42ce6a0a63f5f1454d6579"
+        "sha": "f1fa09602dbf4c13a5a1e78d2251c37c65773842"
       },
-      "version": "5dd788eea674",
+      "version": "f1fa09602dbf",
       "keywords": [
         "sabnzbd",
         "usenet",
@@ -263,9 +263,9 @@
         "source": "github",
         "repo": "avivsinai/shaon",
         "ref": "main",
-        "sha": "830b191bb02791f158f56c4857dc5c528cf50788"
+        "sha": "86a5f92f019603e9fe11e439ad1108a933e10b89"
       },
-      "version": "830b191bb027",
+      "version": "86a5f92f0196",
       "keywords": [
         "attendance",
         "payslip",
