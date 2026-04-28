@@ -40,10 +40,10 @@
         "source": "github",
         "repo": "avivsinai/langfuse-mcp",
         "ref": "main",
-        "sha": "9bbe642c7b8c7367cb9ffd4f22cb5da7568001db"
+        "sha": "d7e9d49c274047dfe502f1c0b007765abfba046a"
       },
       "description": "Langfuse observability - query traces, debug exceptions, analyze sessions, manage prompts and datasets via MCP tools. First LLM observability skill for Claude Code and Codex.",
-      "version": "9bbe642c7b8c",
+      "version": "d7e9d49c2740",
       "repository": "https://github.com/avivsinai/langfuse-mcp",
       "keywords": ["langfuse", "observability", "traces", "llm", "prompts", "datasets", "debugging", "telemetry", "mcp"]
     },
