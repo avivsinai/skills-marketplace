@@ -174,9 +174,9 @@
         "source": "github",
         "repo": "avivsinai/jenkins-cli",
         "ref": "main",
-        "sha": "ae7a5e04357547af3f1b780a64ddc813b188324c"
+        "sha": "5199044b53dc610672370414d05385abe75d961b"
       },
-      "version": "ae7a5e043575",
+      "version": "5199044b53dc",
       "keywords": [
         "jenkins",
         "ci",
