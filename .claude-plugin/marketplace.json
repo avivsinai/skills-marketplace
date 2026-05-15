@@ -92,10 +92,10 @@
         "source": "github",
         "repo": "avivsinai/yoetz",
         "ref": "main",
-        "sha": "6ff7e7401b15d0d25bc0db05b38bb4b46d38d4a0"
+        "sha": "47eb7c24649eed9ae809161839acf7ac01073d5e"
       },
       "description": "LLM council, bundler, and multimodal gateway - multi-model consensus, code review, image/video generation, and browser fallback for coding agents.",
-      "version": "6ff7e7401b15",
+      "version": "47eb7c24649e",
       "repository": "https://github.com/avivsinai/yoetz",
       "keywords": ["llm", "council", "multimodal", "code-review", "bundler", "ai", "cli", "agents"]
     },
