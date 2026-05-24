@@ -256,6 +256,37 @@
       }
     },
     {
+      "name": "x-twitter-scraper",
+      "description": "Xquik X data and automation skill with REST API, MCP, webhooks, SDK guidance, extraction workflows, monitoring, and confirmation-gated actions.",
+      "repository": "https://github.com/Xquik-dev/x-twitter-scraper",
+      "source": {
+        "source": "github",
+        "repo": "Xquik-dev/x-twitter-scraper",
+        "ref": "master",
+        "sha": "51c87b842c20e664439d805b0f200cdd5e7e9165"
+      },
+      "version": "51c87b842c",
+      "keywords": [
+        "x",
+        "twitter",
+        "x-api",
+        "social-media",
+        "mcp",
+        "webhooks",
+        "data-extraction",
+        "monitoring",
+        "ai-agent"
+      ],
+      "category": "Automation",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_FIRST_USE"
+      },
+      "sync": {
+        "mode": "main"
+      }
+    },
+    {
       "name": "shaon",
       "description": "Rust CLI, MCP server, and skill for personal attendance, payslips, salary, and related self-service tasks on your own Hilan account.",
       "repository": "https://github.com/avivsinai/shaon",

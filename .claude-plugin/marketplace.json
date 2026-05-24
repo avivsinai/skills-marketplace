@@ -113,6 +113,19 @@
       "keywords": ["israel", "health", "banking", "clalit", "poalim", "healthcare", "securities"]
     },
     {
+      "name": "x-twitter-scraper",
+      "source": {
+        "source": "github",
+        "repo": "Xquik-dev/x-twitter-scraper",
+        "ref": "master",
+        "sha": "51c87b842c20e664439d805b0f200cdd5e7e9165"
+      },
+      "description": "Xquik X data and automation skill with REST API, MCP, webhooks, SDK guidance, extraction workflows, monitoring, and confirmation-gated actions.",
+      "version": "51c87b842c",
+      "repository": "https://github.com/Xquik-dev/x-twitter-scraper",
+      "keywords": ["x", "twitter", "x-api", "social-media", "mcp", "webhooks", "data-extraction", "monitoring", "ai-agent"]
+    },
+    {
       "name": "shaon",
       "source": {
         "source": "github",
