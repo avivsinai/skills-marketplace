@@ -489,7 +489,6 @@ type RadarSource =
   | "hacker_news"
   | "polymarket"
   | "reddit"
-  | "trustmrr"
   | "wikipedia";
 
 type RadarCategory =

@@ -713,13 +713,13 @@ Metered. Plan access required. `/trends` is an alias of `/x/trends`. Cached, ref
 GET /radar
 ```
 
-Get trending topics and news from 7 sources: Google Trends, Hacker News, Polymarket, TrustMRR, Wikipedia, GitHub Trending, Reddit. Free.
+Get trending topics and news from supported trend and news sources. Free.
 
 **Query parameters:**
 
 | Param | Type | Description |
 |-------|------|-------------|
-| `source` | string | Filter by source: `google_trends`, `hacker_news`, `polymarket`, `trustmrr`, `wikipedia`, `github`, `reddit` |
+| `source` | string | Filter by public source: `google_trends`, `hacker_news`, `polymarket`, `wikipedia`, `github`, `reddit`. Omit to include all supported sources |
 | `category` | string | Filter by category: `general`, `tech`, `dev`, `science`, `culture`, `politics`, `business`, `entertainment` |
 | `limit` | number | Items per page (1-100, default 50) |
 | `hours` | number | Look-back window in hours (1-72, default 6) |

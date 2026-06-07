@@ -54,4 +54,4 @@ const exportUrl = `${BASE}/draws/${draw.id}/export?format=csv`;
 
 ## Cost
 
-1 credit ($0.00015) per participant entry.
+1 credit per participant entry.
