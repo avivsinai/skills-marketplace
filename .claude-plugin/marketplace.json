@@ -11,8 +11,8 @@
     {
       "name": "amq-cli",
       "source": {
-        "source": "github",
-        "repo": "avivsinai/agent-message-queue",
+        "source": "url",
+        "url": "https://github.com/avivsinai/agent-message-queue.git",
         "ref": "main",
         "sha": "2f800a3ff2cfd1d1d5a2bf51f6ee728b2d14b13c"
       },
@@ -24,8 +24,8 @@
     {
       "name": "amq-spec",
       "source": {
-        "source": "github",
-        "repo": "avivsinai/agent-message-queue",
+        "source": "url",
+        "url": "https://github.com/avivsinai/agent-message-queue.git",
         "ref": "main",
         "sha": "2f800a3ff2cfd1d1d5a2bf51f6ee728b2d14b13c"
       },
@@ -37,8 +37,8 @@
     {
       "name": "langfuse",
       "source": {
-        "source": "github",
-        "repo": "avivsinai/langfuse-mcp",
+        "source": "url",
+        "url": "https://github.com/avivsinai/langfuse-mcp.git",
         "ref": "main",
         "sha": "8a79adb6ee83cb7e9030fda3b7662b23f3c2acc6"
       },
@@ -50,8 +50,8 @@
     {
       "name": "sabx",
       "source": {
-        "source": "github",
-        "repo": "avivsinai/sabx",
+        "source": "url",
+        "url": "https://github.com/avivsinai/sabx.git",
         "ref": "main",
         "sha": "180ad3bf434d0ec746cca392cd53aa5e25c801ae"
       },
@@ -63,8 +63,8 @@
     {
       "name": "bkt",
       "source": {
-        "source": "github",
-        "repo": "avivsinai/bitbucket-cli",
+        "source": "url",
+        "url": "https://github.com/avivsinai/bitbucket-cli.git",
         "ref": "master",
         "sha": "b73502c46caedeb8b85232c516749cee47ec8eb8"
       },
@@ -76,8 +76,8 @@
     {
       "name": "jk",
       "source": {
-        "source": "github",
-        "repo": "avivsinai/jenkins-cli",
+        "source": "url",
+        "url": "https://github.com/avivsinai/jenkins-cli.git",
         "ref": "main",
         "sha": "0ea0892f67fe016c942f2aaa39104f2ff2fd2d45"
       },
@@ -89,8 +89,8 @@
     {
       "name": "yoetz",
       "source": {
-        "source": "github",
-        "repo": "avivsinai/yoetz",
+        "source": "url",
+        "url": "https://github.com/avivsinai/yoetz.git",
         "ref": "main",
         "sha": "c99fc3ecaaa44a3c48420350fc1869bbf45e230b"
       },
@@ -115,8 +115,8 @@
     {
       "name": "shaon",
       "source": {
-        "source": "github",
-        "repo": "avivsinai/shaon",
+        "source": "url",
+        "url": "https://github.com/avivsinai/shaon.git",
         "ref": "main",
         "sha": "86a5f92f019603e9fe11e439ad1108a933e10b89"
       },

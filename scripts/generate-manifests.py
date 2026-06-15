@@ -92,8 +92,27 @@ def normalize_source(plugin):
     return source
 
 
+# Public github-source repos are emitted as anonymous-HTTPS `url` sources in the
+# generated CC manifest. Claude Code clones a `github` source over SSH
+# (git@github.com:), which fails on a fresh machine with no GitHub SSH key, even
+# though these repos are public and clone anonymously over HTTPS. The registry
+# keeps `github` (required by sync.mode=main, which resolves the branch HEAD via
+# the GitHub API) — only the emitted CC manifest is rewritten to HTTPS. Private
+# repos stay `github` (anonymous HTTPS cannot reach them).
+CC_HTTPS_PRIVATE_REPOS = {"avivsinai/israel-services"}
+
+
 def build_claude_source(plugin):
-    return normalize_source(plugin)
+    source = normalize_source(plugin)
+    if source.get("source") == "github":
+        repo = source.get("repo")
+        if repo and repo not in CC_HTTPS_PRIVATE_REPOS:
+            https = {"source": "url", "url": f"https://github.com/{repo}.git"}
+            for key in ("ref", "sha"):
+                if source.get(key):
+                    https[key] = source[key]
+            return https
+    return source
 
 
 def git_clone_command(repo_url, clone_dir, branch=None, shallow=False):
