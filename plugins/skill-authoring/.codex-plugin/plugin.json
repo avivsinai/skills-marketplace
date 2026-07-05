@@ -1,0 +1,26 @@
+{
+  "name": "skill-authoring",
+  "version": "0.1.0",
+  "description": "Author and eval agent skills: write-skills (triggers, leading words, progressive disclosure, failure modes to prune) and eval-skills (blind golden-case runs in fresh subagents, judged against a bar, gap-driven edits). Vendored from dzhng/skills (MIT).",
+  "author": {
+    "name": "Aviv Sinai",
+    "url": "https://github.com/avivsinai"
+  },
+  "repository": "https://github.com/avivsinai/skill-authoring",
+  "license": "MIT",
+  "skills": "./skills/",
+  "keywords": [
+    "skills",
+    "authoring",
+    "eval",
+    "skill-writing",
+    "progressive-disclosure",
+    "agent-skills",
+    "workflow"
+  ],
+  "interface": {
+    "displayName": "Skill Authoring",
+    "shortDescription": "Write sharp agent skills and eval them blind against golden cases",
+    "category": "Developer Tools"
+  }
+}

@@ -87,6 +87,19 @@
       "keywords": ["jenkins", "ci", "cd", "pipeline", "builds", "devops", "cli", "automation"]
     },
     {
+      "name": "skill-authoring",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/avivsinai/skill-authoring.git",
+        "ref": "main",
+        "sha": "da3a26d9b7e40e449add0827e7a90dfe6435ff83"
+      },
+      "description": "Author and eval agent skills: write-skills (triggers, leading words, progressive disclosure, failure modes to prune) and eval-skills (blind golden-case runs in fresh subagents, judged against a bar, gap-driven edits). Vendored from dzhng/skills (MIT).",
+      "version": "da3a26d9b7e4",
+      "repository": "https://github.com/avivsinai/skill-authoring",
+      "keywords": ["skills", "authoring", "eval", "skill-writing", "progressive-disclosure", "agent-skills", "workflow"]
+    },
+    {
       "name": "yoetz",
       "source": {
         "source": "url",
