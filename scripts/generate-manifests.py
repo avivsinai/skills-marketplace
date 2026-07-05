@@ -22,13 +22,16 @@ CC_OUTPUT = REPO_ROOT / ".claude-plugin" / "marketplace.json"
 CODEX_OUTPUT = REPO_ROOT / ".agents" / "plugins" / "marketplace.json"
 PLUGINS_DIR = REPO_ROOT / "plugins"
 
-# Plugin-root artifacts to copy into Codex bundles
+# Plugin-root artifacts to copy into Codex bundles.
+# LICENSE must ride along: redistributed bundles are "copies or substantial
+# portions" under MIT and require the upstream copyright/permission notice.
 CODEX_BUNDLE_ARTIFACTS = [
     ".codex-plugin",
     "skills",
     ".mcp.json",
     ".app.json",
     "assets",
+    "LICENSE",
 ]
 
 

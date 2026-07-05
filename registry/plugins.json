@@ -197,6 +197,35 @@
       }
     },
     {
+      "name": "skill-authoring",
+      "description": "Author and eval agent skills: write-skills (triggers, leading words, progressive disclosure, failure modes to prune) and eval-skills (blind golden-case runs in fresh subagents, judged against a bar, gap-driven edits). Vendored from dzhng/skills (MIT).",
+      "repository": "https://github.com/avivsinai/skill-authoring",
+      "source": {
+        "source": "github",
+        "repo": "avivsinai/skill-authoring",
+        "ref": "main",
+        "sha": "f10139d8e771fd020a32e0c5a132d27507c9c2e0"
+      },
+      "version": "f10139d8e771",
+      "keywords": [
+        "skills",
+        "authoring",
+        "eval",
+        "skill-writing",
+        "progressive-disclosure",
+        "agent-skills",
+        "workflow"
+      ],
+      "category": "Developer Tools",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_FIRST_USE"
+      },
+      "sync": {
+        "mode": "main"
+      }
+    },
+    {
       "name": "yoetz",
       "description": "LLM council, bundler, and multimodal gateway - multi-model consensus, code review, image/video generation, and browser fallback for coding agents.",
       "repository": "https://github.com/avivsinai/yoetz",
