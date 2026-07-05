@@ -99,6 +99,18 @@
         "authentication": "ON_FIRST_USE"
       },
       "category": "Developer Tools"
+    },
+    {
+      "name": "finding-unknowns",
+      "source": {
+        "source": "local",
+        "path": "./plugins/finding-unknowns"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_FIRST_USE"
+      },
+      "category": "Developer Tools"
     }
   ]
 }
