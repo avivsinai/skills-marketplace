@@ -204,9 +204,9 @@
         "source": "github",
         "repo": "avivsinai/skill-authoring",
         "ref": "main",
-        "sha": "da3a26d9b7e40e449add0827e7a90dfe6435ff83"
+        "sha": "f10139d8e771fd020a32e0c5a132d27507c9c2e0"
       },
-      "version": "da3a26d9b7e4",
+      "version": "f10139d8e771",
       "keywords": [
         "skills",
         "authoring",

@@ -1,6 +1,6 @@
 ---
 name: eval-skills
-description: Eval and improve a skill against golden cases — run the target skill blind in a fresh, context-free subagent on each example input, grade the artifact against the expected outcome, and let the gaps drive the edits. Use when the user wants to test/eval/improve/harden a skill, says "this skill keeps producing X / keeps missing Y", or hands a skill plus example input→expected-output pairs. Pairs with write-skills (the authoring principles every fix obeys). Runs with plain subagents — no dedicated eval harness required; complements harness-based tools such as skill-creator.
+description: Eval and improve a skill against golden cases — run the target skill blind in a fresh, context-free subagent on each example input, grade the artifact against a per-case bar, and let the gaps drive the edits. Use when the user wants to test/eval/improve/harden a skill, says "this skill keeps producing X / keeps missing Y", or hands a skill plus cases with a bar for what good looks like. Pairs with write-skills (the authoring principles every fix obeys). Judgment-first and harness-free — prefer skill-creator for harness-based benchmarking, variance analysis, or description-optimization loops.
 ---
 
 # Eval Skills
@@ -11,12 +11,12 @@ drive the edits. The eval is only honest if the run is **blind**: the agent
 executing the skill must carry none of this conversation's context and must
 never see the expected output. Leak either and you are teaching to the test.
 
-## Inputs you need — refuse without them
+## Inputs to settle before running
 
-Confirm all three before spawning anything. If any is missing or
-unresolvable, stop and tell the user *exactly which one* and what a good
-version looks like. Do not invent cases, guess intent, or eval against a
-fuzzy wish.
+Confirm all three before spawning anything. If any is missing, do not run
+yet: tell the user *exactly which one* is missing and what a good version
+looks like, help them make it concrete, and echo it back. Do not invent
+cases, guess intent, or eval against a fuzzy wish.
 
 - **Target skill** — must resolve to a real `SKILL.md`. If you can't find it,
   list the skills you can see and ask which one they mean.

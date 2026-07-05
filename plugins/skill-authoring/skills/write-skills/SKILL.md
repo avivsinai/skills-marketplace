@@ -1,6 +1,6 @@
 ---
 name: write-skills
-description: Create or revise agent skills. Use when adding a new skill file, renaming a skill, simplifying an existing skill, improving trigger descriptions, or deciding what belongs in a skill versus references, scripts, assets, or ordinary docs. Carries the authoring principles and failure modes; complements (does not replace) interactive skill-creation tooling with eval harnesses, such as skill-creator.
+description: Create or revise agent skills. Use when adding a new skill file, renaming a skill, simplifying an existing skill, improving trigger descriptions, or deciding what belongs in a skill versus references, scripts, assets, or ordinary docs. This is the judgment layer — authoring principles and failure modes for manual, principle-level work; prefer skill-creator when the user wants end-to-end interactive creation with generated test harnesses or quantitative description optimization.
 ---
 
 # Write Skills
@@ -202,15 +202,18 @@ When creating or revising a skill:
 - Name it with lowercase hyphen-case; keep the folder name identical.
 - Make the description specific enough to trigger without the body.
 - Remove any "when to use" section from the body.
-- Remove stale history, attribution, placeholders, and setup notes.
+- Remove stale history, placeholders, and setup notes from runtime
+  instructions; keep attribution in the package README/LICENSE — never remove
+  required license notices.
 - Remove file paths, line numbers, current constants, and implementation knobs
   unless the skill is explicitly a code-navigation runbook. Prefer durable
   principles plus a directive to inspect the current code.
 - Prefer one strong rule over several overlapping bullets.
 - Refactor restatements into a leading word where one fits.
 - Keep examples tiny and realistic.
-- Add no README, changelog, or auxiliary docs unless they are actual
-  references the skill tells the agent when to read.
+- Inside the skill directory, add no README, changelog, or auxiliary docs
+  unless they are actual references the skill tells the agent when to read;
+  a package/repo-root README for humans is fine.
 - Run the skill validator when available.
 
 ## Done
