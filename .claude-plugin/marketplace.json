@@ -144,10 +144,10 @@
         "source": "url",
         "url": "https://github.com/avivsinai/finding-unknowns.git",
         "ref": "main",
-        "sha": "43500e68360dfe233dc8921178156af0570319c3"
+        "sha": "4427147a232d734d53f0b57ce0623eab5e50e0c7"
       },
       "description": "Find and resolve your unknowns before, during, and after implementation - quadrant classification (known/unknown x known/unknown) routed to blindspot pass, interview, directions & prototypes, reference hunt, change-led plan, deviations log, and a quiz gate. Based on Thariq Shihipar's 'A Field Guide to Fable: Finding Your Unknowns'.",
-      "version": "43500e68360d",
+      "version": "4427147a232d",
       "repository": "https://github.com/avivsinai/finding-unknowns",
       "keywords": ["unknowns", "blindspot", "planning", "interview", "prototype", "quiz", "agentic-coding", "workflow"]
     }

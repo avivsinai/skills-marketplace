@@ -1,7 +1,7 @@
 {
   "name": "finding-unknowns",
-  "version": "0.1.0",
-  "description": "Find and resolve your unknowns before, during, and after implementation - quadrant classification (known/unknown x known/unknown) routed to blind-spot pass, interview, directions & prototypes, reference hunt, change-led plan, deviations log, and a quiz gate. Based on Thariq Shihipar's 'A Field Guide to Fable: Finding Your Unknowns'.",
+  "version": "0.2.0",
+  "description": "Map a task's unknowns with a staged quadrant walk - known knowns, known unknowns, unknown knowns, unknown unknowns - ending with a four-quadrant map, then carry it through implementation notes, buy-in docs, quiz gates, and session handoffs. Synthesis of Thariq Shihipar's 'A Field Guide to Fable', dzhng's explore-unknowns, Addy Osmani's agent-skills, and davidondrej/skills.",
   "author": {
     "name": "Aviv Sinai",
     "url": "https://github.com/avivsinai"
@@ -12,16 +12,18 @@
   "keywords": [
     "unknowns",
     "blindspot",
+    "quadrant-walk",
     "planning",
     "interview",
     "prototype",
     "quiz",
+    "handoff",
     "agentic-coding",
     "workflow"
   ],
   "interface": {
     "displayName": "Finding Unknowns",
-    "shortDescription": "Classify and resolve your unknowns before, during, and after implementation",
+    "shortDescription": "Quadrant-walk a task's unknowns into a map, then carry it through build, merge, and handoff",
     "category": "Developer Tools"
   }
 }

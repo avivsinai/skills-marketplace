@@ -1,62 +1,104 @@
 ---
 name: finding-unknowns
-description: Find and resolve the user's unknowns before, during, and after implementation. Use when starting ambiguous or unfamiliar work, when the user asks for a blindspot pass or mentions unknown unknowns / "what am I missing / what should I be asking", when planning under uncertainty, when they want several directions to react to, when implementation deviates from plan or they want a deviations log kept, or when they want an explainer and quiz to understand a change before merging. Classifies known knowns, known unknowns, unknown knowns, and unknown unknowns, then routes each to the cheapest discovery technique.
+description: Guide the user through a quadrant walk that maps the unknowns of a task — open by listing the known knowns, then work through known unknowns, unknown knowns, and unknown unknowns one stage at a time, ending with a complete four-quadrant map in the user's hands. Use when the user explicitly asks for a blindspot pass, unknown unknowns, "what am I missing / what should I be asking", a one-question-at-a-time interview, or several directions to react to; when ambiguity or unfamiliarity is high enough that building now would likely cause rework; when a reference implementation must be understood before porting; or for a named after-walk slice — implementation notes / deviations log, a buy-in doc, a quiz gate before merge, or a session handoff (run only that slice). Do not invoke for ordinary implementation of a sufficiently specified task.
 ---
 
-The map is not the territory. The map is the prompt, spec, and context the user gives you; the territory is the codebase and the real world. **Unknowns** are the gap between them, and the quality of long-horizon work is bottlenecked by clarifying them — too-specific instructions block a needed pivot, too-vague ones invite best-practice guesses that don't fit. This skill runs one loop: locate the user's unknowns, run the cheapest technique that converts them into knowns, repeat until the map matches the territory.
+<!-- Based on explore-unknowns from dzhng/skills (MIT, Copyright (c) David Zhang),
+     itself codifying Thariq Shihipar's "A Field Guide to Fable: Finding Your Unknowns".
+     Extended with patterns from Addy Osmani's agent-skills and davidondrej/skills. -->
 
-Every explainer, brainstorm, interview, prototype, and reference is a cheap way to find out what the user didn't know **before** it gets expensive to fix.
+# Finding Unknowns
 
-**Scope**: when the user asks for one slice ("do a blindspot pass", "quiz me on this change"), run that technique, recommend the next cheapest move, and stop — do not force the whole loop.
+The map is not the territory. The prompt, the plan, and the context window are
+the map; the codebase, the domain, and the user's actual intent are the
+territory. The gap between them is the unknowns — and an unknown found before
+code is written costs minutes, while the same unknown found three PRs later
+costs the three PRs.
 
-## Step 1 — Build the unknowns inventory
+This skill is a guided conversation: the **quadrant walk**. Together with the
+user you fill in a four-quadrant map of the task, one quadrant per stage, and
+the user walks away holding the completed map. The map is the deliverable;
+implementation is a different task that starts only after the map is handed
+over.
 
-First learn where the user stands: their experience with this domain and this part of the codebase; where they are in their thought process (vague itch, rough idea, firm spec); what they could already write down but haven't (constraints, taste, invariants, prior art they like). Work as a thought partner, not an order-taker — infer from the conversation and ask only for what's missing.
+Two moves apply at every stage:
 
-Then write a compact **unknowns inventory**: for each unknown — its quadrant, the evidence for it, the risk if it resolves wrong, the cheapest discovery move, and whether to ask the user now or inspect artifacts first. Completion: every quadrant below holds at least one entry or is explicitly declared empty — no quadrant unexamined.
+- **Reacting beats imagining — for tacit unknowns.** When the unknown is
+  taste, shape, vocabulary, or "I'll know it when I see it", never ask the
+  user to describe what they want when you can hand them something concrete
+  to react to — a rendered option, a clickable mock, a decisions table.
+  Reacting extracts knowledge the user has but cannot articulate unprompted.
+  When the unknown is a factual constraint or an architectural decision, ask
+  the highest-blast-radius question directly, with a recommendation.
+- **Every artifact assembles the reply.** End each artifact with the user's
+  next message pre-drafted: steal/skip chips, resonate checkboxes, a
+  decisions table, a copyable sharpened prompt — so their reaction becomes
+  their next message with near-zero typing.
 
-## Step 2 — Route each unknown
+## The Quadrant Walk
 
-| Quadrant | Signal | Technique |
-|---|---|---|
-| **Known knowns** | Already stated in the prompt/spec | None — restate scope back in one paragraph so drift is visible |
-| **Known unknowns** | User can name the question but not the answer | **Interview** — or **Reference hunt** when the answer lives in code or docs, not in the user's head |
-| **Unknown knowns** | Tacit knowledge — taste, house style, invariants, "I'd recognize it if I saw it" | **Directions & prototypes** for reactable domains; **Reference hunt** or concrete examples to compare when pointing beats reacting |
-| **Unknown unknowns** | Unfamiliar territory; user can't yet name the questions | **Blind-spot pass** |
+Five stages, walked in order, one at a time. **When you enter a stage, read
+its reference file and follow it.** Name the current quadrant as you go — the
+user should always know where they stand on the map — and finish the stage in
+front of you before opening the next.
 
-Route by cost: run the technique for the unknown that is most expensive to discover late (usually architecture-changing answers first, visual taste last). Techniques compose — a blind-spot pass typically surfaces known unknowns that then feed an interview. Completion: the user confirms no remaining unknown blocks planning; then move to **Plan**, and carry the tolerated unknowns into the **Deviations log**.
+1. **[Known knowns](references/stage-1-known-knowns.md)** — scan the
+   territory, then open with the settled ground.
+2. **[Known unknowns](references/stage-2-known-unknowns.md)** — the questions
+   you can name; resolve them one at a time.
+3. **[Unknown knowns](references/stage-3-unknown-knowns.md)** — extract the
+   taste and tacit context nobody has put into words.
+4. **[Unknown unknowns](references/stage-4-unknown-unknowns.md)** — sweep the
+   territory for landmines.
+5. **[Hand over the map](references/stage-5-hand-over-the-map.md)** — the
+   completed four-quadrant map, the walk's only done-condition.
 
-## Techniques
+When the user moves on to build, review, merge, or hand off what the walk
+mapped — or asks for implementation notes, a buy-in doc, a quiz gate, or a
+session handoff — read [after the walk](references/after-the-walk.md): the
+map lives on past planning.
 
-### Blind-spot pass
+**Scope:** the full walk is for a full task. When the user asks for one slice
+("do a blindspot pass", "quiz me on this change", "write the handoff"), run
+that stage or move alone, recommend the next cheapest one, and stop — never
+force the whole walk onto a request that named its slice.
 
-Given who the user is and what they know (Step 1), explore the territory — codebase, history, docs, the web — and come back with the unknown unknowns *they* couldn't have asked about: what good looks like here, prior art and past attempts, potholes and load-bearing constraints, how good this can get. Teach, don't dump: explain each finding so the user can prompt better, and end by proposing the questions they should now be asking. Completion: the user can restate their new known unknowns in their own words.
+## Rules
 
-### Interview
-
-Interview the user **one question at a time**; prioritize questions whose answer would change the architecture, and give your recommended answer with each question. If a question can be answered by exploring the codebase, explore instead of asking. Completion: no ambiguity remains whose resolution would change the plan.
-
-### Directions & prototypes
-
-For taste-shaped unknowns, produce **several wildly different directions** as cheap disposable artifacts the user can react to — an HTML page of design directions, a mocked toolbar with fake data, a throwaway script — before touching the real app. Never wire prototypes into real state or backends; their whole value is being cheap to discard. When the user reacts ("this one, but..."), have them verbalize *why* — that sentence is the recovered unknown known; record it in the spec. Completion: the user has picked a direction and the "why" is written down.
-
-### Reference hunt
-
-When the user can't describe what they want but can point at it, treat source code as the highest-fidelity reference — richer than screenshots or prose. Read the referenced implementation (a vendored library, a module on a site they like, code in another language) and extract the semantics to reimplement, not the syntax. Diagrams, docs, and pictures work as references too; prefer code when it exists. Completion: you can state the desired behavior precisely enough that the reference is no longer needed.
-
-### Plan (change-led)
-
-Write the implementation plan **led by the decisions the user is most likely to tweak** — data-model changes, new type interfaces, anything user-facing — and bury mechanical refactoring at the bottom. The plan's job is to surface what the user might need to alter, not to prove thoroughness. Completion: the user has explicitly approved or amended each likely-to-change decision, not just skimmed the plan.
-
-## During implementation — Deviations log
-
-However good the plan, unknowns lurk in the territory. Keep an `implementation-notes.md` in the workspace. When an edge case forces a deviation from the plan: pick the conservative option, log it under **Deviations** (what was found, what was chosen, why), and keep going — do not stop to renegotiate each one. Also log decisions made on unknowns the plan tolerated.
-
-Closeout: the log is temporary. When the work ships, either delete it, fold the durable lessons into the right permanent home (repo doc, skill, test), or explicitly hand it off as a handoff artifact — never leave it to rot. Completion: every deviation from the approved plan appears in the log, and the log has been closed out one of those three ways.
-
-## After implementation — Explainer & quiz gate
-
-Two artifacts close the loop:
-
-- **Explainer / pitch** — package the prototype, spec, and implementation notes into a single artifact a reviewer can absorb cold. Lead with the demo; answer the unknowns you started with, because reviewers start with those same unknowns and approvers look for the failure points they'd have anticipated.
-- **Quiz gate** — the user may understand less of the change than they think, since behavior hides in existing code paths a diff doesn't show. Produce a report of what changed — context, intuition, what was done — ending with a quiz that tests understanding of *behavior* (what happens when X), not trivia (what is line 42). Grade honestly: this gates the *user's understanding*, not CI. Completion: the user passes fully, or every unresolved misunderstanding is recorded and re-taught before they merge or ship.
+- For a full walk, walk the quadrants in order, one stage at a time, naming
+  the current quadrant; the walk ends with the map in the user's hands — no
+  map, not done. For a named slice, the Scope rule overrides quadrant order:
+  run only that stage or move, then stop.
+- Stages order the walk; they never embargo information. A finding that
+  materially bears on a decision in flight is disclosed the moment you have
+  it, then filed on the map under its quadrant — never held back for its
+  stage's scheduled turn.
+- Nothing closes off-screen. Any question or judgment call the map records as
+  closed must have been shown to the user first — including ones the
+  territory answered.
+- An unknown closes only on evidence — a cited file, the user's explicit
+  word, or observed output. "Seems right" keeps it OPEN.
+- A conflict between two sources of truth — spec vs code, the user's words vs
+  the territory — stops the walk at that point: name it, show both sides, let
+  the user rule. Never silently pick one. A disclosed conflict takes the
+  floor as the current question — asked alone, in the slot any other question
+  would have taken, and like any question it carries your recommended answer:
+  recommending is not deciding. When several conflicts surface at once, ask
+  the highest-blast-radius one; file the rest as queued OPEN conflicts, one
+  per turn.
+- Agreement is not a deliverable. When the user's chosen direction carries a
+  concrete cost, put the cost in front of them — quantified where possible —
+  before walking on. The walk exists to find problems while they are cheap.
+- Claims about the territory cite real files actually read; invented data is
+  labeled as such. A fabricated specific destroys the map's authority.
+- Start the map file at the end of stage 1 whenever the walk will span more
+  than one sitting, produce artifacts, or end in a handoff, and update it as
+  each stage closes; a short single-sitting walk may assemble the map at
+  hand-over. Never let a context reset eat the walk. Map files, mocks, and
+  notes live in a scratch or repo-ignored path unless the user asks to
+  commit them.
+- HTML artifacts are self-contained single files: inline CSS/JS, no external
+  requests, plausible fake data over lorem ipsum.
+- Stop at every stage boundary that needs the user's reaction. Never barrel
+  into implementation on unconfirmed guesses — implementing is a separate
+  task that begins after the map is delivered.

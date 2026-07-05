@@ -321,9 +321,9 @@
         "source": "github",
         "repo": "avivsinai/finding-unknowns",
         "ref": "main",
-        "sha": "43500e68360dfe233dc8921178156af0570319c3"
+        "sha": "4427147a232d734d53f0b57ce0623eab5e50e0c7"
       },
-      "version": "43500e68360d",
+      "version": "4427147a232d",
       "keywords": [
         "unknowns",
         "blindspot",
