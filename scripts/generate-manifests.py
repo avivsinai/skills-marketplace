@@ -197,10 +197,16 @@ def clone_and_bundle(plugin, dest_dir):
             print(f"  SKIP: {name} has no .codex-plugin/plugin.json")
             return False
 
+        with open(codex_manifest_path) as f:
+            manifest_data = json.load(f)
+
+        actual_name = manifest_data.get("name")
+        if actual_name != name:
+            print(f"  SKIP: {name} manifest name mismatch — plugin.json: {actual_name}")
+            return False
+
         # Only enforce semver parity when the registry pin is version-based rather than SHA-based.
         if expected_version and not source.get("sha"):
-            with open(codex_manifest_path) as f:
-                manifest_data = json.load(f)
             actual_version = manifest_data.get("version")
             if actual_version and actual_version != expected_version:
                 print(f"  ERROR: {name} version mismatch — registry: {expected_version}, manifest: {actual_version}")
@@ -249,7 +255,7 @@ def generate_codex_manifest(registry):
                 },
                 "policy": plugin.get("policy", {
                     "installation": "AVAILABLE",
-                    "authentication": "ON_FIRST_USE",
+                    "authentication": "ON_USE",
                 }),
                 "category": plugin.get("category", "Developer Tools"),
             }

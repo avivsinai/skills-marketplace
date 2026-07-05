@@ -92,6 +92,12 @@ jobs:
                   if field not in policy:
                       print(f"Plugin '{name}' policy missing: {field}")
                       sys.exit(1)
+              if policy.get('installation') not in {'NOT_AVAILABLE', 'AVAILABLE', 'INSTALLED_BY_DEFAULT'}:
+                  print(f"Plugin '{name}' policy.installation has invalid value: {policy.get('installation')}")
+                  sys.exit(1)
+              if policy.get('authentication') not in {'ON_INSTALL', 'ON_USE'}:
+                  print(f"Plugin '{name}' policy.authentication has invalid value: {policy.get('authentication')}")
+                  sys.exit(1)
               sync = plugin.get('sync', {})
               if sync.get('mode') not in {'main', 'release', 'manual'}:
                   print(f"Plugin '{name}' sync.mode must be 'main', 'release', or 'manual'")
@@ -164,6 +170,13 @@ jobs:
               if 'policy' not in plugin:
                   print(f"Codex plugin '{name}' missing policy")
                   sys.exit(1)
+              policy = plugin.get('policy', {})
+              if policy.get('installation') not in {'NOT_AVAILABLE', 'AVAILABLE', 'INSTALLED_BY_DEFAULT'}:
+                  print(f"Codex plugin '{name}' policy.installation has invalid value: {policy.get('installation')}")
+                  sys.exit(1)
+              if policy.get('authentication') not in {'ON_INSTALL', 'ON_USE'}:
+                  print(f"Codex plugin '{name}' policy.authentication has invalid value: {policy.get('authentication')}")
+                  sys.exit(1)
               if 'category' not in plugin:
                   print(f"Codex plugin '{name}' missing category")
                   sys.exit(1)
@@ -177,6 +190,11 @@ jobs:
             name=$(basename "$dir")
             if [ ! -f "${dir}.codex-plugin/plugin.json" ]; then
               echo "Missing .codex-plugin/plugin.json in ${dir}"
+              exit 1
+            fi
+            manifest_name=$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1]))["name"])' "${dir}.codex-plugin/plugin.json")
+            if [ "$manifest_name" != "$name" ]; then
+              echo "Manifest name mismatch in ${dir}: expected ${name}, got ${manifest_name}"
               exit 1
             fi
             found_skill=false

@@ -38,7 +38,7 @@
       "category": "Developer Tools",
       "policy": {
         "installation": "AVAILABLE",
-        "authentication": "ON_FIRST_USE"
+        "authentication": "ON_USE"
       },
       "sync": {
         "mode": "main"
@@ -67,7 +67,7 @@
       "category": "Developer Tools",
       "policy": {
         "installation": "AVAILABLE",
-        "authentication": "ON_FIRST_USE"
+        "authentication": "ON_USE"
       },
       "sync": {
         "mode": "main"
@@ -98,7 +98,7 @@
       "category": "Observability",
       "policy": {
         "installation": "AVAILABLE",
-        "authentication": "ON_FIRST_USE"
+        "authentication": "ON_USE"
       },
       "sync": {
         "mode": "main"
@@ -128,7 +128,7 @@
       "category": "Automation",
       "policy": {
         "installation": "AVAILABLE",
-        "authentication": "ON_FIRST_USE"
+        "authentication": "ON_USE"
       },
       "sync": {
         "mode": "main"
@@ -160,7 +160,7 @@
       "category": "Developer Tools",
       "policy": {
         "installation": "AVAILABLE",
-        "authentication": "ON_FIRST_USE"
+        "authentication": "ON_USE"
       },
       "sync": {
         "mode": "main"
@@ -190,7 +190,7 @@
       "category": "Developer Tools",
       "policy": {
         "installation": "AVAILABLE",
-        "authentication": "ON_FIRST_USE"
+        "authentication": "ON_USE"
       },
       "sync": {
         "mode": "main"
@@ -219,7 +219,7 @@
       "category": "Developer Tools",
       "policy": {
         "installation": "AVAILABLE",
-        "authentication": "ON_FIRST_USE"
+        "authentication": "ON_USE"
       },
       "sync": {
         "mode": "main"
@@ -249,7 +249,7 @@
       "category": "AI Tools",
       "policy": {
         "installation": "AVAILABLE",
-        "authentication": "ON_FIRST_USE"
+        "authentication": "ON_USE"
       },
       "sync": {
         "mode": "main"
@@ -278,7 +278,7 @@
       "category": "Automation",
       "policy": {
         "installation": "AVAILABLE",
-        "authentication": "ON_FIRST_USE"
+        "authentication": "ON_USE"
       },
       "sync": {
         "mode": "main"
@@ -307,7 +307,7 @@
       "category": "Developer Tools",
       "policy": {
         "installation": "AVAILABLE",
-        "authentication": "ON_FIRST_USE"
+        "authentication": "ON_USE"
       },
       "sync": {
         "mode": "main"
@@ -337,7 +337,7 @@
       "category": "Developer Tools",
       "policy": {
         "installation": "AVAILABLE",
-        "authentication": "ON_FIRST_USE"
+        "authentication": "ON_USE"
       },
       "sync": {
         "mode": "main"

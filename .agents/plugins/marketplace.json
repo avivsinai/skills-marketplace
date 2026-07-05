@@ -12,19 +12,7 @@
       },
       "policy": {
         "installation": "AVAILABLE",
-        "authentication": "ON_FIRST_USE"
-      },
-      "category": "Developer Tools"
-    },
-    {
-      "name": "amq-spec",
-      "source": {
-        "source": "local",
-        "path": "./plugins/amq-spec"
-      },
-      "policy": {
-        "installation": "AVAILABLE",
-        "authentication": "ON_FIRST_USE"
+        "authentication": "ON_USE"
       },
       "category": "Developer Tools"
     },
@@ -36,7 +24,7 @@
       },
       "policy": {
         "installation": "AVAILABLE",
-        "authentication": "ON_FIRST_USE"
+        "authentication": "ON_USE"
       },
       "category": "Observability"
     },
@@ -48,7 +36,7 @@
       },
       "policy": {
         "installation": "AVAILABLE",
-        "authentication": "ON_FIRST_USE"
+        "authentication": "ON_USE"
       },
       "category": "Automation"
     },
@@ -60,7 +48,7 @@
       },
       "policy": {
         "installation": "AVAILABLE",
-        "authentication": "ON_FIRST_USE"
+        "authentication": "ON_USE"
       },
       "category": "Developer Tools"
     },
@@ -72,7 +60,7 @@
       },
       "policy": {
         "installation": "AVAILABLE",
-        "authentication": "ON_FIRST_USE"
+        "authentication": "ON_USE"
       },
       "category": "Developer Tools"
     },
@@ -84,7 +72,7 @@
       },
       "policy": {
         "installation": "AVAILABLE",
-        "authentication": "ON_FIRST_USE"
+        "authentication": "ON_USE"
       },
       "category": "Developer Tools"
     },
@@ -96,7 +84,7 @@
       },
       "policy": {
         "installation": "AVAILABLE",
-        "authentication": "ON_FIRST_USE"
+        "authentication": "ON_USE"
       },
       "category": "AI Tools"
     },
@@ -108,7 +96,7 @@
       },
       "policy": {
         "installation": "AVAILABLE",
-        "authentication": "ON_FIRST_USE"
+        "authentication": "ON_USE"
       },
       "category": "Developer Tools"
     },
@@ -120,7 +108,7 @@
       },
       "policy": {
         "installation": "AVAILABLE",
-        "authentication": "ON_FIRST_USE"
+        "authentication": "ON_USE"
       },
       "category": "Developer Tools"
     }
