@@ -112,9 +112,9 @@
         "source": "github",
         "repo": "avivsinai/sabx",
         "ref": "main",
-        "sha": "180ad3bf434d0ec746cca392cd53aa5e25c801ae"
+        "sha": "62051e30c82db0681e212ed90d6f804bc3850e5e"
       },
-      "version": "180ad3bf434d",
+      "version": "62051e30c82d",
       "keywords": [
         "sabnzbd",
         "usenet",
@@ -142,9 +142,9 @@
         "source": "github",
         "repo": "avivsinai/bitbucket-cli",
         "ref": "master",
-        "sha": "73233e43a5e7ebf9b9f40216c69c7847294a7059"
+        "sha": "119705db3bcedeeee10d8d2bfb3e572ce1ae8b32"
       },
-      "version": "73233e43a5e7",
+      "version": "119705db3bce",
       "keywords": [
         "bitbucket",
         "git",
@@ -174,9 +174,9 @@
         "source": "github",
         "repo": "avivsinai/jenkins-cli",
         "ref": "main",
-        "sha": "7b8990ce2fd6da63c66a2a907ba8b6381ec17f98"
+        "sha": "9c3c81cab91de523a6018c623de107ce08cee768"
       },
-      "version": "7b8990ce2fd6",
+      "version": "9c3c81cab91d",
       "keywords": [
         "jenkins",
         "ci",
@@ -233,9 +233,9 @@
         "source": "github",
         "repo": "avivsinai/yoetz",
         "ref": "main",
-        "sha": "08eb63e0fd468f337f2f8c53fd276299bd0acca7"
+        "sha": "1e761421f2827c49130178e8e0cead8b77c5041e"
       },
-      "version": "08eb63e0fd46",
+      "version": "1e761421f282",
       "keywords": [
         "llm",
         "council",
