@@ -233,9 +233,9 @@
         "source": "github",
         "repo": "avivsinai/yoetz",
         "ref": "main",
-        "sha": "78f054a9910be6ffd87c4c287d97873f95d1c9d6"
+        "sha": "96467b4efffee6e817fb8502fcc1f539c23c6a97"
       },
-      "version": "78f054a9910b",
+      "version": "96467b4efffe",
       "keywords": [
         "llm",
         "council",
