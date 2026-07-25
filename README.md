@@ -3,7 +3,9 @@
 [![Validate](https://github.com/avivsinai/skills-marketplace/actions/workflows/validate.yml/badge.svg)](https://github.com/avivsinai/skills-marketplace/actions/workflows/validate.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-Central plugin marketplace for **Claude Code** and **Codex**. This repo is a registry plus generated distribution artifacts. Plugin source stays in the child repos.
+Central plugin marketplace for **Claude Code** and **Codex** projects developed and maintained by Aviv Sinai. This repo is a registry plus generated distribution artifacts. Plugin source stays in the child repos.
+
+This marketplace does not accept third-party plugin listings.
 
 > **Cross-platform?** These skills work with Claude Code, Codex CLI, Copilot, Cursor, Windsurf, and more.
 >
@@ -95,16 +97,9 @@ For Claude Code, the generated marketplace catalog points directly at pinned Git
 - When a repo HEAD changes, the workflow updates `registry/plugins.json`, regenerates manifests, and commits directly to `main`.
 - Plugins with `sync.mode: "manual"` stay pinned until someone updates the registry explicitly.
 
-## Adding a Plugin
+## Marketplace Scope
 
-To add your plugin to this marketplace:
-
-1. Ensure your repo has `.claude-plugin/plugin.json` and, for Codex support, `.codex-plugin/plugin.json`
-2. Add your plugin entry to `registry/plugins.json`
-3. Run `python3 scripts/generate-manifests.py`
-4. Submit a PR with the updated registry plus regenerated artifacts
-
-See [CONTRIBUTING.md](CONTRIBUTING.md) for details.
+This marketplace distributes plugins developed and maintained by Aviv Sinai. Third-party plugin listings are not accepted. Contributions to an existing plugin should be made in that plugin's source repository.
 
 ## Standards
 

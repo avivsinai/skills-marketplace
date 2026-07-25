@@ -2,7 +2,7 @@
 
 ## Plugin Security
 
-All plugins in this marketplace reference external repositories. Before installing:
+All plugins in this marketplace reference source repositories developed and maintained by Aviv Sinai. Before installing:
 
 1. Review the source repository
 2. Check the plugin's permissions and tool usage
@@ -24,5 +24,6 @@ Plugins are reviewed for:
 - Valid SKILL.md structure
 - No obviously malicious commands
 - Public, accessible source repository
+- Maintainer ownership
 
-This is a community marketplace. Use plugins at your own discretion.
+This is a curated first-party marketplace and does not accept third-party plugin listings. Review plugin permissions and tool usage before installation.
