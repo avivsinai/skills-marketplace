@@ -350,9 +350,10 @@
       "source": {
         "source": "github",
         "repo": "avivsinai/snagline",
-        "ref": "main"
+        "ref": "main",
+        "sha": "d0f7920dd8b3f4b3d3eafeff3ebea386c453aa75"
       },
-      "version": "main",
+      "version": "d0f7920dd8b3",
       "keywords": [
         "snagline",
         "support",

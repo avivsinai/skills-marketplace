@@ -156,10 +156,11 @@
       "source": {
         "source": "url",
         "url": "https://github.com/avivsinai/snagline.git",
-        "ref": "main"
+        "ref": "main",
+        "sha": "d0f7920dd8b3f4b3d3eafeff3ebea386c453aa75"
       },
       "description": "Operate within a Snagline support fabric's trust boundary: consume the inert case advice an operator-run front or reviewed trusted adapter renders, keep the confidential summary out of Buzz, treat advice as inert text, and verify SSP artifacts. An agent never holds the edge socket, UID, or credentials, and no shipped client opens a case; exact API and field bounds live in the Snagline repository.",
-      "version": "main",
+      "version": "d0f7920dd8b3",
       "repository": "https://github.com/avivsinai/snagline",
       "keywords": ["snagline", "support", "advice", "case", "ssp", "buzz", "agent", "fabric"]
     }
