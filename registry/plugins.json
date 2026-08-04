@@ -342,6 +342,35 @@
       "sync": {
         "mode": "main"
       }
+    },
+    {
+      "name": "snagline",
+      "description": "Integrate an agent with a Snagline support fabric within its trust boundaries: read cases and advice, claim deliveries with snagline-front, submit one final advice with snagline-dispatcher, and verify SSP artifacts. Explains why no shipped client opens a case and why an agent must never hold the edge UID.",
+      "repository": "https://github.com/avivsinai/snagline",
+      "source": {
+        "source": "github",
+        "repo": "avivsinai/snagline",
+        "ref": "main"
+      },
+      "version": "main",
+      "keywords": [
+        "snagline",
+        "support",
+        "advice",
+        "case",
+        "ssp",
+        "buzz",
+        "agent",
+        "fabric"
+      ],
+      "category": "Developer Tools",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_USE"
+      },
+      "sync": {
+        "mode": "main"
+      }
     }
   ]
 }

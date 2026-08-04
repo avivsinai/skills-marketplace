@@ -150,6 +150,18 @@
       "version": "4427147a232d",
       "repository": "https://github.com/avivsinai/finding-unknowns",
       "keywords": ["unknowns", "blindspot", "planning", "interview", "prototype", "quiz", "agentic-coding", "workflow"]
+    },
+    {
+      "name": "snagline",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/avivsinai/snagline.git",
+        "ref": "main"
+      },
+      "description": "Integrate an agent with a Snagline support fabric within its trust boundaries: read cases and advice, claim deliveries with snagline-front, submit one final advice with snagline-dispatcher, and verify SSP artifacts. Explains why no shipped client opens a case and why an agent must never hold the edge UID.",
+      "version": "main",
+      "repository": "https://github.com/avivsinai/snagline",
+      "keywords": ["snagline", "support", "advice", "case", "ssp", "buzz", "agent", "fabric"]
     }
   ]
 }
