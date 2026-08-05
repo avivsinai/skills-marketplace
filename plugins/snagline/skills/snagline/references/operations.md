@@ -50,23 +50,26 @@ can catch for you — it is the single easiest way to leak through this system. 
 exact field names and length bounds are in the authoritative doc; the rule that
 one is world-visible is the part you must never forget.
 
-## No shipped client opens a case, and your agent must not be one
+## The shipped case adapter is session-bound; your agent must not be the client
 
-`snagline-edge` implements the case-open route, but **no shipped user- or
-agent-facing client invokes it**, and `snagline-front` does not open cases.
+`snagline-case` is the only shipped agent-facing case opener. It offers exactly
+`open`, `retry`, `get`, and `advice`; a private descriptor at the fixed runtime
+path pins one edge socket and one case plus its deployment coordinates.
 
 Do not close that gap by pointing an agent at the edge socket. The socket's only
 local access control is filesystem permissions, so any process under the edge
 service UID has the full local API, and Snagline's runtime rules forbid giving that
 UID to an agent runtime: besides the edge service itself, the only permitted
-same-UID component is the shipped, bounded `snagline-front`. `root` also bypasses
+same-UID components are the shipped, bounded `snagline-front` and
+`snagline-case`. `root` also bypasses
 the permission check, so matching UID is the intended principal rather than the only
 possible one.
 
-Opening cases needs a small trusted adapter, written and reviewed as edge code,
-with the agent talking to that adapter across a deployment-owned boundary. If asked
-to open a case, consume such an adapter's output — never hold the edge UID yourself,
-and never treat arbitrary edge invocation as safe.
+Invoke only the externally constrained adapter operation. For `open`, send the
+confidential and public summaries as one bounded stdin JSON object; never put
+the confidential value in argv. Read modes return only safe status metadata,
+not stored case summaries or advice text. Never hold the edge UID yourself or
+treat arbitrary edge invocation as safe.
 
 ## What you cannot discover and must be given
 

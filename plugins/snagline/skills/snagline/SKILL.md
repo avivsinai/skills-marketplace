@@ -46,24 +46,25 @@ not so you invoke it directly.
 | Capability | Operator-run tool | Your part | Detail |
 | --- | --- | --- | --- |
 | Deliveries are claimed and rendered | `snagline-front` | read the rendered inert advice | [operations](references/operations.md) |
-| A case or its advice is read | edge local API `GET` routes, via a reviewed adapter | consume the returned record | [operations](references/operations.md) |
+| A session-bound case is opened or checked | `snagline-case` | provide confidential and public summaries to the fixed operation | [operations](references/operations.md) |
 | The one final advice is submitted | `snagline-dispatcher`, an externally constrained tool | supply advice text for it to finalize | [operations](references/operations.md) |
 | SSP fixtures or artifacts are verified | `snagline-ssp-verify` | trust its verdict, not your own parse | [operations](references/operations.md) |
 
 ## What you cannot do, and must not work around
 
-**Nothing shipped opens a case on an agent's behalf.** `snagline-edge` implements
-the case-open route, but no shipped user- or agent-facing client invokes it, and
-`snagline-front` does not open cases.
+**Only the session-bound adapter opens a case on an agent's behalf.**
+`snagline-case` has fixed `open`, `retry`, `get`, and `advice` modes. A private
+deployment descriptor pins its socket, case, domain, context commitment, and
+registry coordinates; none are caller-selectable.
 
 Do not close that gap by pointing an agent at the edge socket. The socket's only
 local access control is filesystem permissions, so any process under the edge
 service UID has the full local API, and the runtime rules forbid giving that UID
-to an agent runtime. Opening cases needs a small trusted adapter, written and
-reviewed as edge code, with the agent talking to it across a deployment-owned
-boundary. **That adapter does not exist yet.** If a user asks you to open a case,
-say so plainly and offer to help build the adapter — do not grant a model the edge
-UID because it is the shortest path.
+to an agent runtime. Run `snagline-case` only through the deployment-owned tool
+boundary. Put the confidential summary in the `open` JSON object on stdin,
+never argv. Its read modes expose status and identifiers but deliberately omit
+stored case summaries and advice text; consume inert advice through the
+operator-run `snagline-front`.
 
 ## Deployment-owned inputs you cannot discover
 
