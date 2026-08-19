@@ -112,9 +112,9 @@
         "source": "github",
         "repo": "avivsinai/sabx",
         "ref": "main",
-        "sha": "f2926529faa9a2d41943d35a460dc9cba7e75b21"
+        "sha": "9dfd6ef86ddfd01a707b40e7814494dafcc129d7"
       },
-      "version": "f2926529faa9",
+      "version": "9dfd6ef86ddf",
       "keywords": [
         "sabnzbd",
         "usenet",
