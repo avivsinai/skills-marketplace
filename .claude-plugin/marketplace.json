@@ -118,10 +118,10 @@
         "source": "github",
         "repo": "avivsinai/israel-services",
         "ref": "main",
-        "sha": "a18cab8a3616b8ece47ad1475422b70503cc2c33"
+        "sha": "b32cc13f1c801419d944823ee3579e07a86a3ab9"
       },
       "description": "Access Israeli citizen services, including health and banking workflows, directly from the CLI.",
-      "version": "a18cab8a3616",
+      "version": "b32cc13f1c80",
       "repository": "https://github.com/avivsinai/israel-services",
       "keywords": ["israel", "health", "banking", "clalit", "poalim", "healthcare", "securities"]
     },
