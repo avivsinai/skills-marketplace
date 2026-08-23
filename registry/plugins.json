@@ -263,9 +263,9 @@
         "source": "github",
         "repo": "avivsinai/israel-services",
         "ref": "main",
-        "sha": "cdc374202ccd416cb4c85f12a2ddb87ac497e52c"
+        "sha": "ca3f67500dda2af3be98549d41395ce571c9d99a"
       },
-      "version": "cdc374202ccd",
+      "version": "ca3f67500dda",
       "keywords": [
         "israel",
         "health",
