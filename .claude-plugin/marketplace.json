@@ -14,10 +14,10 @@
         "source": "url",
         "url": "https://github.com/avivsinai/agent-message-queue.git",
         "ref": "main",
-        "sha": "6493c45f8d4684c0d821bd6f738e5c13737ec062"
+        "sha": "f34dcfa8ffa5c9e12391d101e22f0b4365e01335"
       },
       "description": "Agent Message Queue - file-based inter-agent messaging with co-op mode, cross-project federation, and orchestrator integrations (Symphony, Kanban).",
-      "version": "6493c45f8d46",
+      "version": "f34dcfa8ffa5",
       "repository": "https://github.com/avivsinai/agent-message-queue",
       "keywords": ["messaging", "agents", "maildir", "queue", "inter-agent", "coordination", "coop", "federation", "integration", "symphony", "kanban"]
     },
@@ -27,10 +27,10 @@
         "source": "url",
         "url": "https://github.com/avivsinai/agent-message-queue.git",
         "ref": "main",
-        "sha": "6493c45f8d4684c0d821bd6f738e5c13737ec062"
+        "sha": "f34dcfa8ffa5c9e12391d101e22f0b4365e01335"
       },
       "description": "Parallel-research-then-converge design workflow between two agents. Structured phase-by-phase guidance for collaborative spec/design work via AMQ.",
-      "version": "6493c45f8d46",
+      "version": "f34dcfa8ffa5",
       "repository": "https://github.com/avivsinai/agent-message-queue",
       "keywords": ["spec", "design", "collaborative", "agents", "parallel-research", "amq", "coordination"]
     },
@@ -131,10 +131,10 @@
         "source": "url",
         "url": "https://github.com/avivsinai/shaon.git",
         "ref": "main",
-        "sha": "86a5f92f019603e9fe11e439ad1108a933e10b89"
+        "sha": "e98e71cd2e9a211343c7e7d965e6eb68625cd79a"
       },
       "description": "Rust CLI, MCP server, and skill for personal attendance, payslips, salary, and related self-service tasks on your own Hilan account.",
-      "version": "86a5f92f0196",
+      "version": "e98e71cd2e9a",
       "repository": "https://github.com/avivsinai/shaon",
       "keywords": ["attendance", "payslip", "salary", "hilan", "hilanet", "hr", "israel"]
     },
@@ -157,10 +157,10 @@
         "source": "url",
         "url": "https://github.com/avivsinai/snagline.git",
         "ref": "main",
-        "sha": "2f5a558b5912ca54f77a710224c01f5966b5d21b"
+        "sha": "80b4ffc1aab76cd74fa7c58b8d09933ce618ed04"
       },
       "description": "Operate within a Snagline support fabric's trust boundary: open or inspect only the deployment-bound session case, consume inert advice through the operator-run front, keep confidential summaries out of argv and Buzz, treat advice as inert text, and verify SSP artifacts. An agent never holds the edge socket, UID, or credentials. Exact API and field bounds live in the Snagline repository.",
-      "version": "2f5a558b5912",
+      "version": "80b4ffc1aab7",
       "repository": "https://github.com/avivsinai/snagline",
       "keywords": ["snagline", "support", "advice", "case", "ssp", "buzz", "agent", "fabric"]
     }

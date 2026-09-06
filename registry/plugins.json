@@ -19,9 +19,9 @@
         "source": "github",
         "repo": "avivsinai/agent-message-queue",
         "ref": "main",
-        "sha": "6493c45f8d4684c0d821bd6f738e5c13737ec062"
+        "sha": "f34dcfa8ffa5c9e12391d101e22f0b4365e01335"
       },
-      "version": "6493c45f8d46",
+      "version": "f34dcfa8ffa5",
       "keywords": [
         "messaging",
         "agents",
@@ -52,9 +52,9 @@
         "source": "github",
         "repo": "avivsinai/agent-message-queue",
         "ref": "main",
-        "sha": "6493c45f8d4684c0d821bd6f738e5c13737ec062"
+        "sha": "f34dcfa8ffa5c9e12391d101e22f0b4365e01335"
       },
-      "version": "6493c45f8d46",
+      "version": "f34dcfa8ffa5",
       "keywords": [
         "spec",
         "design",
@@ -292,9 +292,9 @@
         "source": "github",
         "repo": "avivsinai/shaon",
         "ref": "main",
-        "sha": "86a5f92f019603e9fe11e439ad1108a933e10b89"
+        "sha": "e98e71cd2e9a211343c7e7d965e6eb68625cd79a"
       },
-      "version": "86a5f92f0196",
+      "version": "e98e71cd2e9a",
       "keywords": [
         "attendance",
         "payslip",
@@ -351,9 +351,9 @@
         "source": "github",
         "repo": "avivsinai/snagline",
         "ref": "main",
-        "sha": "2f5a558b5912ca54f77a710224c01f5966b5d21b"
+        "sha": "80b4ffc1aab76cd74fa7c58b8d09933ce618ed04"
       },
-      "version": "2f5a558b5912",
+      "version": "80b4ffc1aab7",
       "keywords": [
         "snagline",
         "support",
