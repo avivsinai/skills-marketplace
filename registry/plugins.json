@@ -19,9 +19,9 @@
         "source": "github",
         "repo": "avivsinai/agent-message-queue",
         "ref": "main",
-        "sha": "87e1fe98dece7667be66bca33fd44ad97924e6be"
+        "sha": "f34dcfa8ffa5c9e12391d101e22f0b4365e01335"
       },
-      "version": "87e1fe98dece",
+      "version": "f34dcfa8ffa5",
       "keywords": [
         "messaging",
         "agents",
@@ -52,9 +52,9 @@
         "source": "github",
         "repo": "avivsinai/agent-message-queue",
         "ref": "main",
-        "sha": "87e1fe98dece7667be66bca33fd44ad97924e6be"
+        "sha": "f34dcfa8ffa5c9e12391d101e22f0b4365e01335"
       },
-      "version": "87e1fe98dece",
+      "version": "f34dcfa8ffa5",
       "keywords": [
         "spec",
         "design",
@@ -81,9 +81,9 @@
         "source": "github",
         "repo": "avivsinai/langfuse-mcp",
         "ref": "main",
-        "sha": "1e34b11016f68d2591bc83427e2e3a15129db519"
+        "sha": "16a0e3a5810e9fbc631f6d17c882e7541ca209b1"
       },
-      "version": "1e34b11016f6",
+      "version": "16a0e3a5810e",
       "keywords": [
         "langfuse",
         "observability",
@@ -112,9 +112,9 @@
         "source": "github",
         "repo": "avivsinai/sabx",
         "ref": "main",
-        "sha": "9dfd6ef86ddfd01a707b40e7814494dafcc129d7"
+        "sha": "28d4eff6ba92edfe4f0df89cdeee40a06a5eb4a5"
       },
-      "version": "9dfd6ef86ddf",
+      "version": "28d4eff6ba92",
       "keywords": [
         "sabnzbd",
         "usenet",
@@ -142,9 +142,9 @@
         "source": "github",
         "repo": "avivsinai/bitbucket-cli",
         "ref": "master",
-        "sha": "226f53b93996009b089c8cd5ee6a14173b13eb5f"
+        "sha": "5068ddc2961cb05279c1a6fbcdd583328867c728"
       },
-      "version": "226f53b93996",
+      "version": "5068ddc2961c",
       "keywords": [
         "bitbucket",
         "git",
@@ -174,9 +174,9 @@
         "source": "github",
         "repo": "avivsinai/jenkins-cli",
         "ref": "main",
-        "sha": "6f7302851537b11fe7d31b64a61dbfc3e0376215"
+        "sha": "e24641a2be9f6ccf7b5a593cfde3cbde35438f0e"
       },
-      "version": "6f7302851537",
+      "version": "e24641a2be9f",
       "keywords": [
         "jenkins",
         "ci",
@@ -233,9 +233,9 @@
         "source": "github",
         "repo": "avivsinai/yoetz",
         "ref": "main",
-        "sha": "f6fbc37c96ae37fb85546370b6f963e64e2c2f8b"
+        "sha": "f35a6b62d89d68bbbb01689e6863f3e7d863d5eb"
       },
-      "version": "f6fbc37c96ae",
+      "version": "f35a6b62d89d",
       "keywords": [
         "llm",
         "council",
@@ -263,9 +263,9 @@
         "source": "github",
         "repo": "avivsinai/israel-services",
         "ref": "main",
-        "sha": "d21396084aa30dc779e31af37334e11fe0764288"
+        "sha": "4ae56868ad52fc29bd0d02e81bb4ab20f802bf39"
       },
-      "version": "d21396084aa3",
+      "version": "4ae56868ad52",
       "keywords": [
         "israel",
         "health",
@@ -292,9 +292,9 @@
         "source": "github",
         "repo": "avivsinai/shaon",
         "ref": "main",
-        "sha": "86a5f92f019603e9fe11e439ad1108a933e10b89"
+        "sha": "e98e71cd2e9a211343c7e7d965e6eb68625cd79a"
       },
-      "version": "86a5f92f0196",
+      "version": "e98e71cd2e9a",
       "keywords": [
         "attendance",
         "payslip",
@@ -351,9 +351,9 @@
         "source": "github",
         "repo": "avivsinai/snagline",
         "ref": "main",
-        "sha": "2f5a558b5912ca54f77a710224c01f5966b5d21b"
+        "sha": "80b4ffc1aab76cd74fa7c58b8d09933ce618ed04"
       },
-      "version": "2f5a558b5912",
+      "version": "80b4ffc1aab7",
       "keywords": [
         "snagline",
         "support",

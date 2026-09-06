@@ -14,10 +14,10 @@
         "source": "url",
         "url": "https://github.com/avivsinai/agent-message-queue.git",
         "ref": "main",
-        "sha": "87e1fe98dece7667be66bca33fd44ad97924e6be"
+        "sha": "f34dcfa8ffa5c9e12391d101e22f0b4365e01335"
       },
       "description": "Agent Message Queue - file-based inter-agent messaging with co-op mode, cross-project federation, and orchestrator integrations (Symphony, Kanban).",
-      "version": "87e1fe98dece",
+      "version": "f34dcfa8ffa5",
       "repository": "https://github.com/avivsinai/agent-message-queue",
       "keywords": ["messaging", "agents", "maildir", "queue", "inter-agent", "coordination", "coop", "federation", "integration", "symphony", "kanban"]
     },
@@ -27,10 +27,10 @@
         "source": "url",
         "url": "https://github.com/avivsinai/agent-message-queue.git",
         "ref": "main",
-        "sha": "87e1fe98dece7667be66bca33fd44ad97924e6be"
+        "sha": "f34dcfa8ffa5c9e12391d101e22f0b4365e01335"
       },
       "description": "Parallel-research-then-converge design workflow between two agents. Structured phase-by-phase guidance for collaborative spec/design work via AMQ.",
-      "version": "87e1fe98dece",
+      "version": "f34dcfa8ffa5",
       "repository": "https://github.com/avivsinai/agent-message-queue",
       "keywords": ["spec", "design", "collaborative", "agents", "parallel-research", "amq", "coordination"]
     },
@@ -40,10 +40,10 @@
         "source": "url",
         "url": "https://github.com/avivsinai/langfuse-mcp.git",
         "ref": "main",
-        "sha": "1e34b11016f68d2591bc83427e2e3a15129db519"
+        "sha": "16a0e3a5810e9fbc631f6d17c882e7541ca209b1"
       },
       "description": "Langfuse observability - query traces, debug exceptions, analyze sessions, manage prompts and datasets via MCP tools. First LLM observability skill for Claude Code and Codex.",
-      "version": "1e34b11016f6",
+      "version": "16a0e3a5810e",
       "repository": "https://github.com/avivsinai/langfuse-mcp",
       "keywords": ["langfuse", "observability", "traces", "llm", "prompts", "datasets", "debugging", "telemetry", "mcp"]
     },
@@ -53,10 +53,10 @@
         "source": "url",
         "url": "https://github.com/avivsinai/sabx.git",
         "ref": "main",
-        "sha": "9dfd6ef86ddfd01a707b40e7814494dafcc129d7"
+        "sha": "28d4eff6ba92edfe4f0df89cdeee40a06a5eb4a5"
       },
       "description": "SABnzbd CLI - control downloads, queues, RSS feeds, speed limits, and automation via terminal. Full API parity with SABnzbd REST API.",
-      "version": "9dfd6ef86ddf",
+      "version": "28d4eff6ba92",
       "repository": "https://github.com/avivsinai/sabx",
       "keywords": ["sabnzbd", "usenet", "downloads", "nzb", "queue", "automation", "cli", "rss"]
     },
@@ -66,10 +66,10 @@
         "source": "url",
         "url": "https://github.com/avivsinai/bitbucket-cli.git",
         "ref": "master",
-        "sha": "226f53b93996009b089c8cd5ee6a14173b13eb5f"
+        "sha": "5068ddc2961cb05279c1a6fbcdd583328867c728"
       },
       "description": "Bitbucket CLI - manage repositories, pull requests, branches, issues, webhooks, and pipelines for both Data Center and Cloud. Mirrors gh ergonomics with JSON/YAML output.",
-      "version": "226f53b93996",
+      "version": "5068ddc2961c",
       "repository": "https://github.com/avivsinai/bitbucket-cli",
       "keywords": ["bitbucket", "git", "pr", "pull-request", "ci", "pipeline", "devops", "cli", "datacenter", "cloud"]
     },
@@ -79,10 +79,10 @@
         "source": "url",
         "url": "https://github.com/avivsinai/jenkins-cli.git",
         "ref": "main",
-        "sha": "6f7302851537b11fe7d31b64a61dbfc3e0376215"
+        "sha": "e24641a2be9f6ccf7b5a593cfde3cbde35438f0e"
       },
       "description": "Jenkins CLI - GitHub CLI-style interface for Jenkins controllers. Manage jobs, pipelines, runs, logs, artifacts, credentials, nodes, queues, and plugins.",
-      "version": "6f7302851537",
+      "version": "e24641a2be9f",
       "repository": "https://github.com/avivsinai/jenkins-cli",
       "keywords": ["jenkins", "ci", "cd", "pipeline", "builds", "devops", "cli", "automation"]
     },
@@ -105,10 +105,10 @@
         "source": "url",
         "url": "https://github.com/avivsinai/yoetz.git",
         "ref": "main",
-        "sha": "f6fbc37c96ae37fb85546370b6f963e64e2c2f8b"
+        "sha": "f35a6b62d89d68bbbb01689e6863f3e7d863d5eb"
       },
       "description": "LLM council, bundler, and multimodal gateway - multi-model consensus, code review, image/video generation, and browser fallback for coding agents.",
-      "version": "f6fbc37c96ae",
+      "version": "f35a6b62d89d",
       "repository": "https://github.com/avivsinai/yoetz",
       "keywords": ["llm", "council", "multimodal", "code-review", "bundler", "ai", "cli", "agents"]
     },
@@ -118,10 +118,10 @@
         "source": "github",
         "repo": "avivsinai/israel-services",
         "ref": "main",
-        "sha": "d21396084aa30dc779e31af37334e11fe0764288"
+        "sha": "4ae56868ad52fc29bd0d02e81bb4ab20f802bf39"
       },
       "description": "Access Israeli citizen services, including health and banking workflows, directly from the CLI.",
-      "version": "d21396084aa3",
+      "version": "4ae56868ad52",
       "repository": "https://github.com/avivsinai/israel-services",
       "keywords": ["israel", "health", "banking", "clalit", "poalim", "healthcare", "securities"]
     },
@@ -131,10 +131,10 @@
         "source": "url",
         "url": "https://github.com/avivsinai/shaon.git",
         "ref": "main",
-        "sha": "86a5f92f019603e9fe11e439ad1108a933e10b89"
+        "sha": "e98e71cd2e9a211343c7e7d965e6eb68625cd79a"
       },
       "description": "Rust CLI, MCP server, and skill for personal attendance, payslips, salary, and related self-service tasks on your own Hilan account.",
-      "version": "86a5f92f0196",
+      "version": "e98e71cd2e9a",
       "repository": "https://github.com/avivsinai/shaon",
       "keywords": ["attendance", "payslip", "salary", "hilan", "hilanet", "hr", "israel"]
     },
@@ -157,10 +157,10 @@
         "source": "url",
         "url": "https://github.com/avivsinai/snagline.git",
         "ref": "main",
-        "sha": "2f5a558b5912ca54f77a710224c01f5966b5d21b"
+        "sha": "80b4ffc1aab76cd74fa7c58b8d09933ce618ed04"
       },
       "description": "Operate within a Snagline support fabric's trust boundary: open or inspect only the deployment-bound session case, consume inert advice through the operator-run front, keep confidential summaries out of argv and Buzz, treat advice as inert text, and verify SSP artifacts. An agent never holds the edge socket, UID, or credentials. Exact API and field bounds live in the Snagline repository.",
-      "version": "2f5a558b5912",
+      "version": "80b4ffc1aab7",
       "repository": "https://github.com/avivsinai/snagline",
       "keywords": ["snagline", "support", "advice", "case", "ssp", "buzz", "agent", "fabric"]
     }
