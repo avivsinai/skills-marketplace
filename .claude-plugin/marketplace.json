@@ -79,10 +79,10 @@
         "source": "url",
         "url": "https://github.com/avivsinai/jenkins-cli.git",
         "ref": "main",
-        "sha": "e24641a2be9f6ccf7b5a593cfde3cbde35438f0e"
+        "sha": "e05c6a778fe86e4347d8ad78f8a325c3c6ff46ad"
       },
       "description": "Jenkins CLI - GitHub CLI-style interface for Jenkins controllers. Manage jobs, pipelines, runs, logs, artifacts, credentials, nodes, queues, and plugins.",
-      "version": "e24641a2be9f",
+      "version": "e05c6a778fe8",
       "repository": "https://github.com/avivsinai/jenkins-cli",
       "keywords": ["jenkins", "ci", "cd", "pipeline", "builds", "devops", "cli", "automation"]
     },
