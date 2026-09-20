@@ -14,10 +14,10 @@
         "source": "url",
         "url": "https://github.com/avivsinai/agent-message-queue.git",
         "ref": "main",
-        "sha": "f49593c7c260990fcd861d3a44ba086f746cda35"
+        "sha": "761bba4d11bfea03061c2476956000fe3208128a"
       },
       "description": "Agent Message Queue - file-based inter-agent messaging with co-op mode, cross-project federation, and orchestrator integrations (Symphony, Kanban).",
-      "version": "f49593c7c260",
+      "version": "761bba4d11bf",
       "repository": "https://github.com/avivsinai/agent-message-queue",
       "keywords": ["messaging", "agents", "maildir", "queue", "inter-agent", "coordination", "coop", "federation", "integration", "symphony", "kanban"]
     },
@@ -27,10 +27,10 @@
         "source": "url",
         "url": "https://github.com/avivsinai/agent-message-queue.git",
         "ref": "main",
-        "sha": "f49593c7c260990fcd861d3a44ba086f746cda35"
+        "sha": "761bba4d11bfea03061c2476956000fe3208128a"
       },
       "description": "Parallel-research-then-converge design workflow between two agents. Structured phase-by-phase guidance for collaborative spec/design work via AMQ.",
-      "version": "f49593c7c260",
+      "version": "761bba4d11bf",
       "repository": "https://github.com/avivsinai/agent-message-queue",
       "keywords": ["spec", "design", "collaborative", "agents", "parallel-research", "amq", "coordination"]
     },
