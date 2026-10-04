@@ -19,9 +19,9 @@
         "source": "github",
         "repo": "avivsinai/agent-message-queue",
         "ref": "main",
-        "sha": "f2652b04c6f8d0f4277bfb67afcbded1678c4d0b"
+        "sha": "43845f560629161e8c6f70fe1d98b53699de6b1d"
       },
-      "version": "f2652b04c6f8",
+      "version": "43845f560629",
       "keywords": [
         "messaging",
         "agents",
@@ -52,9 +52,9 @@
         "source": "github",
         "repo": "avivsinai/agent-message-queue",
         "ref": "main",
-        "sha": "f2652b04c6f8d0f4277bfb67afcbded1678c4d0b"
+        "sha": "43845f560629161e8c6f70fe1d98b53699de6b1d"
       },
-      "version": "f2652b04c6f8",
+      "version": "43845f560629",
       "keywords": [
         "spec",
         "design",
