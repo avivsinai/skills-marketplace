@@ -14,10 +14,10 @@
         "source": "url",
         "url": "https://github.com/avivsinai/agent-message-queue.git",
         "ref": "main",
-        "sha": "f42f46fbedef2c7dba58b53126c57ae7c96230d9"
+        "sha": "e98a5007edd53bc21ff96f937ef7aa497169d3bf"
       },
       "description": "Agent Message Queue - file-based inter-agent messaging with co-op mode, cross-project federation, and orchestrator integrations (Symphony, Kanban).",
-      "version": "f42f46fbedef",
+      "version": "e98a5007edd5",
       "repository": "https://github.com/avivsinai/agent-message-queue",
       "keywords": ["messaging", "agents", "maildir", "queue", "inter-agent", "coordination", "coop", "federation", "integration", "symphony", "kanban"]
     },
@@ -27,10 +27,10 @@
         "source": "url",
         "url": "https://github.com/avivsinai/agent-message-queue.git",
         "ref": "main",
-        "sha": "f42f46fbedef2c7dba58b53126c57ae7c96230d9"
+        "sha": "e98a5007edd53bc21ff96f937ef7aa497169d3bf"
       },
       "description": "Parallel-research-then-converge design workflow between two agents. Structured phase-by-phase guidance for collaborative spec/design work via AMQ.",
-      "version": "f42f46fbedef",
+      "version": "e98a5007edd5",
       "repository": "https://github.com/avivsinai/agent-message-queue",
       "keywords": ["spec", "design", "collaborative", "agents", "parallel-research", "amq", "coordination"]
     },
@@ -53,10 +53,10 @@
         "source": "url",
         "url": "https://github.com/avivsinai/sabx.git",
         "ref": "main",
-        "sha": "06f624c20d3da8c4db6808519c8b4244571ddf23"
+        "sha": "6b90ad369e62c8396815adb34343843088005acf"
       },
       "description": "SABnzbd CLI - control downloads, queues, RSS feeds, speed limits, and automation via terminal. Full API parity with SABnzbd REST API.",
-      "version": "06f624c20d3d",
+      "version": "6b90ad369e62",
       "repository": "https://github.com/avivsinai/sabx",
       "keywords": ["sabnzbd", "usenet", "downloads", "nzb", "queue", "automation", "cli", "rss"]
     },
@@ -105,10 +105,10 @@
         "source": "url",
         "url": "https://github.com/avivsinai/yoetz.git",
         "ref": "main",
-        "sha": "b4fbd8479cc2cf8d83264c11c951b2184b007d2a"
+        "sha": "f75e5ce937ffb03ca9226e7098dda4cc33afae74"
       },
       "description": "LLM council, bundler, and multimodal gateway - multi-model consensus, code review, image/video generation, and browser fallback for coding agents.",
-      "version": "b4fbd8479cc2",
+      "version": "f75e5ce937ff",
       "repository": "https://github.com/avivsinai/yoetz",
       "keywords": ["llm", "council", "multimodal", "code-review", "bundler", "ai", "cli", "agents"]
     },

@@ -19,9 +19,9 @@
         "source": "github",
         "repo": "avivsinai/agent-message-queue",
         "ref": "main",
-        "sha": "f42f46fbedef2c7dba58b53126c57ae7c96230d9"
+        "sha": "e98a5007edd53bc21ff96f937ef7aa497169d3bf"
       },
-      "version": "f42f46fbedef",
+      "version": "e98a5007edd5",
       "keywords": [
         "messaging",
         "agents",
@@ -52,9 +52,9 @@
         "source": "github",
         "repo": "avivsinai/agent-message-queue",
         "ref": "main",
-        "sha": "f42f46fbedef2c7dba58b53126c57ae7c96230d9"
+        "sha": "e98a5007edd53bc21ff96f937ef7aa497169d3bf"
       },
-      "version": "f42f46fbedef",
+      "version": "e98a5007edd5",
       "keywords": [
         "spec",
         "design",
@@ -112,9 +112,9 @@
         "source": "github",
         "repo": "avivsinai/sabx",
         "ref": "main",
-        "sha": "06f624c20d3da8c4db6808519c8b4244571ddf23"
+        "sha": "6b90ad369e62c8396815adb34343843088005acf"
       },
-      "version": "06f624c20d3d",
+      "version": "6b90ad369e62",
       "keywords": [
         "sabnzbd",
         "usenet",
@@ -233,9 +233,9 @@
         "source": "github",
         "repo": "avivsinai/yoetz",
         "ref": "main",
-        "sha": "b4fbd8479cc2cf8d83264c11c951b2184b007d2a"
+        "sha": "f75e5ce937ffb03ca9226e7098dda4cc33afae74"
       },
-      "version": "b4fbd8479cc2",
+      "version": "f75e5ce937ff",
       "keywords": [
         "llm",
         "council",
