@@ -6,3 +6,6 @@ Thumbs.db
 .idea/
 .vscode/
 *.log
+
+# Local agent message queue (AMQ) mailboxes
+.agent-mail/
