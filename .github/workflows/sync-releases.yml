@@ -28,9 +28,16 @@ jobs:
       DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
       TARGET_REPO: ${{ github.event.client_payload.repo || inputs.repo || '' }}
     steps:
+      - name: Detect release App key
+        id: app-key
+        env:
+          KEY: ${{ secrets.RELEASE_APP_PRIVATE_KEY }}
+        run: |
+          if [ -n "$KEY" ]; then echo "present=true" >> "$GITHUB_OUTPUT"; else echo "present=false" >> "$GITHUB_OUTPUT"; fi
+
       - name: Mint sync token
         id: sync-token
-        if: vars.RELEASE_APP_CLIENT_ID != '' && secrets.RELEASE_APP_PRIVATE_KEY != ''
+        if: vars.RELEASE_APP_CLIENT_ID != '' && steps.app-key.outputs.present == 'true'
         continue-on-error: true
         uses: actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510 # v3.3.0
         with:
