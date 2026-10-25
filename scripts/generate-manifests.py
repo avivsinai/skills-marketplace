@@ -66,7 +66,7 @@ def normalize_source(plugin):
     source = plugin.get("source")
     if isinstance(source, dict) and source.get("source"):
         normalized = {"source": source["source"]}
-        for key in ("repo", "url", "ref", "sha"):
+        for key in ("repo", "url", "path", "ref", "sha"):
             if source.get(key):
                 normalized[key] = source[key]
         return normalized
@@ -160,6 +160,9 @@ def clone_and_bundle(plugin, dest_dir):
     repo_url = plugin["repository"]
     name = plugin["name"]
     source = normalize_source(plugin)
+    if source.get("source") == "git-subdir":
+        print(f"  SKIP: {name} git-subdir plugins are Claude-only")
+        return False
     checkout_ref = source.get("sha") or source.get("ref")
     clone_branch = source.get("ref") if source.get("source") == "github" else None
     expected_version = plugin.get("version")
