@@ -35,6 +35,20 @@
       "keywords": ["spec", "design", "collaborative", "agents", "parallel-research", "amq", "coordination"]
     },
     {
+      "name": "amq-board",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/avivsinai/agent-message-queue.git",
+        "path": "plugins/amq-board",
+        "ref": "main",
+        "sha": "d8f37f4fcdfd2b0d5cb3afc38a48835a0fe5d46d"
+      },
+      "description": "/board opens a side panel with the AMQ fleet board: what waits on you, counts, source status and age, refreshed every minute while open",
+      "version": "d8f37f4fcdfd",
+      "repository": "https://github.com/avivsinai/agent-message-queue",
+      "keywords": ["amq", "board", "agents", "coordination", "panel"]
+    },
+    {
       "name": "langfuse",
       "source": {
         "source": "url",

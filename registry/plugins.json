@@ -74,6 +74,34 @@
       }
     },
     {
+      "name": "amq-board",
+      "description": "/board opens a side panel with the AMQ fleet board: what waits on you, counts, source status and age, refreshed every minute while open",
+      "repository": "https://github.com/avivsinai/agent-message-queue",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/avivsinai/agent-message-queue.git",
+        "path": "plugins/amq-board",
+        "ref": "main",
+        "sha": "d8f37f4fcdfd2b0d5cb3afc38a48835a0fe5d46d"
+      },
+      "version": "d8f37f4fcdfd",
+      "keywords": [
+        "amq",
+        "board",
+        "agents",
+        "coordination",
+        "panel"
+      ],
+      "category": "Developer Tools",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_USE"
+      },
+      "sync": {
+        "mode": "main"
+      }
+    },
+    {
       "name": "langfuse",
       "description": "Langfuse observability - query traces, debug exceptions, analyze sessions, manage prompts and datasets via MCP tools. First LLM observability skill for Claude Code and Codex.",
       "repository": "https://github.com/avivsinai/langfuse-mcp",

@@ -38,6 +38,7 @@ This marketplace does not accept third-party plugin listings.
 
 # Install plugins
 /plugin install amq-cli@avivsinai-marketplace
+/plugin install amq-board@avivsinai-marketplace
 /plugin install langfuse@avivsinai-marketplace
 /plugin install sabx@avivsinai-marketplace
 /plugin install bkt@avivsinai-marketplace
@@ -51,6 +52,7 @@ This marketplace does not accept third-party plugin listings.
 | Plugin | Description | Source |
 |--------|-------------|--------|
 | `amq-cli` | Agent Message Queue - atomic Maildir-style message delivery with co-op mode | [agent-message-queue](https://github.com/avivsinai/agent-message-queue) |
+| `amq-board` | Opt-in Claude Code `/board` side panel with fleet counts, source status, and age | [agent-message-queue](https://github.com/avivsinai/agent-message-queue/tree/main/plugins/amq-board) |
 | `langfuse` | Langfuse observability - query traces, debug exceptions, analyze sessions, manage prompts | [langfuse-mcp](https://github.com/avivsinai/langfuse-mcp) |
 | `sabx` | SABnzbd CLI - control downloads, queues, RSS feeds, and automation | [sabx](https://github.com/avivsinai/sabx) |
 | `bkt` | Bitbucket CLI - manage repos, PRs, branches, issues, webhooks, pipelines (DC & Cloud) | [bitbucket-cli](https://github.com/avivsinai/bitbucket-cli) |

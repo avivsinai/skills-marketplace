@@ -115,12 +115,21 @@ def sync_registry(data, target_repo=None, dry_run=False):
         current_source = plugin.get("source", {}) if isinstance(plugin.get("source"), dict) else {}
         current_ref = current_source.get("ref", "")
         current_sha = current_source.get("sha", "")
-        desired_source = {
-            "source": "github",
-            "repo": repo_slug,
-            "ref": default_branch,
-            "sha": sha,
-        }
+        if current_source.get("source") == "git-subdir":
+            desired_source = {
+                "source": "git-subdir",
+                "url": current_source["url"],
+                "path": current_source["path"],
+                "ref": default_branch,
+                "sha": sha,
+            }
+        else:
+            desired_source = {
+                "source": "github",
+                "repo": repo_slug,
+                "ref": default_branch,
+                "sha": sha,
+            }
 
         if current_version == version and current_source == desired_source and plugin.get("ref") is None:
             print(f"ok {plugin['name']}: already at {default_branch}@{version}")

@@ -27,8 +27,24 @@ jobs:
       - name: Validate registry syntax
         run: python3 -m json.tool registry/plugins.json > /dev/null
 
+      - name: Test source generation and sync
+        run: python3 -B -m unittest discover -s scripts -p 'test_*.py'
+
       - name: Validate CC marketplace syntax
         run: python3 -m json.tool .claude-plugin/marketplace.json > /dev/null
+
+      - name: Set up Node
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '24'
+
+      - name: Validate CC marketplace with Claude Code
+        env:
+          DISABLE_AUTOUPDATER: "1"
+          CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC: "1"
+        run: |
+          npm install --global --no-fund --no-audit @anthropic-ai/claude-code@2.1.310
+          claude plugin validate .
 
       - name: Validate Codex marketplace syntax
         run: python3 -m json.tool .agents/plugins/marketplace.json > /dev/null
@@ -38,6 +54,8 @@ jobs:
           python3 - <<'EOF'
           import json
           import sys
+          from pathlib import PurePosixPath
+          from urllib.parse import urlparse
 
           with open('registry/plugins.json') as f:
               data = json.load(f)
@@ -75,8 +93,8 @@ jobs:
                       print(f"Plugin '{name}' source must be an object")
                       sys.exit(1)
                   source_type = source.get('source')
-                  if source_type not in {'github', 'url'}:
-                      print(f"Plugin '{name}' source.source must be 'github' or 'url'")
+                  if source_type not in {'github', 'url', 'git-subdir'}:
+                      print(f"Plugin '{name}' source.source must be 'github', 'url', or 'git-subdir'")
                       sys.exit(1)
                   if source_type == 'github':
                       for field in ['repo', 'ref']:
@@ -86,6 +104,17 @@ jobs:
                   if source_type == 'url' and 'url' not in source:
                       print(f"Plugin '{name}' url source missing url")
                       sys.exit(1)
+                  if source_type == 'git-subdir':
+                      path = source.get('path')
+                      if not isinstance(source.get('url'), str) or not source['url']:
+                          print(f"Plugin '{name}' git-subdir source requires url")
+                          sys.exit(1)
+                      if not isinstance(path, str) or not path or '\\' in path or PurePosixPath(path).is_absolute() or '..' in path.split('/'):
+                          print(f"Plugin '{name}' git-subdir source requires a repository-relative path")
+                          sys.exit(1)
+                      if not source.get('ref') and not source.get('sha'):
+                          print(f"Plugin '{name}' git-subdir source must pin ref or sha")
+                          sys.exit(1)
 
               policy = plugin.get('policy', {})
               for field in ['installation', 'authentication']:
@@ -103,8 +132,9 @@ jobs:
                   print(f"Plugin '{name}' sync.mode must be 'main', 'release', or 'manual'")
                   sys.exit(1)
               if sync.get('mode') == 'main':
-                  if not isinstance(source, dict) or source.get('source') != 'github':
-                      print(f"Plugin '{name}' main sync requires a github source object")
+                  github_subdir = isinstance(source, dict) and source.get('source') == 'git-subdir' and urlparse(source.get('url', '')).hostname == 'github.com'
+                  if not isinstance(source, dict) or (source.get('source') != 'github' and not github_subdir):
+                      print(f"Plugin '{name}' main sync requires a github source or a GitHub git-subdir source")
                       sys.exit(1)
               if sync.get('mode') == 'release' and not isinstance(sync.get('prereleases'), bool):
                   print(f"Plugin '{name}' release sync requires boolean prereleases")
@@ -140,6 +170,14 @@ jobs:
                           sys.exit(1)
                       if 'ref' not in source and 'sha' not in source:
                           print(f"CC plugin '{plugin['name']}' github source must pin ref or sha")
+                          sys.exit(1)
+                  if source_type == 'git-subdir':
+                      for field in ['url', 'path']:
+                          if not isinstance(source.get(field), str) or not source[field]:
+                              print(f"CC plugin '{plugin['name']}' git-subdir source missing {field}")
+                              sys.exit(1)
+                      if not source.get('ref') and not source.get('sha'):
+                          print(f"CC plugin '{plugin['name']}' git-subdir source must pin ref or sha")
                           sys.exit(1)
 
           print(f"CC manifest validated: {len(data['plugins'])} plugins")
