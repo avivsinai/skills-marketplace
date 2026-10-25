@@ -250,7 +250,7 @@ jobs:
 
       - name: Drift check — regenerate and verify
         env:
-          GITHUB_TOKEN: ${{ secrets.MARKETPLACE_DISPATCH_TOKEN || secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           python3 scripts/generate-manifests.py
           if ! git diff --exit-code -- .claude-plugin/marketplace.json .agents/plugins/marketplace.json plugins/; then
