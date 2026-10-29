@@ -19,6 +19,7 @@ concurrency:
 
 permissions:
   contents: write
+  pull-requests: write
 
 jobs:
   sync:
@@ -81,6 +82,8 @@ jobs:
 
       - name: Commit synced marketplace
         if: steps.changes.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ steps.sync-token.outputs.token || secrets.GITHUB_TOKEN }}
         shell: bash
         run: |
           git config user.name "github-actions[bot]"
