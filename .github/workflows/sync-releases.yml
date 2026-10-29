@@ -45,6 +45,20 @@ jobs:
           client-id: ${{ vars.RELEASE_APP_CLIENT_ID }}
           private-key: ${{ secrets.RELEASE_APP_PRIVATE_KEY }}
 
+      # Source repos can be private (israel-services), which the built-in
+      # GITHUB_TOKEN cannot read. A read-only App token over the whole
+      # installation lets the sync scripts read them.
+      - name: Mint source read token
+        id: read-token
+        if: vars.RELEASE_APP_CLIENT_ID != '' && steps.app-key.outputs.present == 'true'
+        continue-on-error: true
+        uses: actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510 # v3.3.0
+        with:
+          client-id: ${{ vars.RELEASE_APP_CLIENT_ID }}
+          private-key: ${{ secrets.RELEASE_APP_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+          permission-contents: read
+
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0
@@ -57,7 +71,7 @@ jobs:
 
       - name: Sync main-mode plugins
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ steps.read-token.outputs.token || secrets.GITHUB_TOKEN }}
         shell: bash
         run: |
           args=()
@@ -68,7 +82,7 @@ jobs:
 
       - name: Regenerate marketplace manifests
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ steps.read-token.outputs.token || secrets.GITHUB_TOKEN }}
         run: python3 scripts/generate-manifests.py
 
       - name: Detect changes
