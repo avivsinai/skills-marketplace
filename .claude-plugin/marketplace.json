@@ -80,10 +80,10 @@
         "source": "url",
         "url": "https://github.com/avivsinai/bitbucket-cli.git",
         "ref": "master",
-        "sha": "fe7ddbb4706c1f5272c766a81d0516673ef038a7"
+        "sha": "723032d43a6cab6e6c6c843b260b107a839cdefc"
       },
       "description": "Bitbucket CLI - manage repositories, pull requests, branches, issues, webhooks, and pipelines for both Data Center and Cloud. Mirrors gh ergonomics with JSON/YAML output.",
-      "version": "fe7ddbb4706c",
+      "version": "723032d43a6c",
       "repository": "https://github.com/avivsinai/bitbucket-cli",
       "keywords": ["bitbucket", "git", "pr", "pull-request", "ci", "pipeline", "devops", "cli", "datacenter", "cloud"]
     },
