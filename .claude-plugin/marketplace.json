@@ -14,10 +14,10 @@
         "source": "url",
         "url": "https://github.com/avivsinai/agent-message-queue.git",
         "ref": "main",
-        "sha": "db1df0efb307001e52f9f5fd72040f89e5fb3725"
+        "sha": "cedc6d66e01ce2af1918e573705cf6c96020fc52"
       },
       "description": "Agent Message Queue - file-based inter-agent messaging with co-op mode, cross-project federation, and orchestrator integrations (Symphony, Kanban).",
-      "version": "db1df0efb307",
+      "version": "cedc6d66e01c",
       "repository": "https://github.com/avivsinai/agent-message-queue",
       "keywords": ["messaging", "agents", "maildir", "queue", "inter-agent", "coordination", "coop", "federation", "integration", "symphony", "kanban"]
     },
@@ -27,10 +27,10 @@
         "source": "url",
         "url": "https://github.com/avivsinai/agent-message-queue.git",
         "ref": "main",
-        "sha": "db1df0efb307001e52f9f5fd72040f89e5fb3725"
+        "sha": "cedc6d66e01ce2af1918e573705cf6c96020fc52"
       },
       "description": "Parallel-research-then-converge design workflow between two agents. Structured phase-by-phase guidance for collaborative spec/design work via AMQ.",
-      "version": "db1df0efb307",
+      "version": "cedc6d66e01c",
       "repository": "https://github.com/avivsinai/agent-message-queue",
       "keywords": ["spec", "design", "collaborative", "agents", "parallel-research", "amq", "coordination"]
     },
@@ -41,10 +41,10 @@
         "url": "https://github.com/avivsinai/agent-message-queue.git",
         "path": "plugins/amq-board",
         "ref": "main",
-        "sha": "db1df0efb307001e52f9f5fd72040f89e5fb3725"
+        "sha": "cedc6d66e01ce2af1918e573705cf6c96020fc52"
       },
       "description": "/board opens a side panel with the AMQ fleet board: what waits on you, counts, source status and age, refreshed every minute while open",
-      "version": "db1df0efb307",
+      "version": "cedc6d66e01c",
       "repository": "https://github.com/avivsinai/agent-message-queue",
       "keywords": ["amq", "board", "agents", "coordination", "panel"]
     },
