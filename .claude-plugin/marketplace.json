@@ -67,10 +67,10 @@
         "source": "url",
         "url": "https://github.com/avivsinai/sabx.git",
         "ref": "main",
-        "sha": "ab0262a49792bef6ecc7da6da4f576a32c7cfa7a"
+        "sha": "acac2d51e96fec8c25f1d8a4d40a43cf34493822"
       },
       "description": "SABnzbd CLI - control downloads, queues, RSS feeds, speed limits, and automation via terminal. Full API parity with SABnzbd REST API.",
-      "version": "ab0262a49792",
+      "version": "acac2d51e96f",
       "repository": "https://github.com/avivsinai/sabx",
       "keywords": ["sabnzbd", "usenet", "downloads", "nzb", "queue", "automation", "cli", "rss"]
     },
