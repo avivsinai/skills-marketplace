@@ -19,9 +19,9 @@
         "source": "github",
         "repo": "avivsinai/agent-message-queue",
         "ref": "main",
-        "sha": "833b332b4c576875a5a246585a66e7579e80d584"
+        "sha": "9f50f25f33e01f3c8bcde0054e563f0a6b65248e"
       },
-      "version": "833b332b4c57",
+      "version": "9f50f25f33e0",
       "keywords": [
         "messaging",
         "agents",
@@ -52,9 +52,9 @@
         "source": "github",
         "repo": "avivsinai/agent-message-queue",
         "ref": "main",
-        "sha": "833b332b4c576875a5a246585a66e7579e80d584"
+        "sha": "9f50f25f33e01f3c8bcde0054e563f0a6b65248e"
       },
-      "version": "833b332b4c57",
+      "version": "9f50f25f33e0",
       "keywords": [
         "spec",
         "design",
@@ -82,9 +82,9 @@
         "url": "https://github.com/avivsinai/agent-message-queue.git",
         "path": "plugins/amq-board",
         "ref": "main",
-        "sha": "833b332b4c576875a5a246585a66e7579e80d584"
+        "sha": "9f50f25f33e01f3c8bcde0054e563f0a6b65248e"
       },
-      "version": "833b332b4c57",
+      "version": "9f50f25f33e0",
       "keywords": [
         "amq",
         "board",
