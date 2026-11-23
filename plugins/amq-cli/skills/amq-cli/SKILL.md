@@ -1,6 +1,6 @@
 ---
 name: amq-cli
-version: 0.167.0 # x-release-please-version
+version: 0.168.0 # x-release-please-version
 description: Coordinate coding agents through AMQ. Use for agent messages, inboxes, receipts, sessions, wake delivery, cross-project routing, managed launches, or AMQ diagnostics. Use amq-spec for collaborative design; do not use this for general message queues or single-agent work.
 metadata:
   short-description: Inter-agent messaging via AMQ CLI
@@ -127,9 +127,8 @@ drain output as `Reply by:`. Set the duration to the time stated in the request 
 yield to the existing wake while the recipient works.
 
 `--news-within 20m` gives one notice unless the recipient sends you a message
-that references yours, or a later message in the same thread with no refs.
-That unreferenced message ends every open news clock between you and this
-recipient in that thread. Use `--follow-up` for each request's completion. Closing a request ends both clocks.
+after yours. Any message counts, also a report on other work: the clock asks
+whether the recipient is heard from. Use `--follow-up` for each request's completion. Closing a request ends both clocks.
 The recipient sees the news deadline as `News by:` in its drain.
 
 When the brief names a reviewer and a candidate is ready, hand it off with one
