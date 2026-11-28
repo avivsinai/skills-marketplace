@@ -108,7 +108,7 @@ An unclosed request older than `obligation_max_age` (14 days by default) expires
 
 Old history is refused: sync before acting on the report.
 
-Run `amq-board retro` every two weeks, or after a bad day.
+Run `amq-board retro` every two weeks, or after a bad day. Its owner-wait line says how long your own requests waited on you in the period, blocking ones apart, and what still waits now.
 The lead takes the worst number and assigns one fix to an owner.
 A rule nobody needed in the period is a candidate for removal.
 
